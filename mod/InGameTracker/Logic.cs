@@ -474,6 +474,11 @@ public class Logic
                 var found = StoryModMetadata.LogicCategoryToModMetadata.TryGetValue(category, out var mod);
                 if (!found)
                 {
+                    if (APRandomizer.SlotData.ContainsKey(category))
+                    {
+                        allContentEnabled &= (long)APRandomizer.SlotData[category] > 0;
+                        continue;
+                    }
                     APRandomizer.OWMLModConsole.WriteLine($"IsConnectionActive early returning false for {connection.from}->{connection.to} because {category} (in {connection.category}) was not recognized", OWML.Common.MessageType.Error);
                     return false; // this is for a story mod we haven't integrated yet, so ignore it
                 }
