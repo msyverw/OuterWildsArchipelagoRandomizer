@@ -1,0 +1,12 @@
+﻿[
+  {
+    "locationModID": "FC_SCAN_MARKER_CAMP",
+    "description": "The campsite has a Nomai marker. Go scan it.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_LANDING_TANK",
+    "description": "When you land in Magma's Recursion, don't forget to fuel up'.",
+    "thumbnail": "TODO"
+  }
+]
