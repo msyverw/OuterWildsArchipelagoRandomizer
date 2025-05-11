@@ -883,6 +883,9 @@ public enum Location
 
     SLF__READ_BANJO_SCROLL,
 
+    // Forgotten Castaways locations
+    FC_SCAN_MARKER_CAMP,
+    FC_LANDING_TANK,
 
     SLF__FC_TANGLED_RECORDER,
     SLF__FC_MAIN_BRIDGE_RECORDER,
@@ -890,13 +893,24 @@ public enum Location
     SLF__FC_WARP_DEVICE_OBSERVE,
     SLF__FC_WARP_TO_DB,
 
-    SLF__FC_HEART_LAB_DISCOVERY,
-    SLF__FC_BRAMBLE_HEART_DISCOVERY,
-    SLF__FC_PROJECT_GOAL,
-    SLF__FC_PROJECT_TIMING,
-    SLF__FC_DEAD_ALIENS,
-    SLF__FC_DITYLUM_MISSING,
-    SLF__FC_DITYLUM_MOURNING,
+    SLF__FC_ENTRY,
+    SLF__FC_NOMAI_WARP,
+    SLF__FC_OXYGEN_SPLITUP,
+    SLF__FC_BEACON_FREQUENCY,
+
+    SLF__FC_CLUSTER_DISCOVERY,
+    SLF__FC_CLUSTER_SETTLEMENT,
+
+    SLF__FC_HOLE_OVERLOOK_DISCOVERY,
+    SLF__FC_HOLE_ESCAPE,
+
+    SLF__FC_DITYLUM_EJECTION,
+    SLF__FC_DITYLUM_FOUND,
+
+    SLF__FC_ENCLOSED_SPACE_FOUND,
+
+    SLF__FC_RECURSIVE_NODE_FOUND,
+    SLF__FC_RECURSIVE_NODE_SIGNAL,
 
     SLF__FC_CAMP_DISCOVERY,
     SLF__FC_FIRST_SIGHTING,
@@ -911,23 +925,6 @@ public enum Location
 
     SLF__FC_TREEHOUSE_FOUND,
     SLF__FC_TREEHOUSE_RECORDER,
-
-    SLF__FC_CLUSTER_DISCOVERY,
-    SLF__FC_CLUSTER_SETTLEMENT,
-
-    SLF__FC_HOLE_OVERLOOK_DISCOVERY,
-    SLF__FC_HOLE_ESCAPE,
-
-    SLF__FC_PLATFORM_DISCOVERY,
-    SLF__FC_DOMESTIC_TOOTH,
-    SLF__FC_DOMESTIC_EGG,
-    SLF__FC_DREE_RELUCTANCE,
-
-    SLF__FC_KEVIN_USAGE,
-    SLF__FC_FISH_STOMACH,
-    SLF__FC_SCROLL_WALL,
-    SLF__FC_BLOCKABLE_ROCK_FOREIGN,
-    SLF__FC_BLOCKABLE_ROCK_REASON,
 
     SLF__FC_FOLLY_DISCOVERY,
     SLF__FC_FOLLY_SIGNAL,
@@ -966,24 +963,26 @@ public enum Location
     SLF__FC_QUARRY_DISCOVERY,
     SLF__FC_QUARRY_TRANSLATION,
 
-    SLF__FC_ANGLER_DISTRACTION_SUCCESS,
-    SLF__FC_STARVED_FISH,
+    SLF__FC_DREE_SINGING,
+    SLF__FC_CONCERT_MISSED,
+    SLF__FC_CONCERT_BELLS,
+    SLF__FC_CONCERT_DREE_TEXT,
+    SLF__FC_CONCERT_COMBO,
+    SLF__FC_CONCERT_SUCCESS,
 
-    SLF__FC_DREE_NAME,
-    SLF__FC_DITYLUM_NAME,
-    SLF__FC_BRAMBLE_NAME,
-    SLF__FC_TRANSLATION_DRUIDCRAFT,
-    SLF__FC_TRANSLATOR_UPGRADE,
-    SLF__FC_NO_ESCAPE,
+    SLF__FC_DREE_HOME,
 
-    SLF__FC_MOUNT_PURPOSE,
-    SLF__FC_DITYLUM_EJECTION,
-    SLF__FC_DITYLUM_FOUND,
+    SLF__FC_STORY_AREA_DISCOVERY,
+    SLF__FC_STORY_AREA_PURPOSE,
+    SLF__FC_HELMET_REMOVED,
 
-    SLF__FC_ENCLOSED_SPACE_FOUND,
+    SLF__FC_HEARTH_CORE_DISCOVERY,
+    SLF__FC_HOT_NODE_RECORDING,
 
-    SLF__FC_RECURSIVE_NODE_FOUND,
-    SLF__FC_RECURSIVE_NODE_SIGNAL,
+    SLF__FC_COMMUNION_RECORDING,
+
+    SLF__FC_REINVIGORATION_RECORDING,
+    SLF__FC_DATING_START,
 
     SLF__FC_EYE_SIGNAL_DISCOVERY,
     SLF__FC_DREE_RESCUE,
@@ -1007,39 +1006,40 @@ public enum Location
     SLF__FC_OBSTRUCTED_TEXT,
     SLF__FC_ROCK_USED,
 
+    SLF__FC_PLATFORM_DISCOVERY,
+    SLF__FC_DOMESTIC_TOOTH,
+    SLF__FC_DOMESTIC_EGG,
+    SLF__FC_DREE_RELUCTANCE,
+
+    SLF__FC_KEVIN_USAGE,
+    SLF__FC_FISH_STOMACH,
+    SLF__FC_SCROLL_WALL,
+    SLF__FC_BLOCKABLE_ROCK_FOREIGN,
+    SLF__FC_BLOCKABLE_ROCK_REASON,
+
+    SLF__FC_ANGLER_DISTRACTION_SUCCESS,
+    SLF__FC_STARVED_FISH,
+
+    SLF__FC_DREE_NAME,
+    SLF__FC_DITYLUM_NAME,
+    SLF__FC_BRAMBLE_NAME,
+    SLF__FC_TRANSLATION_DRUIDCRAFT,
+    SLF__FC_TRANSLATOR_UPGRADE,
+    SLF__FC_NO_ESCAPE,
+
     SLF__FC_NURSERY_FOUND,
 
-    SLF__FC_DREE_SINGING,
-    SLF__FC_CONCERT_MISSED,
-    SLF__FC_CONCERT_BELLS,
-    SLF__FC_CONCERT_DREE_TEXT,
-    SLF__FC_CONCERT_COMBO,
-    SLF__FC_CONCERT_SUCCESS,
-
-    SLF__FC_DREE_HOME,
-
-    SLF__FC_STORY_AREA_DISCOVERY,
-    SLF__FC_STORY_AREA_PURPOSE,
-    SLF__FC_HELMET_REMOVED,
-
-    SLF__FC_HEARTH_CORE_DISCOVERY,
-    SLF__FC_HOT_NODE_RECORDING,
-
-    SLF__FC_COMMUNION_RECORDING,
-
-    SLF__FC_REINVIGORATION_RECORDING,
-    SLF__FC_DATING_START,
-
-    SLF__FC_ENTRY,
-    SLF__FC_NOMAI_WARP,
-    SLF__FC_OXYGEN_SPLITUP,
-    SLF__FC_BEACON_FREQUENCY,
-
-    SLF__FC_KEVIN_PURPOSE,
-    SLF__FC_KEVIN_IDENTITY,
     SLF__FC_REJECT_NATURE,
     SLF__FC_NODE_DEATH_IDEA,
     SLF__FC_SYRING_FOUND,
+
+    SLF__FC_HEART_LAB_DISCOVERY,
+    SLF__FC_BRAMBLE_HEART_DISCOVERY,
+    SLF__FC_PROJECT_GOAL,
+    SLF__FC_PROJECT_TIMING,
+    SLF__FC_DEAD_ALIENS,
+    SLF__FC_DITYLUM_MISSING,
+    SLF__FC_DITYLUM_MOURNING,
 };
 
 public static class LocationNames
@@ -1817,6 +1817,9 @@ public static class LocationNames
         { Location.SLF__READ_BANJO_SCROLL, "FQ Ship Log: Corrupted Scroll" },
       
         // Forgotten Castaways locations
+        { Location.FC_SCAN_MARKER_CAMP, "FC: Scan Camp Marker" },
+        { Location.FC_LANDING_TANK, "FC: Landing Zone Fuel Tank" },
+
         // DARK_BRAMBLE
           // Stranded Nomai
         { Location.SLF__FC_TANGLED_RECORDER, "FC Ship Log: Stranded Nomai 1 - Regroup" },
@@ -1824,15 +1827,28 @@ public static class LocationNames
         { Location.SLF__FC_LOWER_BRIDGE_RECORDER, "FC Ship Log: Stranded Nomai 3 - Escape" },
         { Location.SLF__FC_WARP_DEVICE_OBSERVE, "FC Ship Log: Stranded Nomai 4 - Device" },
         { Location.SLF__FC_WARP_TO_DB, "FC Ship Log: Stranded Nomai 5 - Leave" },
-        // BRAMBLES_HEART
-          // Distant Node Project
-        { Location.SLF__FC_HEART_LAB_DISCOVERY, "FC Ship Log: DNP 1 - Visit" },
-        { Location.SLF__FC_BRAMBLE_HEART_DISCOVERY, "FC Ship Log: DNP 2 - Heart" },
-        { Location.SLF__FC_PROJECT_GOAL, "FC Ship Log: DNP 3 - Purpose" },
-        { Location.SLF__FC_PROJECT_TIMING, "FC Ship Log: DNP 4 - Everyone" },
-        { Location.SLF__FC_DEAD_ALIENS, "FC Ship Log: DNP 5 - Aliens" },
-        { Location.SLF__FC_DITYLUM_MISSING, "FC Ship Log: DNP 6 - Missing" },
-        { Location.SLF__FC_DITYLUM_MOURNING, "FC Ship Log: DNP 7 - Friend" },
+        // START_DIMENSION
+          // Bramble's Doorstep
+        { Location.SLF__FC_ENTRY, "FC Ship Log: Bramble's Doorstep 1 - Visit" },
+        { Location.SLF__FC_NOMAI_WARP, "FC Ship Log: Bramble's Doorstep 2 - Nomai" },
+        { Location.SLF__FC_OXYGEN_SPLITUP, "FC Ship Log: Bramble's Doorstep 3 - Split" },
+        { Location.SLF__FC_BEACON_FREQUENCY, "FC Ship Log: Bramble's Doorstep 4 - Beacon" },
+        // PLANETOID_CLUSTER
+          // Titan's Tears
+        { Location.SLF__FC_CLUSTER_DISCOVERY, "FC Ship Log: Titan's Tears 1 - Visit" },
+        { Location.SLF__FC_CLUSTER_SETTLEMENT, "FC Ship Log: Titan's Tears 2 - Shelter" },
+            // Hole Overlook
+        { Location.SLF__FC_HOLE_OVERLOOK_DISCOVERY, "FC Ship Log: Hole Overlook 1 - Visit" },
+        { Location.SLF__FC_HOLE_ESCAPE, "FC Ship Log: Hole Overlook 2 - Escape" },
+        // LARGE_DIMENSION
+          // Dangerous Node
+        { Location.SLF__FC_DITYLUM_EJECTION, "FC Ship Log: Dangerous Node 1 - Ejection" },
+        { Location.SLF__FC_DITYLUM_FOUND, "FC Ship Log: Dangerous Node 2 - Creature" },
+          // Enclosed Space
+        { Location.SLF__FC_ENCLOSED_SPACE_FOUND, "FC Ship Log: Enclosed Space 1 - Visit" },
+          // Recursive Node
+        { Location.SLF__FC_RECURSIVE_NODE_FOUND, "FC Ship Log: Recursive Node 1 - Visit" },
+        { Location.SLF__FC_RECURSIVE_NODE_SIGNAL, "FC Ship Log: Recursive Node 2 - Signal" },
         // CAMP_PLANET
           // Northern Campsite
         { Location.SLF__FC_CAMP_DISCOVERY, "FC Ship Log: Northern Campsite 1 - Visit" },
@@ -1848,25 +1864,6 @@ public static class LocationNames
           // Treehouse
         { Location.SLF__FC_TREEHOUSE_FOUND, "FC Ship Log: Treehouse 1 - Visit" },
         { Location.SLF__FC_TREEHOUSE_RECORDER, "FC Ship Log: Treehouse 2 - Names" },
-        // PLANETOID_CLUSTER
-          // Titan's Tears
-        { Location.SLF__FC_CLUSTER_DISCOVERY, "FC Ship Log: Titan's Tears 1 - Visit" },
-        { Location.SLF__FC_CLUSTER_SETTLEMENT, "FC Ship Log: Titan's Tears 2 - Shelter" },
-            // Hole Overlook
-        { Location.SLF__FC_HOLE_OVERLOOK_DISCOVERY, "FC Ship Log: Hole Overlook 1 - Visit" },
-        { Location.SLF__FC_HOLE_ESCAPE, "FC Ship Log: Hole Overlook 2 - Escape" },
-        // DOMESTIC_DIMENSION
-          // Anglerfish Observation Platform
-        { Location.SLF__FC_PLATFORM_DISCOVERY, "FC Ship Log: Observation Platform 1 - Visit" },
-        { Location.SLF__FC_DOMESTIC_TOOTH, "FC Ship Log: Observation Platform 2 - Tooth" },
-        { Location.SLF__FC_DOMESTIC_EGG, "FC Ship Log: Observation Platform 3 - Eggs" },
-        { Location.SLF__FC_DREE_RELUCTANCE, "FC Ship Log: Observation Platform 4 - Reluctant" },
-          // Enzyme Lab
-        { Location.SLF__FC_KEVIN_USAGE, "FC Ship Log: Enzyme Lab 1 - Kevin" },
-        { Location.SLF__FC_FISH_STOMACH, "FC Ship Log: Enzyme Lab 2 - Stomach" },
-        { Location.SLF__FC_SCROLL_WALL, "FC Ship Log: Enzyme Lab 3 - Scrolls" },
-        { Location.SLF__FC_BLOCKABLE_ROCK_FOREIGN, "FC Ship Log: Enzyme Lab 4 - Blocked" },
-        { Location.SLF__FC_BLOCKABLE_ROCK_REASON, "FC Ship Log: Enzyme Lab 5 - Probability" },
         // GRAVITONS_FOLLY
           // Graviton's Folly
         { Location.SLF__FC_FOLLY_DISCOVERY, "FC Ship Log: Graviton's Folly 1 - Visit" },
@@ -1905,27 +1902,28 @@ public static class LocationNames
           // Quarry
         { Location.SLF__FC_QUARRY_DISCOVERY, "FC Ship Log: Quarry 1 - Visit" },
         { Location.SLF__FC_QUARRY_TRANSLATION, "FC Ship Log: Quarry 2 - Material" },
-        // LANGUAGE_DIMENSTION
-          // Translation Lab
-        { Location.SLF__FC_ANGLER_DISTRACTION_SUCCESS, "FC Ship Log: Translation Lab 1 - Visit" },
-        { Location.SLF__FC_STARVED_FISH, "FC Ship Log: Translation Lab 2 - Fish" },
-            // Translations
-        { Location.SLF__FC_DREE_NAME, "FC Ship Log: Translations 1 - Aliens" },
-        { Location.SLF__FC_DITYLUM_NAME, "FC Ship Log: Translations 2 - Name" },
-        { Location.SLF__FC_BRAMBLE_NAME, "FC Ship Log: Translations 3 - Bramble" },
-        { Location.SLF__FC_TRANSLATION_DRUIDCRAFT, "FC Ship Log: Translations 4 - Influence" },
-        { Location.SLF__FC_TRANSLATOR_UPGRADE, "FC Ship Log: Translations 5 - Dictionary" },
-        { Location.SLF__FC_NO_ESCAPE, "FC Ship Log: Translations 6 - Escape" },
-        // LARGE_DIMENSION
-          // Dangerous Node
-        { Location.SLF__FC_MOUNT_PURPOSE, "FC Ship Log: Dangerous Node 1 - Mount" },
-        { Location.SLF__FC_DITYLUM_EJECTION, "FC Ship Log: Dangerous Node 2 - Ejection" },
-        { Location.SLF__FC_DITYLUM_FOUND, "FC Ship Log: Dangerous Node 3 - Creature" },
-          // Enclosed Space
-        { Location.SLF__FC_ENCLOSED_SPACE_FOUND, "FC Ship Log: Enclosed Space 1 - Visit" },
-          // Recursive Node
-        { Location.SLF__FC_RECURSIVE_NODE_FOUND, "FC Ship Log: Recursive Node 1 - Visit" },
-        { Location.SLF__FC_RECURSIVE_NODE_SIGNAL, "FC Ship Log: Recursive Node 2 - Signal" },
+        // SHATTERED_HEARTH
+          // Concert Hall
+        { Location.SLF__FC_DREE_SINGING, "FC Ship Log: Concert Hall 1 - Singing" },
+        { Location.SLF__FC_CONCERT_MISSED, "FC Ship Log: Concert Hall 2 - Missed" },
+        { Location.SLF__FC_CONCERT_BELLS, "FC Ship Log: Concert Hall 3 - Bells" },
+        { Location.SLF__FC_CONCERT_DREE_TEXT, "FC Ship Log: Concert Hall 4 - Text" },
+        { Location.SLF__FC_CONCERT_COMBO, "FC Ship Log: Concert Hall 5 - Ringing" },
+        { Location.SLF__FC_CONCERT_SUCCESS, "FC Ship Log: Concert Hall 6 - Repair" },
+          // Alien Park
+        { Location.SLF__FC_DREE_HOME, "FC Ship Log: Alien Park 1 - Home" },
+          // Storytelling Area
+        { Location.SLF__FC_STORY_AREA_DISCOVERY, "FC Ship Log: Storytelling Area 1 - Visit" },
+        { Location.SLF__FC_STORY_AREA_PURPOSE, "FC Ship Log: Storytelling Area 2 - Stories" },
+        { Location.SLF__FC_HELMET_REMOVED, "FC Ship Log: Storytelling Area 3 - Helmet" },
+          // Hearth's Core
+        { Location.SLF__FC_HEARTH_CORE_DISCOVERY, "FC Ship Log: Hearth's Core 1 - Visit" },
+        { Location.SLF__FC_HOT_NODE_RECORDING, "FC Ship Log: Hearth's Core 2 - Warning" },
+          // Karenia's House
+        { Location.SLF__FC_COMMUNION_RECORDING, "FC Ship Log: Karenia's House 1 - Recording" },
+          // Amylax's House
+        { Location.SLF__FC_REINVIGORATION_RECORDING, "FC Ship Log: Amylax's House 1 - Signal" },
+        { Location.SLF__FC_DATING_START, "FC Ship Log: Amylax's House 2 - Partners" },
         // MAGMAS_RECURSION
           // Landing Zone
         { Location.SLF__FC_EYE_SIGNAL_DISCOVERY, "FC Ship Log: Landing Zone 1 - Signal" },
@@ -1949,44 +1947,46 @@ public static class LocationNames
         { Location.SLF__FC_QUANTUM_CAVE_DISCOVERY, "FC Ship Log: Quantum Cave 1 - Visit" },
         { Location.SLF__FC_OBSTRUCTED_TEXT, "FC Ship Log: Quantum Cave 2 - Obstructed" },
         { Location.SLF__FC_ROCK_USED, "FC Ship Log: Quantum Cave 3 - Third" },
+        // DOMESTIC_DIMENSION
+          // Anglerfish Observation Platform
+        { Location.SLF__FC_PLATFORM_DISCOVERY, "FC Ship Log: Observation Platform 1 - Visit" },
+        { Location.SLF__FC_DOMESTIC_TOOTH, "FC Ship Log: Observation Platform 2 - Tooth" },
+        { Location.SLF__FC_DOMESTIC_EGG, "FC Ship Log: Observation Platform 3 - Eggs" },
+        { Location.SLF__FC_DREE_RELUCTANCE, "FC Ship Log: Observation Platform 4 - Reluctant" },
+          // Enzyme Lab
+        { Location.SLF__FC_KEVIN_USAGE, "FC Ship Log: Enzyme Lab 1 - Kevin" },
+        { Location.SLF__FC_FISH_STOMACH, "FC Ship Log: Enzyme Lab 2 - Stomach" },
+        { Location.SLF__FC_SCROLL_WALL, "FC Ship Log: Enzyme Lab 3 - Scrolls" },
+        { Location.SLF__FC_BLOCKABLE_ROCK_FOREIGN, "FC Ship Log: Enzyme Lab 4 - Blocked" },
+        { Location.SLF__FC_BLOCKABLE_ROCK_REASON, "FC Ship Log: Enzyme Lab 5 - Probability" },
+        // LANGUAGE_DIMENSTION
+          // Translation Lab
+        { Location.SLF__FC_ANGLER_DISTRACTION_SUCCESS, "FC Ship Log: Translation Lab 1 - Visit" },
+        { Location.SLF__FC_STARVED_FISH, "FC Ship Log: Translation Lab 2 - Fish" },
+            // Translations
+        { Location.SLF__FC_DREE_NAME, "FC Ship Log: Translations 1 - Aliens" },
+        { Location.SLF__FC_DITYLUM_NAME, "FC Ship Log: Translations 2 - Name" },
+        { Location.SLF__FC_BRAMBLE_NAME, "FC Ship Log: Translations 3 - Bramble" },
+        { Location.SLF__FC_TRANSLATION_DRUIDCRAFT, "FC Ship Log: Translations 4 - Influence" },
+        { Location.SLF__FC_TRANSLATOR_UPGRADE, "FC Ship Log: Translations 5 - Dictionary" },
+        { Location.SLF__FC_NO_ESCAPE, "FC Ship Log: Translations 6 - Escape" },
         // NURSERY
           // The Nursery
         { Location.SLF__FC_NURSERY_FOUND, "FC Ship Log: Nursery 1 - Visit" },
-        // SHATTERED_HEARTH
-          // Concert Hall
-        { Location.SLF__FC_DREE_SINGING, "FC Ship Log: Concert Hall 1 - Singing" },
-        { Location.SLF__FC_CONCERT_MISSED, "FC Ship Log: Concert Hall 2 - Missed" },
-        { Location.SLF__FC_CONCERT_BELLS, "FC Ship Log: Concert Hall 3 - Bells" },
-        { Location.SLF__FC_CONCERT_DREE_TEXT, "FC Ship Log: Concert Hall 4 - Text" },
-        { Location.SLF__FC_CONCERT_COMBO, "FC Ship Log: Concert Hall 5 - Ringing" },
-        { Location.SLF__FC_CONCERT_SUCCESS, "FC Ship Log: Concert Hall 6 - Repair" },
-          // Alien Park
-        { Location.SLF__FC_DREE_HOME, "FC Ship Log: Alien Park 1 - Home" },
-          // Storytelling Area
-        { Location.SLF__FC_STORY_AREA_DISCOVERY, "FC Ship Log: Storytelling Area 1 - Visit" },
-        { Location.SLF__FC_STORY_AREA_PURPOSE, "FC Ship Log: Storytelling Area 2 - Stories" },
-        { Location.SLF__FC_HELMET_REMOVED, "FC Ship Log: Storytelling Area 3 - Helmet" },
-          // Hearth's Core
-        { Location.SLF__FC_HEARTH_CORE_DISCOVERY, "FC Ship Log: Hearth's Core 1 - Visit" },
-        { Location.SLF__FC_HOT_NODE_RECORDING, "FC Ship Log: Hearth's Core 2 - Warning" },
-          // Karenia's House
-        { Location.SLF__FC_COMMUNION_RECORDING, "FC Ship Log: Chief House 1 - Recording" },
-          // Amylax's House
-        { Location.SLF__FC_REINVIGORATION_RECORDING, "FC Ship Log: Friend House 1 - Signal" },
-        { Location.SLF__FC_DATING_START, "FC Ship Log: Friend House 2 - Partners" },
-        // START_DIMENSION
-          // Bramble's Doorstep
-        { Location.SLF__FC_ENTRY, "FC Ship Log: Bramble's Doorstep 1 - Visit" },
-        { Location.SLF__FC_NOMAI_WARP, "FC Ship Log: Bramble's Doorstep 2 - Nomai" },
-        { Location.SLF__FC_OXYGEN_SPLITUP, "FC Ship Log: Bramble's Doorstep 3 - Split" },
-        { Location.SLF__FC_BEACON_FREQUENCY, "FC Ship Log: Bramble's Doorstep 4 - Beacon" },
         // VENOMOUS_REJECT
           // The Venomous Reject
-        { Location.SLF__FC_KEVIN_PURPOSE, "FC Ship Log: Venomous Reject 1 - Ride" },
-        { Location.SLF__FC_KEVIN_IDENTITY, "FC Ship Log: Venomous Reject 2 - Tooth" },
-        { Location.SLF__FC_REJECT_NATURE, "FC Ship Log: Venomous Reject 3 - Toxin" },
-        { Location.SLF__FC_NODE_DEATH_IDEA, "FC Ship Log: Venomous Reject 4 - Collapse" },
-        { Location.SLF__FC_SYRING_FOUND, "FC Ship Log: Venomous Reject 5 - Syringe" },
+        { Location.SLF__FC_REJECT_NATURE, "FC Ship Log: Venomous Reject 1 - Toxin" },
+        { Location.SLF__FC_NODE_DEATH_IDEA, "FC Ship Log: Venomous Reject 2 - Collapse" },
+        { Location.SLF__FC_SYRING_FOUND, "FC Ship Log: Venomous Reject 3 - Syringe" },
+        // BRAMBLES_HEART
+          // Distant Node Project
+        { Location.SLF__FC_HEART_LAB_DISCOVERY, "FC Ship Log: DNP 1 - Visit" },
+        { Location.SLF__FC_BRAMBLE_HEART_DISCOVERY, "FC Ship Log: DNP 2 - Heart" },
+        { Location.SLF__FC_PROJECT_GOAL, "FC Ship Log: DNP 3 - Purpose" },
+        { Location.SLF__FC_PROJECT_TIMING, "FC Ship Log: DNP 4 - Everyone" },
+        { Location.SLF__FC_DEAD_ALIENS, "FC Ship Log: DNP 5 - Aliens" },
+        { Location.SLF__FC_DITYLUM_MISSING, "FC Ship Log: DNP 6 - Missing" },
+        { Location.SLF__FC_DITYLUM_MOURNING, "FC Ship Log: DNP 7 - Friend" },
     };
 
     public static Dictionary<string, Location> locationNamesReversed = locationNames.ToDictionary(ln => ln.Value, ln => ln.Key);

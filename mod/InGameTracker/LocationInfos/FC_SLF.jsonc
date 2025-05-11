@@ -1,0 +1,592 @@
+﻿[
+  {
+    "locationModID": "SLF__FC_TANGLED_RECORDER",
+    "description": "SLF__FC_TANGLED_RECORDER",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_MAIN_BRIDGE_RECORDER",
+    "description": "SLF__FC_MAIN_BRIDGE_RECORDER",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_LOWER_BRIDGE_RECORDER",
+    "description": "SLF__FC_LOWER_BRIDGE_RECORDER",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_WARP_DEVICE_OBSERVE",
+    "description": "SLF__FC_WARP_DEVICE_OBSERVE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_WARP_TO_DB",
+    "description": "SLF__FC_WARP_TO_DB",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ENTRY",
+    "description": "SLF__FC_ENTRY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NOMAI_WARP",
+    "description": "SLF__FC_NOMAI_WARP",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_OXYGEN_SPLITUP",
+    "description": "SLF__FC_OXYGEN_SPLITUP",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BEACON_FREQUENCY",
+    "description": "SLF__FC_BEACON_FREQUENCY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CLUSTER_DISCOVERY",
+    "description": "SLF__FC_CLUSTER_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CLUSTER_SETTLEMENT",
+    "description": "SLF__FC_CLUSTER_SETTLEMENT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HOLE_OVERLOOK_DISCOVERY",
+    "description": "SLF__FC_HOLE_OVERLOOK_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HOLE_ESCAPE",
+    "description": "SLF__FC_HOLE_ESCAPE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DITYLUM_EJECTION",
+    "description": "SLF__FC_DITYLUM_EJECTION",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DITYLUM_FOUND",
+    "description": "SLF__FC_DITYLUM_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ENCLOSED_SPACE_FOUND",
+    "description": "SLF__FC_ENCLOSED_SPACE_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_RECURSIVE_NODE_FOUND",
+    "description": "SLF__FC_RECURSIVE_NODE_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_RECURSIVE_NODE_SIGNAL",
+    "description": "SLF__FC_RECURSIVE_NODE_SIGNAL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CAMP_DISCOVERY",
+    "description": "SLF__FC_CAMP_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_FIRST_SIGHTING",
+    "description": "SLF__FC_FIRST_SIGHTING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_FIRST_MEETING",
+    "description": "SLF__FC_FIRST_MEETING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_STALKING",
+    "description": "SLF__FC_STALKING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ALIEN_LEADING",
+    "description": "SLF__FC_ALIEN_LEADING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SOIL_LAB_DISCOVERY",
+    "description": "SLF__FC_SOIL_LAB_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SOIL_LAB_CRYSTAL",
+    "description": "SLF__FC_SOIL_LAB_CRYSTAL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SOIL_LAB_REPAIR",
+    "description": "SLF__FC_SOIL_LAB_REPAIR",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CAMP_PLANETOID_SOIL",
+    "description": "SLF__FC_CAMP_PLANETOID_SOIL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_TREEHOUSE_FOUND",
+    "description": "SLF__FC_TREEHOUSE_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_TREEHOUSE_RECORDER",
+    "description": "SLF__FC_TREEHOUSE_RECORDER",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_FOLLY_DISCOVERY",
+    "description": "SLF__FC_FOLLY_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_FOLLY_SIGNAL",
+    "description": "SLF__FC_FOLLY_SIGNAL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_PILLAR_DISCOVERY",
+    "description": "SLF__FC_PILLAR_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_GIFT",
+    "description": "SLF__FC_GIFT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ALIEN_STUDY_DISCOVERY",
+    "description": "SLF__FC_ALIEN_STUDY_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ALIEN_SIGHT",
+    "description": "SLF__FC_ALIEN_SIGHT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ALIEN_DRUIDCRAFT",
+    "description": "SLF__FC_ALIEN_DRUIDCRAFT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_STRANDED_DREE_TEXT",
+    "description": "SLF__FC_STRANDED_DREE_TEXT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_EYE_SHRINE_DISCOVERY",
+    "description": "SLF__FC_EYE_SHRINE_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NO_SIGNAL",
+    "description": "SLF__FC_NO_SIGNAL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_EYE_PURPOSE",
+    "description": "SLF__FC_EYE_PURPOSE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_EYE_AGE",
+    "description": "SLF__FC_EYE_AGE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_POD_MEMORIAL",
+    "description": "SLF__FC_POD_MEMORIAL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NOMAI_DISHEARTENED",
+    "description": "SLF__FC_NOMAI_DISHEARTENED",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NOMAI_REVITALIZED",
+    "description": "SLF__FC_NOMAI_REVITALIZED",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_GRAV_CORE_SEEN_FACT_FC",
+    "description": "SLF__FC_GRAV_CORE_SEEN_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_THEORY_FACT_FC",
+    "description": "SLF__FC_CORE_THEORY_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_TUNNELS_FACT_FC",
+    "description": "SLF__FC_CORE_TUNNELS_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_GRAV_CRYSTAL_TEXT_FACT_FC",
+    "description": "SLF__FC_GRAV_CRYSTAL_TEXT_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_TRACTOR_COMBO_FACT_FC",
+    "description": "SLF__FC_TRACTOR_COMBO_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_ENTERED_FACT_FC",
+    "description": "SLF__FC_CORE_ENTERED_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_BROKEN_FACT_FC",
+    "description": "SLF__FC_CORE_BROKEN_FACT_FC",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_LAB_FOUND",
+    "description": "SLF__FC_CORE_LAB_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_LAB_PURPOSE",
+    "description": "SLF__FC_CORE_LAB_PURPOSE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CORE_DITYLUM_STRANDED",
+    "description": "SLF__FC_CORE_DITYLUM_STRANDED",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BAD_PLANS",
+    "description": "SLF__FC_BAD_PLANS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BROKEN_STAIRS",
+    "description": "SLF__FC_BROKEN_STAIRS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_QUARRY_DISCOVERY",
+    "description": "SLF__FC_QUARRY_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_QUARRY_TRANSLATION",
+    "description": "SLF__FC_QUARRY_TRANSLATION",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_SINGING",
+    "description": "SLF__FC_DREE_SINGING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CONCERT_MISSED",
+    "description": "SLF__FC_CONCERT_MISSED",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CONCERT_BELLS",
+    "description": "SLF__FC_CONCERT_BELLS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CONCERT_DREE_TEXT",
+    "description": "SLF__FC_CONCERT_DREE_TEXT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CONCERT_COMBO",
+    "description": "SLF__FC_CONCERT_COMBO",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_CONCERT_SUCCESS",
+    "description": "SLF__FC_CONCERT_SUCCESS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_HOME",
+    "description": "SLF__FC_DREE_HOME",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_STORY_AREA_DISCOVERY",
+    "description": "SLF__FC_STORY_AREA_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_STORY_AREA_PURPOSE",
+    "description": "SLF__FC_STORY_AREA_PURPOSE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HELMET_REMOVED",
+    "description": "SLF__FC_HELMET_REMOVED",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HEARTH_CORE_DISCOVERY",
+    "description": "SLF__FC_HEARTH_CORE_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HOT_NODE_RECORDING",
+    "description": "SLF__FC_HOT_NODE_RECORDING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_COMMUNION_RECORDING",
+    "description": "SLF__FC_COMMUNION_RECORDING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_REINVIGORATION_RECORDING",
+    "description": "SLF__FC_REINVIGORATION_RECORDING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DATING_START",
+    "description": "SLF__FC_DATING_START",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_EYE_SIGNAL_DISCOVERY",
+    "description": "SLF__FC_EYE_SIGNAL_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_RESCUE",
+    "description": "SLF__FC_DREE_RESCUE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_EGG_STORY",
+    "description": "SLF__FC_EGG_STORY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ABANDONED_SETTLEMENT_FOUND",
+    "description": "SLF__FC_ABANDONED_SETTLEMENT_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HOT_PLANET_NO_CITY",
+    "description": "SLF__FC_HOT_PLANET_NO_CITY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HOT_ROAD",
+    "description": "SLF__FC_HOT_ROAD",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SIGNAL_FEEDBACK",
+    "description": "SLF__FC_SIGNAL_FEEDBACK",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_FLIRTING_REVELATION",
+    "description": "SLF__FC_FLIRTING_REVELATION",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_GAS_CAVE_DISCOVERY",
+    "description": "SLF__FC_GAS_CAVE_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_GAS_CRYSTALS",
+    "description": "SLF__FC_GAS_CRYSTALS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_RELATIONSHIP_ADVICE",
+    "description": "SLF__FC_RELATIONSHIP_ADVICE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SIGNAL_LAB_USE",
+    "description": "SLF__FC_SIGNAL_LAB_USE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_ECHOLOCATION_STUDY",
+    "description": "SLF__FC_DREE_ECHOLOCATION_STUDY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_SIGNAL_TUNE",
+    "description": "SLF__FC_DREE_SIGNAL_TUNE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_QUANTUM_CAVE_DISCOVERY",
+    "description": "SLF__FC_QUANTUM_CAVE_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_OBSTRUCTED_TEXT",
+    "description": "SLF__FC_OBSTRUCTED_TEXT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ROCK_USED",
+    "description": "SLF__FC_ROCK_USED",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_PLATFORM_DISCOVERY",
+    "description": "SLF__FC_PLATFORM_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DOMESTIC_TOOTH",
+    "description": "SLF__FC_DOMESTIC_TOOTH",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DOMESTIC_EGG",
+    "description": "SLF__FC_DOMESTIC_EGG",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_RELUCTANCE",
+    "description": "SLF__FC_DREE_RELUCTANCE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_KEVIN_USAGE",
+    "description": "SLF__FC_KEVIN_USAGE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_FISH_STOMACH",
+    "description": "SLF__FC_FISH_STOMACH",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SCROLL_WALL",
+    "description": "SLF__FC_SCROLL_WALL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BLOCKABLE_ROCK_FOREIGN",
+    "description": "SLF__FC_BLOCKABLE_ROCK_FOREIGN",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BLOCKABLE_ROCK_REASON",
+    "description": "SLF__FC_BLOCKABLE_ROCK_REASON",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_ANGLER_DISTRACTION_SUCCESS",
+    "description": "SLF__FC_ANGLER_DISTRACTION_SUCCESS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_STARVED_FISH",
+    "description": "SLF__FC_STARVED_FISH",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DREE_NAME",
+    "description": "SLF__FC_DREE_NAME",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DITYLUM_NAME",
+    "description": "SLF__FC_DITYLUM_NAME",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BRAMBLE_NAME",
+    "description": "SLF__FC_BRAMBLE_NAME",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_TRANSLATION_DRUIDCRAFT",
+    "description": "SLF__FC_TRANSLATION_DRUIDCRAFT",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_TRANSLATOR_UPGRADE",
+    "description": "SLF__FC_TRANSLATOR_UPGRADE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NO_ESCAPE",
+    "description": "SLF__FC_NO_ESCAPE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NURSERY_FOUND",
+    "description": "SLF__FC_NURSERY_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_REJECT_NATURE",
+    "description": "SLF__FC_REJECT_NATURE",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_NODE_DEATH_IDEA",
+    "description": "SLF__FC_NODE_DEATH_IDEA",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_SYRING_FOUND",
+    "description": "SLF__FC_SYRING_FOUND",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_HEART_LAB_DISCOVERY",
+    "description": "SLF__FC_HEART_LAB_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_BRAMBLE_HEART_DISCOVERY",
+    "description": "SLF__FC_BRAMBLE_HEART_DISCOVERY",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_PROJECT_GOAL",
+    "description": "SLF__FC_PROJECT_GOAL",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_PROJECT_TIMING",
+    "description": "SLF__FC_PROJECT_TIMING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DEAD_ALIENS",
+    "description": "SLF__FC_DEAD_ALIENS",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DITYLUM_MISSING",
+    "description": "SLF__FC_DITYLUM_MISSING",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "SLF__FC_DITYLUM_MOURNING",
+    "description": "SLF__FC_DITYLUM_MOURNING",
+    "thumbnail": "TODO"
+  }
+]

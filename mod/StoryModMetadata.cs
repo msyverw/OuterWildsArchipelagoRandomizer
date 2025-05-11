@@ -67,7 +67,7 @@ public class StoryModMetadata
         trackerLocationInfosFilePrefix = "FQ",
     };
     private static ModMetadata FCMetadata = new ModMetadata {
-        trackerCategoryName = "Forgotten Castaways",
+        trackerCategoryName = "Deep Bramble",
         modManagerUniqueName = "cleric.DeepBramble",
         slotDataOption = "enable_fc_mod",
         logicCategory = "fc",
