@@ -15,6 +15,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
+using static ArchipelagoRandomizer.StoryModMetadata;
 
 namespace ArchipelagoRandomizer;
 
@@ -53,6 +54,8 @@ public class APRandomizer : ModBehaviour
         SlotData.ContainsKey("dlc_only") && (long)SlotData["dlc_only"] > 0;
     public static bool SlotEnabledSplitTranslator() =>
         SlotData.ContainsKey("split_translator") && (long)SlotData["split_translator"] == 1;
+    public static bool SlotEnabledMod(string modOption) =>
+        SlotData.ContainsKey(modOption) && (long)SlotData[modOption] > 0;
 
     public static IModConsole OWMLModConsole { get => Instance.ModHelper.Console; }
     public static ArchConsoleManager InGameAPConsole;

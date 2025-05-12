@@ -67,6 +67,16 @@ internal class SignalsAndFrequencies
         { "Reson's Radio", "Hearthian Radio" },
         { "Reson's Second Radio", "Hearthian Radio" },
         { "Rim's Second Radio", "Hearthian Radio" },
+
+        // Forgotten Castaways
+        { "First Marker", "Nomai Trailmarkers" },
+        { "Camp Marker", "Nomai Trailmarkers" },
+        { "Amplified Ambience", "Natural Phenomena" },
+        { "Gravitational Anomaly", "Natural Phenomena" },
+        { "Geothermal Activity", "Natural Phenomena" },
+        { "Alien Echolocation", "Echolocation Tones" },
+        { "Warped Echolocation", "Echolocation Tones" },
+        { "Ditylum Echolocation", "Echolocation Tones" },
     };
 
     public static Dictionary<string, HashSet<string>> frequencyToSignals = new Dictionary<string, HashSet<string>>
@@ -134,6 +144,22 @@ internal class SignalsAndFrequencies
             "Reson's Radio",
             "Reson's Second Radio",
             "Rim's Second Radio",
+        } },
+
+        // Forgotten Castaways
+        { "Nomai Trailmarkers", new HashSet<string>{
+            "First Marker",
+            "Camp Marker",
+        } },
+        { "Natural Phenomena", new HashSet<string>{
+            "Amplified Ambience",
+            "Gravitational Anomaly",
+            "Geothermal Activity",
+        } },
+        { "Echolocation Tones", new HashSet<string>{
+            "Alien Echolocation",
+            "Warped Echolocation",
+            "Ditylum Echolocation",
         } },
     };
 
