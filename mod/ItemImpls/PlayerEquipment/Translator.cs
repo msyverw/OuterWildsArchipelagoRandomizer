@@ -28,7 +28,8 @@ internal class Translator
         BrittleHollow,
         GiantsDeep,
         DarkBramble,
-        Other
+        Other,
+        DeepBramble,
     }
 
     public static bool hasRegularTranslator = false;
@@ -38,6 +39,7 @@ internal class Translator
     public static bool hasGDTranslator = false;
     public static bool hasDBTranslator = false;
     public static bool hasOtherTranslator = false;
+    public static bool hasDeepBTranslator = false;
 
     private static TranslatorSector currentTranslatorSector = TranslatorSector.Other;
 

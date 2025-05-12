@@ -15,7 +15,9 @@ public class Victory
         SongOfTheStranger = 2,
         SongOfSix = 3,
         SongOfSeven = 4,
-        EchoesOfTheEye = 5
+        EchoesOfTheEye = 5,
+        SongOfTheBramble = 6,
+        SongOfEight = 7,
     }
 
     public static GoalSetting goalSetting = GoalSetting.SongOfFive;
