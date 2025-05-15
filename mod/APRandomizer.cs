@@ -3,6 +3,7 @@ using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using ArchipelagoRandomizer.InGameTracker;
+using ArchipelagoRandomizer.ItemImpls.FCProgression;
 using HarmonyLib;
 using Newtonsoft.Json;
 using OWML.Common;
@@ -482,6 +483,9 @@ public class APRandomizer : ModBehaviour
             Hints.OnCompleteSceneLoad();
             // Hearth's Neighbor 2: Magistarium custom item impls
             MemoryCubeInterface.OnCompleteSceneLoad();
+            // Forgotten Castaways custom item impls
+            if (ModHelper.Interaction.ModExists("cleric.DeepBramble"))
+                DeepBrambleCoordinates.OnCompleteSceneLoad();
         };
 
         // update the Nomai text setting before any can be created
@@ -509,6 +513,13 @@ public class APRandomizer : ModBehaviour
                 if (system == "Jam3")
                 {
                     MagistariumAccessCodes.OnJam3StarSystemLoadedEvent();
+                }
+                // Forgotten Castaways custom item impls
+                if (system == "DeepBramble")
+                {
+                    ExpandedDictionary.OnDeepBrambleLoadEvent();
+                    ThermalInsulation.OnDeepBrambleLoadEvent();
+                    TamingTechniques.OnDeepBrambleLoadEvent();
                 }
             });
     }

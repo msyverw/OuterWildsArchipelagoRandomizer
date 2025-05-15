@@ -83,6 +83,11 @@ internal class Translator
                 return TranslatorSector.DarkBramble;
         }
 
+        // Before returning Other, check if we're in the Deep Bramble (FC integration)
+        if (APRandomizer.NewHorizonsAPI != null)
+            if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble")
+                return TranslatorSector.DeepBramble;
+
         return TranslatorSector.Other;
     }
 
@@ -107,6 +112,7 @@ internal class Translator
             case TranslatorSector.BrittleHollow: cannotTranslatePromptText = "Translator (Brittle Hollow) Not Available"; break;
             case TranslatorSector.GiantsDeep: cannotTranslatePromptText = "Translator (Giant's Deep) Not Available"; break;
             case TranslatorSector.DarkBramble: cannotTranslatePromptText = "Translator (Dark Bramble) Not Available"; break;
+            case TranslatorSector.DeepBramble: cannotTranslatePromptText = "Translator (Deep Bramble) Not Available"; break;
             case TranslatorSector.Other: cannotTranslatePromptText = "Translator (Other) Not Available"; break;
         }
     }
@@ -123,6 +129,7 @@ internal class Translator
             case TranslatorSector.BrittleHollow: return hasBHTranslator;
             case TranslatorSector.GiantsDeep: return hasGDTranslator;
             case TranslatorSector.DarkBramble: return hasDBTranslator;
+            case TranslatorSector.DeepBramble: return hasDeepBTranslator;
             case TranslatorSector.Other: return hasOtherTranslator;
             default: throw new System.ArgumentException($"Invalid translator sector: {currentTranslatorSector}");
         }
