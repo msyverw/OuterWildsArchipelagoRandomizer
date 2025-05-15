@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using ArchipelagoRandomizer.ItemImpls.FCProgression;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -377,6 +378,12 @@ internal class LocationTriggers
             case Item.MagistariumLibraryAccessCode: MagistariumAccessCodes.hasLibraryAccess = (count > 0); break;
             case Item.MagistariumDormitoryAccessCode: MagistariumAccessCodes.hasDormitoriesAccess = (count > 0); break;
             case Item.MagistariumEngineAccessCode: MagistariumAccessCodes.hasEngineAccess = (count > 0); break;
+            case Item.ExpandedDictionary: ExpandedDictionary.hasExpandedDictionary = (count > 0); break;
+            case Item.ThermalInsulation: ThermalInsulation.hasThermalInsulation = (count > 0); break;
+            case Item.TamingTechniques: TamingTechniques.hasTamingTechniques = (count > 0); break;
+            case Item.CrystalRepairManual: CrystalManual.hasCrystalManual = (count > 0); break;
+            case Item.ProbabilityRule: QuantumProbability.hasProbabilityKnowledge = (count > 0); break;
+            case Item.DeepBrambleCoordinates: DeepBrambleCoordinates.hasDeepBrambleCoordinates = (count > 0); break;
 
             // for backwards-compatibility
             case Item.Spaceship: break; case Item.Nothing: break;

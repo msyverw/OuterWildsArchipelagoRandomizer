@@ -112,9 +112,6 @@ public enum Item
     // Fret's Quest items
     FrequencyHearthianRadio,
 
-    // New Horizons item
-    WarpDrive,
-
     // Forgotten Castaways items
     TranslatorDeepB,
     ExpandedDictionary,
@@ -129,6 +126,7 @@ public enum Item
     CrystalRepairManual,
     ThermalInsulation,
     ProbabilityRule,
+    DeepBrambleCoordinates,
 };
 
 public static class ItemNames
@@ -246,9 +244,6 @@ public static class ItemNames
         // Fret's Quest items
         { Item.FrequencyHearthianRadio, "Hearthian Radio Frequency" },
 
-        // New Horizons item
-        { Item.WarpDrive, "Warp Drive" },
-
         // Forgotten Castaways items
         { Item.TranslatorDeepB, "Translator (Deep Bramble)" },
         { Item.ExpandedDictionary, "Expanded Dictionary" },
@@ -263,6 +258,7 @@ public static class ItemNames
         { Item.CrystalRepairManual, "Crystal Repair Manual" },
         { Item.ThermalInsulation, "Thermal Insulation" },
         { Item.ProbabilityRule, "Probability Rule" },
+        { Item.DeepBrambleCoordinates, "Deep Bramble Coordinates" },
     };
 
     public static Dictionary<string, Item> itemNamesReversed = itemNames.ToDictionary(itemName => itemName.Value, itemName => itemName.Key);
@@ -376,7 +372,7 @@ public static class ItemNames
         { Item.MagistariumDormitoryAccessCode, "HAS_AP_ITEM_HN2_DORMITORY_ACCESS_CODE" },
         { Item.MagistariumEngineAccessCode,    "HAS_AP_ITEM_HN2_ENGINE_ACCESS_CODE" },
         { Item.FrequencyHearthianRadio,        "HAS_AP_ITEM_FQ_HEARTHIAN_RADIO_FREQUENCY" },
-        { Item.WarpDrive,                      "HAS_AP_ITEM_WARP_DRIVE" },
+        { Item.DeepBrambleCoordinates,         "HAS_AP_ITEM_FC_DEEP_BRAMBLE_COORDINATES" },
         { Item.TranslatorDeepB,                "HAS_AP_ITEM_FC_TRANSLATOR" },
         { Item.ExpandedDictionary,             "HAS_AP_ITEM_FC_EXPANDED_DICTIONARY" },
         { Item.FrequencyNomaiTrailmarkers,     "HAS_AP_ITEM_FC_NOMAI_TRAILMARKERS_FREQUENCY" },
