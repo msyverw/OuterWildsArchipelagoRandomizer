@@ -71,9 +71,6 @@ public class APInventoryMode : ShipLogMode
         new InventoryItemEntry(Item.FrequencyDSR, "Frequency: Deep Space Radio"),
         new InventoryItemEntry("StoryModFrequencies", "Story Mod Frequencies"),
 
-        // New Horizons Warp Drive
-        new InventoryItemEntry(Item.WarpDrive, "Warp Drive"),
-
         // Hearth's Neighbor 2: Magistarium custom items
         new InventoryItemEntry(Item.MemoryCubeInterface, "HN2: Memory Cube Interface", false, "enable_hn2_mod"),
         new InventoryItemEntry(Item.MagistariumLibraryAccessCode, "HN2: Magistarium Library Access Code", false, "enable_hn2_mod"),
@@ -81,16 +78,17 @@ public class APInventoryMode : ShipLogMode
         new InventoryItemEntry(Item.MagistariumEngineAccessCode, "HN2: Magistarium Engine Access Code", false, "enable_hn2_mod"),
 
         // Forgotten Castaways custom items
-        new InventoryItemEntry(Item.ExpandedDictionary, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.FrequencyNomaiTrailmarkers, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.SignalAmplifiedAmbience, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.SignalGravitationalAnomaly, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.SignalGeothermalActivity, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.FrequencyEcholocationTones, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.TamingTechniques, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.CrystalRepairManual, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.ThermalInsulation, "", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.ProbabilityRule, "", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.ExpandedDictionary, "FC: Expanded Translator Dictionary", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.FrequencyNomaiTrailmarkers, "FC Frequency: Nomai Trailmarkers", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.SignalAmplifiedAmbience, "  FC Signal: Amplified Ambience", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.SignalGravitationalAnomaly, "  FC Signal: Gravitational Anomaly", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.SignalGeothermalActivity, "  FC Signal: Geothermal Activity", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.FrequencyEcholocationTones, "FC Frequency: Echolocation Tones", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.TamingTechniques, "FC: Anglerfish Taming Techniques", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.CrystalRepairManual, "FC: Crystal Repair Manual", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.ThermalInsulation, "FC: Thermal Insulation", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.ProbabilityRule, "FC: Probability Rule", false, "enable_fc_mod"),
+        new InventoryItemEntry(Item.DeepBrambleCoordinates, "FC: Deep Bramble Coordinates", false, "enable_fc_mod"),
 
         // Non-progression ship and equipment upgrades
         new InventoryItemEntry(Item.Autopilot, "Autopilot"),
@@ -239,7 +237,7 @@ public class APInventoryMode : ShipLogMode
                 continue;
             if (item.StoryModOption != null && !(APRandomizer.SlotData.ContainsKey(item.StoryModOption) && (long)APRandomizer.SlotData[item.StoryModOption] > 0))
                 continue;
-            if (item.ID is "StoryModFrequencies" or "WarpDrive")
+            if (item.ID is "StoryModFrequencies")
             {
                 var anyStoryModEnabled = StoryModMetadata.AllStoryMods.Any(sm => APRandomizer.SlotData.ContainsKey(sm.slotDataOption) && (long)APRandomizer.SlotData[sm.slotDataOption] > 0);
                 if (!anyStoryModEnabled)
