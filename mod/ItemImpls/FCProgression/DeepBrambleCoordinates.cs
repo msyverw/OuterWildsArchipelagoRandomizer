@@ -1,4 +1,5 @@
-﻿using OWML.ModHelper.Events;
+﻿using HarmonyLib;
+using OWML.ModHelper.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
+    [HarmonyPatch]
     class DeepBrambleCoordinates
     {
         private static bool _hasDeepBrambleCoordinates = false;
@@ -25,13 +27,13 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 }
             }
         }
-
-        public static void OnCompleteSceneLoad()
+        [HarmonyPrefix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.RevealFact))]
+        public static bool RevealFactPatch(ShipLogManager __instance, string id)
         {
-            if (hasDeepBrambleCoordinates)
-                Locator.GetShipLogManager().RevealFact("WARP_TO_DB_FACT", true, false);
+            if (id == "WARP_TO_DB_FACT" && !hasDeepBrambleCoordinates)
+                return false;
             else
-                Locator.GetShipLogManager().GetFact("WARP_TO_DB_FACT")._save.revealOrder = -1;
+                return true;
         }
     }
 }
