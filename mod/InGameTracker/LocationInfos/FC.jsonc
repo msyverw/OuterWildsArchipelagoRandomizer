@@ -1,7 +1,47 @@
 ﻿[
   {
-    "locationModID": "FC_SCAN_MARKER_CAMP",
+    "locationModID": "FC_SCAN_FIRST_MARKER",
+    "description": "At Bramble's Doorstep is a Nomai trailmarker for you to scan.",
+    "thumbnail": "START_DIMENSION_ENTRY_FC"
+  },
+  {
+    "locationModID": "FC_SCAN_CAMP_MARKER",
     "description": "The campsite has a Nomai marker. Go scan it.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_AMPLIFIED_AMBIENCE",
+    "description": "The recursive node in Briar's Hollow emits a strange mixture of signals. You can scan the mixture, even with how messy it is.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_GRAVITATIONAL_ANOMALY",
+    "description": "Graviton's Folly emits a signal that sounds a lot like gravity crystals. Do you think they're related?",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_GEOTHERMAL_ACTIVITY",
+    "description": "Echoing through Magma's Recursion is the sounds of moving lava. Don't burn yourself while scanning it.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_HOT_SHARD",
+    "description": "You can detect a signal on the Quantum Fluctuations frequency in Magma's Recursion. Your signalscope won't do much to help you find it, but it will definitely help scan it.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_ALIEN_ECHOLOCATION",
+    "description": "A modified Nomai recorder in the Signal Lab emits a recording of Dree echolocation. A signal as unique as this one deserves to be scanned.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_WARPED_ECHOLOCATION",
+    "description": "You can hear what sounds like echolocation coming from the Dangerous Node, but it seems a lot lower-pitched than what you'd expect. It still scans just fine though.",
+    "thumbnail": "TODO"
+  },
+  {
+    "locationModID": "FC_SCAN_DITYLUM_ECHOLOCATION",
+    "description": "Even while mourning his friends, Ditylum's echolocation can still be heard. And scanned.",
     "thumbnail": "TODO"
   },
   {

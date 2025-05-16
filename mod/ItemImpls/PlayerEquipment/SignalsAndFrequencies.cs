@@ -69,11 +69,13 @@ internal class SignalsAndFrequencies
         { "Rim's Second Radio", "Hearthian Radio" },
 
         // Forgotten Castaways
+        // left out Ditylum (Traveler) because it is only available during the finale
         { "First Marker", "Nomai Trailmarkers" },
         { "Camp Marker", "Nomai Trailmarkers" },
         { "Amplified Ambience", "Natural Phenomena" },
         { "Gravitational Anomaly", "Natural Phenomena" },
         { "Geothermal Activity", "Natural Phenomena" },
+        { "Hot Shard", "Quantum" },
         { "Alien Echolocation", "Echolocation Tones" },
         { "Warped Echolocation", "Echolocation Tones" },
         { "Ditylum Echolocation", "Echolocation Tones" },
@@ -95,6 +97,7 @@ internal class SignalsAndFrequencies
             "Quantum_BH_Shard",
             "Quantum_GD_Shard",
             "Quantum_QM",
+            "Hot Shard", // Forgotten Castaways
         } },
         { "EscapePod", new HashSet<string>{
             "EscapePod_BH",
@@ -198,11 +201,15 @@ internal class SignalsAndFrequencies
         // The Outer Wilds Ventures frequency the Signalscope starts with is the only frequency we haven't itemized,
         // so the player "knows" at least two frequencies if they have acquired any one of the AP frequency items.
 
+        // If Forgotten Castaways is enabled, Natural Phenomena is an additional frequency.
+        if (APRandomizer.SlotEnabledMod("enable_fc_mod"))
+            return true;
+
         __result = usableFrequencies.Count > 0; // override return value
         return false; // skip vanilla implementation
     }
-    // no priority tag on KnowsSignal because we've chosen not to itemize any of the story mod *signals*; only the frequencies have AP items
     [HarmonyPrefix, HarmonyPatch(typeof(PlayerData), nameof(PlayerData.KnowsSignal))]
+    [HarmonyPriority(Priority.Low)] // run this *after* the New Horizons patch for KnowsSignal, so our __result overrides NH's
     public static bool PlayerData_KnowsSignal_Prefix(SignalName signalName, ref bool __result)
     {
         if (!ItemNames.signalToItem.ContainsKey(signalName.ToString()))
