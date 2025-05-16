@@ -62,6 +62,12 @@ internal class Translator
             // and for logic simplicity we want the same translator to work on them if recalled to the ET/BH cannons.
             if (sector.GetName() == Sector.Name.Unnamed && sector.gameObject.name == "Sector_NomaiShuttleInterior")
                 return TranslatorSector.Other;
+
+
+            // The Deep Bramble is considered part of Dark Bramble, so we have to check for it before checking for DB.
+            if (APRandomizer.NewHorizonsAPI != null)
+                if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble")
+                    return TranslatorSector.DeepBramble;
         }
 
         // Now that the exceptions are handled, and the major planets never overlap, we only need one more loop
@@ -82,11 +88,6 @@ internal class Translator
             if (sector.GetName() == Sector.Name.VesselDimension) // for some reason the Vessel node is not counted in BrambleDimension
                 return TranslatorSector.DarkBramble;
         }
-
-        // Before returning Other, check if we're in the Deep Bramble (FC integration)
-        if (APRandomizer.NewHorizonsAPI != null)
-            if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble")
-                return TranslatorSector.DeepBramble;
 
         return TranslatorSector.Other;
     }

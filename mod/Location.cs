@@ -1822,11 +1822,10 @@ public static class LocationNames
 
         // DARK_BRAMBLE
           // Stranded Nomai
-        { Location.SLF__FC_TANGLED_RECORDER, "FC Ship Log: Stranded Nomai 1 - Regroup" },
-        { Location.SLF__FC_MAIN_BRIDGE_RECORDER, "FC Ship Log: Stranded Nomai 2 - Plan" },
-        { Location.SLF__FC_LOWER_BRIDGE_RECORDER, "FC Ship Log: Stranded Nomai 3 - Escape" },
-        { Location.SLF__FC_WARP_DEVICE_OBSERVE, "FC Ship Log: Stranded Nomai 4 - Device" },
-        { Location.SLF__FC_WARP_TO_DB, "FC Ship Log: Stranded Nomai 5 - Leave" },
+        { Location.SLF__FC_TANGLED_RECORDER, "DB Ship Log: Stranded Nomai 1 - Regroup" },
+        { Location.SLF__FC_MAIN_BRIDGE_RECORDER, "DB Ship Log: Stranded Nomai 2 - Plan" },
+        { Location.SLF__FC_LOWER_BRIDGE_RECORDER, "DB Ship Log: Stranded Nomai 3 - Escape" },
+        { Location.SLF__FC_WARP_DEVICE_OBSERVE, "DB Ship Log: Stranded Nomai 4 - Device" },
         // START_DIMENSION
           // Bramble's Doorstep
         { Location.SLF__FC_ENTRY, "FC Ship Log: Bramble's Doorstep 1 - Visit" },

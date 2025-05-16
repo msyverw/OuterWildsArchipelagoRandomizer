@@ -336,6 +336,7 @@ internal class LocationTriggers
             case Item.TranslatorGD: Translator.hasGDTranslator = (count > 0); break;
             case Item.TranslatorDB: Translator.hasDBTranslator = (count > 0); break;
             case Item.TranslatorOther: Translator.hasOtherTranslator = (count > 0); break;
+            case Item.TranslatorDeepB: Translator.hasDeepBTranslator = (count > 0); break;
             case Item.Signalscope: SignalscopeManager.hasSignalscope = (count > 0); break;
             case Item.Scout: Scout.hasScout = (count > 0); break;
             case Item.CameraGM: GhostMatterWavelength.hasGhostMatterKnowledge = (count > 0); break;
