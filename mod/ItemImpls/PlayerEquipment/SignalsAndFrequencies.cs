@@ -203,7 +203,10 @@ internal class SignalsAndFrequencies
 
         // If Forgotten Castaways is enabled, Natural Phenomena is an additional frequency.
         if (APRandomizer.SlotEnabledMod("enable_fc_mod"))
-            return true;
+        {
+            __result = true;
+            return false;
+        }
 
         __result = usableFrequencies.Count > 0; // override return value
         return false; // skip vanilla implementation
