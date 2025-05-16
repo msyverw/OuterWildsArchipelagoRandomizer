@@ -884,7 +884,15 @@ public enum Location
     SLF__READ_BANJO_SCROLL,
 
     // Forgotten Castaways locations
-    FC_SCAN_MARKER_CAMP,
+    FC_SCAN_HOT_SHARD,
+    FC_SCAN_FIRST_MARKER,
+    FC_SCAN_CAMP_MARKER,
+    FC_SCAN_AMPLIFIED_AMBIENCE,
+    FC_SCAN_GRAVITATIONAL_ANOMALY,
+    FC_SCAN_GEOTHERMAL_ACTIVITY,
+    FC_SCAN_ALIEN_ECHOLOCATION,
+    FC_SCAN_WARPED_ECHOLOCATION,
+    FC_SCAN_DITYLUM_ECHOLOCATION,
     FC_LANDING_TANK,
 
     SLF__TANGLED_RECORDER_FACT,
@@ -1816,7 +1824,15 @@ public static class LocationNames
         { Location.SLF__READ_BANJO_SCROLL, "FQ Ship Log: Corrupted Scroll" },
       
         // Forgotten Castaways locations
-        { Location.FC_SCAN_MARKER_CAMP, "FC: Scan Camp Marker" },
+        { Location.FC_SCAN_FIRST_MARKER, "FC: Scan First Marker Signal" },
+        { Location.FC_SCAN_CAMP_MARKER, "FC: Scan Camp Marker Signal" },
+        { Location.FC_SCAN_AMPLIFIED_AMBIENCE, "FC: Scan Amplified Ambience Signal" },
+        { Location.FC_SCAN_GRAVITATIONAL_ANOMALY, "FC: Scan Gravitational Anomaly Signal" },
+        { Location.FC_SCAN_GEOTHERMAL_ACTIVITY, "FC: Scan Geothermal Activity Signal" },
+        { Location.FC_SCAN_HOT_SHARD, "FC: Scan Hot Shard Signal" },
+        { Location.FC_SCAN_ALIEN_ECHOLOCATION, "FC: Scan Alien Echolocation Signal" },
+        { Location.FC_SCAN_WARPED_ECHOLOCATION, "FC: Scan Warped Echolocation Signal" },
+        { Location.FC_SCAN_DITYLUM_ECHOLOCATION, "FC: Scan Final Echolocation Siganl" },
         { Location.FC_LANDING_TANK, "FC: Landing Zone Fuel Tank" },
 
         // DARK_BRAMBLE
@@ -2047,6 +2063,17 @@ public static class LocationNames
         { "Reson's Radio", Location.FQ_SIGNAL_HR_RESON },
         { "Reson's Second Radio", Location.FQ_SIGNAL_HR_RESON_2 },
         { "Rim's Second Radio", Location.FQ_SIGNAL_HR_RIM_2 },
+
+        // Forgotten Castways signals
+        { "First Marker", Location.FC_SCAN_FIRST_MARKER },
+        { "Camp Marker", Location.FC_SCAN_CAMP_MARKER },
+        { "Amplified Ambience", Location.FC_SCAN_AMPLIFIED_AMBIENCE },
+        { "Gravitational Anomaly", Location.FC_SCAN_GRAVITATIONAL_ANOMALY },
+        { "Geothermal Activity", Location.FC_SCAN_GEOTHERMAL_ACTIVITY },
+        { "Hot Shard", Location.FC_SCAN_HOT_SHARD },
+        { "Alien Echolocation", Location.FC_SCAN_ALIEN_ECHOLOCATION },
+        { "Warped Echolocation", Location.FC_SCAN_WARPED_ECHOLOCATION },
+        { "Ditylum Echolocation", Location.FC_SCAN_DITYLUM_ECHOLOCATION },
     };
     public static Dictionary<Location, string> locationToSignal = signalToLocation.ToDictionary(stl => stl.Value, stl => stl.Key);
 
