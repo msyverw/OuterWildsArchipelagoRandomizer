@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using ArchipelagoRandomizer.ItemImpls.FCProgression;
+using HarmonyLib;
 using UnityEngine;
 
 namespace ArchipelagoRandomizer;
@@ -73,6 +74,9 @@ internal class Spawn
             APRandomizer.OWMLModConsole.WriteLine($"auto-revealing The Stranger ship log because EotE DLC is enabled");
             __instance.RevealFact("IP_RING_WORLD_X1");
         }
+
+        if (DeepBrambleCoordinates.hasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
+            __instance.RevealFact("WARP_TO_DB_FACT");
     }
 
     [HarmonyPrefix, HarmonyPatch(typeof(PlayerSpawner), nameof(PlayerSpawner.Update))]

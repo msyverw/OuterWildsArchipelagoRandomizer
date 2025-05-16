@@ -483,8 +483,6 @@ public class APRandomizer : ModBehaviour
             Hints.OnCompleteSceneLoad();
             // Hearth's Neighbor 2: Magistarium custom item impls
             MemoryCubeInterface.OnCompleteSceneLoad();
-            // Forgotten Castaways custom item impls
-            DeepBrambleCoordinates.OnCompleteSceneLoad();
         };
 
         // update the Nomai text setting before any can be created

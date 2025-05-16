@@ -297,6 +297,7 @@ public class APInventoryDescriptions
                     infos.Add("After the Stranger's inhabitants discovered the simulation's alarm bells don't work on the deceased, they developed a 'temporary' hack that simply refuses to import your brainwaves if no heartbeat is detected.");
                     infos.Add("This patches the simulation to undo that hack, allowing you to exploit the original glitch to bypass alarm bells in the simulation.");
                     break;
+                // Forgotten Castaways item descriptions
                 case Item.DeepBrambleCoordinates:
                     infos.Add("With these coordinates to the Deep Bramble, you can easily warp there using your ship's warp drive.");
                     break;
@@ -312,7 +313,7 @@ public class APInventoryDescriptions
                     break;
                 case Item.ThermalInsulation:
                     infos.Add("A special layer of insulating material to help you to withstand extreme temperatures.");
-                    infos.Add("The insulation isn't without limits. Directly touching things like lava or active stars will still kill you.");
+                    infos.Add("The insulation isn't without limits: You'll still want to cool off every once in a while, and directly touching things like lava or active stars will still kill you.");
                     break;
                 case Item.ProbabilityRule:
                     infos.Add("The Probability Rule allows quantum objects to travel great distances when they have no other locations to travel to.");
