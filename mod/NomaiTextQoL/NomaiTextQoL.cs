@@ -32,6 +32,9 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
                     // fix for single arcs
                     if (__instance._textLines.Length == 1)
                     {
+                        // Forgotten Castaways: The text recoloring breaks alien text
+                        if (__instance._textLines[0].gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("IP") ||
+                                    __instance._textLines[0].gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre")) continue;
                         ArcHintData hintData = __instance._textLines[0].gameObject.GetAddComponent<ArcHintData>();
 
                         // DatabaseID is the ship log name
@@ -64,7 +67,9 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
                             if (__instance._dictNomaiTextData.ContainsKey(key))
                             {
                                 var textLine = __instance._textLines.First(x => x.GetEntryID() == key);
-
+                                // Forgotten Castaways: The text recoloring breaks alien text
+                                if (textLine.gameObject.GetComponent<OWRenderer>().sharedMaterial.name .Contains("IP") || 
+                                    textLine.gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre")) continue;
 
                                 ArcHintData hintData = textLine.gameObject.GetAddComponent<ArcHintData>();
 

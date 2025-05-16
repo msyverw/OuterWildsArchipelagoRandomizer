@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Collections;
 using UnityEngine;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
@@ -7,6 +8,8 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
     [HarmonyPatch]
     class ExpandedDictionary
     {
+        private static IEnumerator renameTextCoroutine;
+
         private static bool _hasExpandedDictionary = false;
 
         public static bool hasExpandedDictionary
@@ -29,8 +32,17 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             if (APRandomizer.NewHorizonsAPI == null) return;
             if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble") return;
 
+            renameTextCoroutine = RenameText();
+            APRandomizer.Instance.StartCoroutine(renameTextCoroutine);
+        }
+
+        private static IEnumerator RenameText()
+        {
+            // If we do this too quickly the texture won't load properly
+            yield return new WaitForSeconds(1f);
             // We rename the material of Dree text to steal control of the translation from FC
-            GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/crystal_lab/Props_NOM_Whiteboard_Shared/combo_hint_text/Arc 2 - Child of 1").GetComponent<OWRenderer>().sharedMaterial.name = "bramble_text";
+            GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/crystal_lab/Props_NOM_Whiteboard_Shared/combo_hint_text/Arc 2 - Child of 1")
+                .GetComponent<OWRenderer>().sharedMaterial.name = "dre_text";
         }
 
         [HarmonyPrefix]
@@ -41,7 +53,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 
             //This flag checks if the targeted text is Dree text
             bool flag = __instance._scanBeams[0]._nomaiTextLine != null && __instance._scanBeams[0]._nomaiTextLine.gameObject
-            .GetComponent<OWRenderer>().sharedMaterial.name.Contains("bramble");
+            .GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre");
 
             //If the text is dree, and the player lacks the upgrade, hide the text
             if (flag && APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && !hasExpandedDictionary)
