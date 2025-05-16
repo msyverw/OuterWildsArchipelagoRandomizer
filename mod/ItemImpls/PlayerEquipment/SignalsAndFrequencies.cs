@@ -321,7 +321,7 @@ internal class SignalsAndFrequencies
         // If this signal corresponds to an AP frequency item that we don't have yet,
         // prevent us from "detecting" and thus scanning it until we get that item.
         if (signalToFrequency.TryGetValue(signalName.ToString(), out var frequency))
-            if (frequency != "Traveler")
+            if (frequency != "Traveler" && frequency != "Natural Phenomena") // FC: Natural Phenomena is a starting frequency
                 if (!usableFrequencies.Contains(frequency) && mightDisplayUnidentifiedSignalMessage)
                     return false; // skip vanilla implementation
 
