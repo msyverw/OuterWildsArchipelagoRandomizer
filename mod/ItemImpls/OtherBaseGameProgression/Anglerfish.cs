@@ -77,8 +77,11 @@ internal class Anglerfish
     [HarmonyPostfix, HarmonyPatch(typeof(ToolModeUI), nameof(ToolModeUI.Update))]
     public static void ToolModeUI_Update_Postfix()
     {
+        bool inDeepBramble = false;
+        if (APRandomizer.NewHorizonsAPI != null)
+            if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble") inDeepBramble = true;
         silentRunningPrompt.SetVisibility(
-            hasAnglerfishKnowledge &&
+            hasAnglerfishKnowledge && !inDeepBramble &&
             (OWInput.IsInputMode(InputMode.Character) || OWInput.IsInputMode(InputMode.ShipCockpit)) &&
             (
                 Locator.GetPlayerSectorDetector().IsWithinSector(Sector.Name.DarkBramble) ||

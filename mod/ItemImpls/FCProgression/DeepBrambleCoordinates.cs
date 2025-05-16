@@ -23,7 +23,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 
                 if (_hasDeepBrambleCoordinates)
                 {
-                    Locator.GetShipLogManager().RevealFact("WARP_TO_DB_FACT", true, false);
+                    Locator.GetShipLogManager()?.RevealFact("WARP_TO_DB_FACT", true, false);
                 }
             }
         }
@@ -34,6 +34,12 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 return false;
             else
                 return true;
+        }
+
+        public static void OnCompleteSceneLoad()
+        {
+            if (hasDeepBrambleCoordinates)
+                Locator.GetShipLogManager()?.RevealFact("WARP_TO_DB_FACT", true, false);
         }
     }
 }

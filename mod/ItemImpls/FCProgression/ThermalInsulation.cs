@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
+    [HarmonyPatch]
     class ThermalInsulation
     {
         public static bool _hasThermalInsulation = false;
@@ -58,10 +59,11 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
         [HarmonyPostfix, HarmonyPatch(typeof(ToolModeUI), nameof(ToolModeUI.Update))]
         public static void ToolModeUI_Update_Postfix()
         {
+            UpdatePromptText();
             thermalInsulationPrompt.SetVisibility(
                 (OWInput.IsInputMode(InputMode.Character) || OWInput.IsInputMode(InputMode.ShipCockpit)) &&
                 (
-                    Locator.GetPlayerSectorDetector().IsWithinSector("Hot Dimension")
+                    Locator.GetPlayerSectorDetector().IsWithinSector("magamas_recursion_fc")
                 )
             );
         }
