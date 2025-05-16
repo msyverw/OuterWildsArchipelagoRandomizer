@@ -69,6 +69,7 @@ public class APInventoryMode : ShipLogMode
         new InventoryItemEntry(Item.SignalQM, "   Signal: Quantum Moon"),
         new InventoryItemEntry(Item.FrequencyHS, "Frequency: Hide and Seek"),
         new InventoryItemEntry(Item.FrequencyDSR, "Frequency: Deep Space Radio"),
+        new InventoryItemEntry("NaturalPhenomenaFrequency", "Frequency: Natural Phenomena"),
         new InventoryItemEntry("StoryModFrequencies", "Story Mod Frequencies"),
 
         // Hearth's Neighbor 2: Magistarium custom items
@@ -78,17 +79,12 @@ public class APInventoryMode : ShipLogMode
         new InventoryItemEntry(Item.MagistariumEngineAccessCode, "HN2: Magistarium Engine Access Code", false, "enable_hn2_mod"),
 
         // Forgotten Castaways custom items
+        new InventoryItemEntry(Item.DeepBrambleCoordinates, "FC: Deep Bramble Coordinates", false, "enable_fc_mod"),
         new InventoryItemEntry(Item.ExpandedDictionary, "FC: Expanded Translator Dictionary", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.FrequencyNomaiTrailmarkers, "FC Frequency: Nomai Trailmarkers", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.SignalAmplifiedAmbience, "  FC Signal: Amplified Ambience", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.SignalGravitationalAnomaly, "  FC Signal: Gravitational Anomaly", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.SignalGeothermalActivity, "  FC Signal: Geothermal Activity", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.FrequencyEcholocationTones, "FC Frequency: Echolocation Tones", false, "enable_fc_mod"),
         new InventoryItemEntry(Item.TamingTechniques, "FC: Anglerfish Taming Techniques", false, "enable_fc_mod"),
         new InventoryItemEntry(Item.CrystalRepairManual, "FC: Crystal Repair Manual", false, "enable_fc_mod"),
         new InventoryItemEntry(Item.ThermalInsulation, "FC: Thermal Insulation", false, "enable_fc_mod"),
         new InventoryItemEntry(Item.ProbabilityRule, "FC: Probability Rule", false, "enable_fc_mod"),
-        new InventoryItemEntry(Item.DeepBrambleCoordinates, "FC: Deep Bramble Coordinates", false, "enable_fc_mod"),
 
         // Non-progression ship and equipment upgrades
         new InventoryItemEntry(Item.Autopilot, "Autopilot"),
@@ -243,6 +239,8 @@ public class APInventoryMode : ShipLogMode
                 if (!anyStoryModEnabled)
                     continue;
             }
+            if (item.ID is "NaturalPhenomenaFrequency" && !APRandomizer.SlotEnabledMod("enable_fc_mod"))
+                    continue;
 
             VisibleItemEntries.Add(name, item);
 
@@ -303,6 +301,11 @@ public class APInventoryMode : ShipLogMode
                 else if (storyModFrequencies.Any(kv => kv.Value > 0)) status = "-";
 
                 string itemName = $"[{status}] Story Mod Frequencies";
+                inventoryDisplayItems.Add(new InventoryDisplayItem(itemName, false, item.ItemIsNew, false));
+            }
+            else if (item.ID == "NaturalPhenomenaFrequency")
+            {
+                string itemName = "[X] Frequency: Natural Phenomena";
                 inventoryDisplayItems.Add(new InventoryDisplayItem(itemName, false, item.ItemIsNew, false));
             }
             else

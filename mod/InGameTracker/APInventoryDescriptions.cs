@@ -59,6 +59,12 @@ public class APInventoryDescriptions
                     foreach (var kv in inventory.Where(kv => ItemNames.IsStoryModFrequency(kv.Key)))
                         infos.Add($"[{((kv.Value > 0) ? 'X' : ' ')}] {ItemNames.itemNames[kv.Key]}");
                     break;
+                case "NaturalPhenomenaFrequency":
+                    infos.Add("A frequency where you can hear natural phenomena amplified by the warped space of the Bramble.");
+                    infos.Add($"[{((inventory[Item.SignalGravitationalAnomaly] > 0) ? 'X' : ' ')}] Gravitational Anomaly");
+                    infos.Add($"[{((inventory[Item.SignalGeothermalActivity] > 0) ? 'X' : ' ')}] Geothermal Activity");
+                    infos.Add($"[{((inventory[Item.SignalAmplifiedAmbience] > 0) ? 'X' : ' ')}] Amplified Ambience");
+                    break;
                 default:
                     return GetErrorDescription(itemID);
             }
@@ -290,6 +296,27 @@ public class APInventoryDescriptions
                 case Item.AlarmBypassPatch:
                     infos.Add("After the Stranger's inhabitants discovered the simulation's alarm bells don't work on the deceased, they developed a 'temporary' hack that simply refuses to import your brainwaves if no heartbeat is detected.");
                     infos.Add("This patches the simulation to undo that hack, allowing you to exploit the original glitch to bypass alarm bells in the simulation.");
+                    break;
+                case Item.DeepBrambleCoordinates:
+                    infos.Add("With these coordinates to the Deep Bramble, you can easily warp there using your ship's warp drive.");
+                    break;
+                case Item.ExpandedDictionary:
+                    infos.Add("Updates your translator with a dictionary of Dree vocabulary and writing samples, allowing you to read Dree text.");
+                    break;
+                case Item.TamingTechniques:
+                    infos.Add("You've learned the ancient anglerfish taming techniques of the Dree. Mostly, this just involves petting their eyes. They must like it?");
+                    break;
+                case Item.CrystalRepairManual:
+                    infos.Add("A manual on how to repair broken gravity crystals. After reading it, you feel safe moving them.");
+                    infos.Add("To fix a gravity crystal, slot it above a bell, then ring three bells in order: The one 2 spots to the left, the one directly to the right, and finally the bell directly below.");
+                    break;
+                case Item.ThermalInsulation:
+                    infos.Add("A special layer of insulating material to help you to withstand extreme temperatures.");
+                    infos.Add("The insulation isn't without limits. Directly touching things like lava or active stars will still kill you.");
+                    break;
+                case Item.ProbabilityRule:
+                    infos.Add("The Probability Rule allows quantum objects to travel great distances when they have no other locations to travel to.");
+                    infos.Add("The tracking equipment on your suit prevents these large jumps, so you can turn it off to utilize this rule.");
                     break;
                 default:
                     return GetErrorDescription(itemID);
