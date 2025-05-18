@@ -245,7 +245,7 @@ internal class LocationTriggers
         { "EYE_PURPOSE_FACT_FC", Location.FC_EYE_SHRINE },
         { "DREE_STORY_RUMOR_FC", Location.FC_ALIEN_STUDY },
         { "TRANSLATOR_UPGRADE_FACT_FC", Location.FC_TRANSLATION_LAB_TEXT },
-        { "TRANSLATION_LAB_ENTRY_FC", Location.FC_ENTER_TRANSLATION_LAB },
+        { "ANGLER_DISTRACTION_SUCCESS_FACT_FC", Location.FC_ENTER_TRANSLATION_LAB },
         { "KEVIN_IDENTITY_FACT_FC", Location.FC_OBSERVATION_PLATFORM },
         { "NURSERY_FOUND_FACT_FC", Location.FC_NURSERY },
         { "EYE_PET_RUMOR_FC", Location.FC_CORE_LAB_TEXT },

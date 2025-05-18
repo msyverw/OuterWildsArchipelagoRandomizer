@@ -34,6 +34,12 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             if (APRandomizer.NewHorizonsAPI == null) return;
             if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble") return;
 
+            // For some reason, the Recursive Node isn't enabled when you warp to the Deep Bramble. This is a band-aid fix I'm using for the process
+            GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
+            GameObject.Find("BriarsHollow_Body/Sector/Loop Node/dree_signal").SetActive(true);
+            GameObject.Find("BriarsHollow_Body/Sector/Loop Node/lava_signal").SetActive(true);
+            GameObject.Find("BriarsHollow_Body/Sector/Loop Node/rock_signal").SetActive(true);
+
             if (!hasTamingTechniques)
             {
                 // Disable petting anglerfish eyes in Bright Hollow
