@@ -136,6 +136,27 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
             return false;
         }
 
+        // Forgotten Castaways: We steal control over alien text, so we need to duplicate their code to make the text color properly
+        [HarmonyPostfix, HarmonyPatch(typeof(NomaiTextLine), nameof(NomaiTextLine.DetermineTextLineColor))]
+        public static void RecolorDreeText(NomaiTextLine __instance, NomaiTextLine.VisualState state, ref Color __result)
+        {
+            // Only recolor if it's active, in the Deep Bramble, and is alien text
+            if (APRandomizer.NewHorizonsAPI != null)
+                if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && __instance._active && __instance.gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre"))
+                {
+                    //Determine the color
+                    switch (state)
+                    {
+                        case NomaiTextLine.VisualState.UNREAD:
+                            __result = new Color(0.5238f, 0.2374f, 1, 1);
+                            break;
+                        case NomaiTextLine.VisualState.TRANSLATED:
+                            __result = new Color(0.345f, 0.3f, 0.533f, 1);
+                            break;
+                    }
+                }
+        }
+
         // fixes for the text not becoming properly grey when read
         [HarmonyReversePatch(HarmonyReversePatchType.Snapshot), HarmonyPatch(typeof(NomaiText), nameof(NomaiText.SetAsTranslated))]
         public static void base_SetAsTranslated(NomaiText instance, int id) { }
