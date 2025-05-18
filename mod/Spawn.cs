@@ -76,7 +76,10 @@ internal class Spawn
         }
 
         if (DeepBrambleCoordinates.hasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
+        {
             __instance.RevealFact("WARP_TO_DB_FACT");
+            APRandomizer.NewHorizonsAPI?.SetDefaultSystem("SolarSystem");
+        }
     }
 
     [HarmonyPrefix, HarmonyPatch(typeof(PlayerSpawner), nameof(PlayerSpawner.Update))]

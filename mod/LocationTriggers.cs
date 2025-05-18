@@ -222,6 +222,48 @@ internal class LocationTriggers
         { "READ_SKELETON_SCROLL_START", Location.FQ_SKELETON_SCROLL },
         { "READ_BRIDGE_SCROLL_BANJO", Location.FQ_BRIDGE_SCROLL },
         { "READ_BANJO_SCROLL", Location.FQ_BANJO_SCROLL },
+
+        // Forgotten Castaways default locations
+        { "MAIN_BRIDGE_RECORDER_FACT", Location.FC_VESSEL_BRIDGE_RECORRDER },
+        { "WARP_DEVICE_OBSERVE_FACT", Location.FC_LOWER_BRIDGE_DEVICE },
+        { "ENTRY_FACT_FC", Location.FC_DEEP_BRAMBLE_ENTER },
+        { "OXYGEN_SPLITUP_FACT_FC", Location.FC_BRAMBLES_DOORSTEP_RECORDER },
+        { "CAMP_RUMOR_FC", Location.FC_TITANS_TEARS_SHELTER },
+        { "HOLE_ESCAPE_FACT_FC", Location.FC_HOLE_OVERLOOK },
+        { "RECURSIVE_NODE_FOUND_FACT_FC", Location.FC_RECURSIVE_NODE },
+        { "CAMP_DISCOVERY_FACT_FC", Location.FC_VISIT_NORTHERN_CAMPSITE },
+        { "ENCLOSED_SPACE_EXISTENCE_RUMOR_FC", Location.FC_NORTHERN_CAMPSITE_TEXT },
+        { "CONCERT_HALL_SOIL_RUMOR", Location.FC_SOIL_LAB },
+        { "CONCERT_COMBO_FACT_FC", Location.FC_CONCERT_HALL_ALIEN },
+        { "CONCERT_SUCCESS_FACT_FC", Location.FC_CRYSTAL_REPAIR },
+        { "CONCERT_MISSED_FACT_FC", Location.FC_CONCERT_HALL_RECORDER },
+        { "DATING_START_FACT_FC", Location.FC_AMYLAX_HOUSE },
+        { "FOLLY_RUMOR_FC", Location.FC_ALIEN_PARK_RECORDER },
+        { "LANGUAGE_LARGE_ENTRANCE_RUMOR_FC", Location.FC_QUARRY },
+        { "ANGLER_DISTRACTION_RUMOR_FC", Location.FC_LANDING_ZONE },
+        { "HOT_NODE_RECORDING_FACT_FC", Location.FC_HEARTHS_CORE_RECORDER },
+        { "EYE_PURPOSE_FACT_FC", Location.FC_EYE_SHRINE },
+        { "DREE_STORY_RUMOR_FC", Location.FC_ALIEN_STUDY },
+        { "TRANSLATOR_UPGRADE_FACT_FC", Location.FC_TRANSLATION_LAB_TEXT },
+        { "TRANSLATION_LAB_ENTRY_FC", Location.FC_ENTER_TRANSLATION_LAB },
+        { "KEVIN_IDENTITY_FACT_FC", Location.FC_OBSERVATION_PLATFORM },
+        { "NURSERY_FOUND_FACT_FC", Location.FC_NURSERY },
+        { "EYE_PET_RUMOR_FC", Location.FC_CORE_LAB_TEXT },
+        { "SCROLL_WALL_FACT_FC", Location.FC_SCROLL_WALL },
+        { "KEVIN_PURPOSE_FACT_FC", Location.FC_ENZYME_LAB },
+        { "SYRING_FOUND_FACT_FC", Location.FC_SYRINGE },
+        { "DILATION_NODE_LOCATION_RUMOR_FC", Location.FC_EYE_SIGNAL_LAB },
+        { "DITYLUM_EJECTION_FACT_FC", Location.FC_KILL_NODE },
+        { "BLOCKABLE_ROCK_RUMOR_FC", Location.FC_UNBLOCKED_SCROLL },
+        { "QUANTUM_CAVE_DISCOVERY_FACT_FC", Location.FC_QUANTUM_CAVE },
+        { "HOT_ROAD_FACT_FC", Location.FC_ABANDONED_SETTLEMENT_TEXT },
+        { "GAS_CRYSTALS_FACT_FC", Location.FC_GAS_CAVE },
+        { "HEART_LAB_DISCOVERY_FACT_FC", Location.FC_BRAMBLES_HEART },
+        { "DEAD_ALIENS_FACT_FC", Location.FC_DISTANT_NODE_PROJECT },
+        { "PROJECT_GOAL_FACT_FC", Location.FC_DNP_TEXT },
+        { "DITYLUM_MISSING_FACT_FC", Location.FC_DNP_RECORDER },
+        { "DITYLUM_MOURNING_FACT_FC", Location.FC_MOURNING },
+        { "CORE_BROKEN_FACT_FC", Location.FC_BREAK_CRYSTAL },
     };
 
     // manual scrolls
@@ -481,8 +523,9 @@ internal class LocationTriggers
         // The only non-tank recovery point I know of is the ship's medkit, which has instanceName=PlayerRecoveryPoint and parentName=Systems_Supplies.
         // This has to be StartsWith() instead of == because Esker's tank is "Prefab_HEA_FuelTank (1)"
         // Also The Outsider's tank uses the name Prefab_JetpackFuel for some reason.
+        // Forgotten Castaways' tanks are named nom_fuel_tank
         var instanceName = __instance?.name ?? "";
-        var isFuelTank = instanceName.StartsWith("Prefab_HEA_FuelTank") || instanceName == "Prefab_JetpackFuel";
+        var isFuelTank = instanceName.StartsWith("Prefab_HEA_FuelTank") || instanceName == "Prefab_JetpackFuel" || instanceName.StartsWith("nom_fuel_tank");
         if (!isFuelTank) return;
 
         switch (parentName)
@@ -494,6 +537,9 @@ internal class LocationTriggers
             case "Interactables_BrambleIsland": CheckLocation(Location.GD_BI_TANK); break;
             case "Interactables_GabbroIsland": CheckLocation(Location.GD_GABBRO_TANK); break;
             case "Interactables_PioneerDimension": CheckLocation(Location.DB_FELDSPAR_TANK); break;
+            case "entry_zone": CheckLocation(Location.FC_LANDING_TANK); break;
+            case "settlement": CheckLocation(Location.FC_ABANDONED_SETTLEMENT_TANK); break;
+            case "poison_lab": CheckLocation(Location.FC_VENOMOUS_REJECT_TANK); break;
             // Attlerock (THM = Timber Hearth Moon) has two fuel tanks, so we need additional checks to tell which is which
             case "Interactables_THM":
                 if (instanceName == "Prefab_HEA_FuelTank")
