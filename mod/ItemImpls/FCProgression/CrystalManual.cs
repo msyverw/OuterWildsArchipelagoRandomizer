@@ -49,11 +49,12 @@ internal class CrystalManual
         if (OWInput.IsNewlyPressed(InputLibrary.interact, InputMode.All) && !hasCrystalManual)
         {
             var item = firstPersonManipulator.GetFocusedOWItem();
-            if (item.name.Contains("crystal"))
-            {
-                APRandomizer.OWMLModConsole.WriteLine($"blocking attempt to interact with a FC gravity crystal");
-                return false;
-            }
+            if (item?.name != null)
+                if (item.name.Contains("crystal"))
+                {
+                    APRandomizer.OWMLModConsole.WriteLine($"blocking attempt to interact with a FC gravity crystal");
+                    return false;
+                }
         }
         return true;
     }
