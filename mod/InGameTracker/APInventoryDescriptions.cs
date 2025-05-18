@@ -61,9 +61,9 @@ public class APInventoryDescriptions
                     break;
                 case "NaturalPhenomenaFrequency":
                     infos.Add("A frequency where you can hear natural phenomena amplified by the warped space of the Bramble.");
+                    infos.Add($"[{((inventory[Item.SignalAmplifiedAmbience] > 0) ? 'X' : ' ')}] Amplified Ambience");
                     infos.Add($"[{((inventory[Item.SignalGravitationalAnomaly] > 0) ? 'X' : ' ')}] Gravitational Anomaly");
                     infos.Add($"[{((inventory[Item.SignalGeothermalActivity] > 0) ? 'X' : ' ')}] Geothermal Activity");
-                    infos.Add($"[{((inventory[Item.SignalAmplifiedAmbience] > 0) ? 'X' : ' ')}] Amplified Ambience");
                     break;
                 default:
                     return GetErrorDescription(itemID);
