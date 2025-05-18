@@ -16,8 +16,7 @@ public class Victory
         SongOfSix = 3,
         SongOfSeven = 4,
         EchoesOfTheEye = 5,
-        SongOfTheBramble = 6,
-        SongOfEight = 7,
+        SongOfTheUniverse = 6,
     }
 
     public static GoalSetting goalSetting = GoalSetting.SongOfFive;
@@ -89,6 +88,20 @@ public class Victory
         else if (goalSetting == GoalSetting.EchoesOfTheEye)
         {
             uniqueMessagePart = "Your goal is Echoes of the Eye, which doesn't involve warping to the Eye of the Universe.";
+        }
+        else if (goalSetting == GoalSetting.SongOfTheUniverse)
+        {
+            if (metSolanum && metPrisoner)
+                isVictory = true;
+            else
+            {
+                if (!metSolanum && !metPrisoner)
+                    uniqueMessagePart = "Your goal is Song of the Universe, but you haven't met either Solanum or the Prisoner yet.";
+                else if (!metSolanum)
+                    uniqueMessagePart = "Your goal is Song of the Universe, but you haven't met Solanum yet.";
+                else
+                    uniqueMessagePart = "Your goal is Song of the Universe, but you haven't met the Prisoner yet.";
+            }
         }
         else
         {
