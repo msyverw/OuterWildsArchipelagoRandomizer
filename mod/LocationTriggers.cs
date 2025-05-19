@@ -224,7 +224,7 @@ internal class LocationTriggers
         { "READ_BANJO_SCROLL", Location.FQ_BANJO_SCROLL },
 
         // Forgotten Castaways default locations
-        { "MAIN_BRIDGE_RECORDER_FACT", Location.FC_VESSEL_BRIDGE_RECORRDER },
+        { "MAIN_BRIDGE_RECORDER_FACT", Location.FC_VESSEL_BRIDGE_RECORDER },
         { "WARP_DEVICE_OBSERVE_FACT", Location.FC_LOWER_BRIDGE_DEVICE },
         { "ENTRY_FACT_FC", Location.FC_DEEP_BRAMBLE_ENTER },
         { "OXYGEN_SPLITUP_FACT_FC", Location.FC_BRAMBLES_DOORSTEP_RECORDER },

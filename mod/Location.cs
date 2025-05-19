@@ -896,7 +896,7 @@ public enum Location
     FC_LANDING_TANK,
     FC_ABANDONED_SETTLEMENT_TANK,
     FC_VENOMOUS_REJECT_TANK,
-    FC_VESSEL_BRIDGE_RECORRDER,
+    FC_VESSEL_BRIDGE_RECORDER,
     FC_LOWER_BRIDGE_DEVICE,
     FC_DEEP_BRAMBLE_ENTER,
     FC_BRAMBLES_DOORSTEP_RECORDER,
@@ -1876,7 +1876,7 @@ public static class LocationNames
         { Location.FC_SCAN_WARPED_ECHOLOCATION, "FC: Scan Warped Echolocation Signal" },
         { Location.FC_SCAN_DITYLUM_ECHOLOCATION, "FC: Scan Final Echolocation Signal" },
 
-        { Location.FC_VESSEL_BRIDGE_RECORRDER, "DB: Vessel Bridge (Text Wheel)" },
+        { Location.FC_VESSEL_BRIDGE_RECORDER, "DB: Vessel Bridge (Text Wheel)" },
         { Location.FC_LOWER_BRIDGE_DEVICE, "DB: Lower Bridge Device" },
         { Location.FC_DEEP_BRAMBLE_ENTER, "FC: Enter the Deep Bramble" },
         { Location.FC_BRAMBLES_DOORSTEP_RECORDER, "FC: Bramble's Doorstep (Text Wheel)" },
