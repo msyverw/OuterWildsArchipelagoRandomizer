@@ -20,6 +20,7 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
         public bool HasBeenFound = false;
 
         private bool IsChildText = false;
+        private bool IsAlienText = false;
 
         public static Material ChildTextMat
         {
@@ -80,10 +81,18 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
         {
             rend = GetComponent<Renderer>();
 
+            // Forgotten Castaways: Alien text needs to be handled slightly differently.
+            if (rend.material.name.Contains("IP") || rend.material.name.Contains("dre"))
+            {
+                // Making 100% sure it's handled properly
+                rend.material.name = "dre_text";
+                IsAlienText = true;
+            }
+
             Locations.Add(loc);
             if (APRandomizer.APSession.Locations.AllLocationsChecked.Contains(LocationNames.locationToArchipelagoId[loc])) HasBeenFound = true;
 
-            if (Importance != CheckImportance.Trap)
+            if (Importance == CheckImportance.Trap)
             {
                 if (rend.material.name.Contains("TextChild")) IsChildText = true;
             }
@@ -109,7 +118,7 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
                     _ => CheckImportance.Progression,
                 };
                 SetImportance(DisplayImportance);
-                rend.material = IsChildText ? NormalTextMat : ChildTextMat;
+                if (!IsAlienText) rend.material = IsChildText ? NormalTextMat : ChildTextMat;
             }
             else
             {
