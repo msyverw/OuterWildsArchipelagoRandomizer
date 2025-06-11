@@ -175,7 +175,7 @@ public class APRandomizer : ModBehaviour
         {
             APSession.Items.ItemReceived -= APSession_ItemReceived;
             APSession.MessageLog.OnMessageReceived -= APSession_OnMessageReceived;
-            OnSessionClosed(APSession, true);
+            OnSessionClosed?.Invoke(APSession, true);
         }
         APSession = ArchipelagoSessionFactory.CreateSession(cdata.hostname, (int)cdata.port);
         LoginResult result = APSession.TryConnectAndLogin("Outer Wilds", cdata.slotName, ItemsHandlingFlags.AllItems, password: cdata.password, requestSlotData: true);
@@ -308,7 +308,7 @@ public class APRandomizer : ModBehaviour
             APSession.Locations.CompleteLocationChecks(locationIdsMissedByServer.ToArray());
         }
 
-        OnSessionOpened(APSession);
+        OnSessionOpened?.Invoke(APSession);
 
         successCallback();
     }
