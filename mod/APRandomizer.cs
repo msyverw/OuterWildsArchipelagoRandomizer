@@ -535,7 +535,11 @@ public class APRandomizer : ModBehaviour
         // There's no way to ask what the default system currently is, so if NH is running at all
         // then we have to assume it needs overriding.
         OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"SolarSystem\")");
-        newHorizonsAPI?.SetDefaultSystem("SolarSystem");
+        // Normally, we set the default system to the vanilla system, but we change this if our spawn is the Deep Bramble
+        if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
+            newHorizonsAPI?.SetDefaultSystem("DeepBramble");
+        else
+            newHorizonsAPI?.SetDefaultSystem("SolarSystem");
     }
 
     public override void SetupTitleMenu(ITitleMenuManager titleManager) => MainMenu.SetupTitleMenu(titleManager);

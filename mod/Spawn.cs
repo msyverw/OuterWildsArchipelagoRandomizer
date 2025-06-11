@@ -7,7 +7,7 @@ namespace ArchipelagoRandomizer;
 [HarmonyPatch]
 internal class Spawn
 {
-    enum SpawnChoice
+    internal enum SpawnChoice
     {
         Vanilla,
         HourglassTwins,
@@ -15,9 +15,10 @@ internal class Spawn
         BrittleHollow,
         GiantsDeep,
         Stranger,
+        DeepBramble,
     }
 
-    private static SpawnChoice spawnChoice = SpawnChoice.Vanilla;
+    internal static SpawnChoice spawnChoice = SpawnChoice.Vanilla;
 
     public static void ApplySlotData(long spawnChoiceSlotData)
     {
@@ -29,6 +30,7 @@ internal class Spawn
             case /*"brittle_hollow"*/  3: spawnChoice = SpawnChoice.BrittleHollow; break;
             case /*"giants_deep"*/     4: spawnChoice = SpawnChoice.GiantsDeep; break;
             case /*"stranger"*/        5: spawnChoice = SpawnChoice.Stranger; break;
+            case /*"deep_bramble"*/    6: spawnChoice = SpawnChoice.DeepBramble; break;
         }
     }
 
@@ -51,6 +53,10 @@ internal class Spawn
             // PlayerData::SetPersistentCondition() specifically avoids saving LAUNCH_CODES_GIVEN.
             if (!PlayerData._currentGameSave.PersistentConditionExists("LAUNCH_CODES_GIVEN"))
                 PlayerData._currentGameSave.SetPersistentCondition("LAUNCH_CODES_GIVEN", true);
+
+            // Forgotten Castaways integration adds an additional starting frequency, which we grant here
+            if (!SignalsAndFrequencies.usableFrequencies.Contains("Natural Phenomena") && APRandomizer.SlotEnabledMod("enable_fc_mod"))
+                SignalsAndFrequencies.usableFrequencies.Add("Natural Phenomena");
         }
     }
 
@@ -78,7 +84,6 @@ internal class Spawn
         if (DeepBrambleCoordinates.hasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
         {
             __instance.RevealFact("WARP_TO_DB_FACT");
-            APRandomizer.NewHorizonsAPI?.SetDefaultSystem("SolarSystem");
         }
     }
 
