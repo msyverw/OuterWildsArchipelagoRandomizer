@@ -504,6 +504,7 @@ public class APRandomizer : ModBehaviour
 
         var newHorizonsAPI = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
         if (newHorizonsAPI != null)
+        {
             newHorizonsAPI.GetStarSystemLoadedEvent().AddListener(system =>
             {
                 // Hearth's Neighbor 2: Magistarium custom item impls
@@ -519,6 +520,9 @@ public class APRandomizer : ModBehaviour
                     TamingTechniques.OnDeepBrambleLoadEvent();
                 }
             });
+            // Adds a prerequisite to warping out of the Deep Bramble, for the Deep Bramble Spawn.
+            DeepBrambleCoordinates.exitWarpFix();
+        }
     }
     System.Collections.IEnumerator DisableNHSpawn()
     {
