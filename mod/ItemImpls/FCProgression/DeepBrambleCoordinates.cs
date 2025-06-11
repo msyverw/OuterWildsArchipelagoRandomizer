@@ -32,13 +32,18 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
         [HarmonyPrefix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.RevealFact))]
         public static bool RevealFactPatch(ShipLogManager __instance, string id)
         {
-            // This log fact controlls your ability to warp to the Deep Bramble. This fact is an item, rather than a logsanity location, as a result.
+            // This log fact controls your ability to warp to the Deep Bramble. This fact is an item, rather than a logsanity location, as a result.
             if (id == "WARP_TO_DB_FACT")
             {
                 if (!hasDeepBrambleCoordinates)
                     return false;
             }
             return true;
+        }
+
+        public static void exitWarpFix()
+        {
+            APRandomizer.NewHorizonsAPI.DefineStarSystem("DeepBramble", "{ \"factRequiredToExitViaWarpDrive\": \"WARP_TO_DB_FACT\"}", APRandomizer.Instance);
         }
     }
 }

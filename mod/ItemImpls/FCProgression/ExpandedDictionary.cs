@@ -44,7 +44,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/crystal_lab/Props_NOM_Whiteboard_Shared/combo_hint_text/Arc 2 - Child of 1")
                 .GetComponent<OWRenderer>().sharedMaterial.name = "dre_text";
             
-            // For some reason, the Recursive Node is getting disabled, so we just re-enable it.
+            // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
             GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
         }
 

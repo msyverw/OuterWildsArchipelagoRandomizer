@@ -201,7 +201,7 @@ internal class SignalsAndFrequencies
         // The Outer Wilds Ventures frequency the Signalscope starts with is the only frequency we haven't itemized,
         // so the player "knows" at least two frequencies if they have acquired any one of the AP frequency items.
 
-        // If Forgotten Castaways is enabled, Natural Phenomena is an additional frequency.
+        // If Forgotten Castaways is enabled, Natural Phenomena is an additional starting frequency.
         if (APRandomizer.SlotEnabledMod("enable_fc_mod"))
         {
             __result = true;

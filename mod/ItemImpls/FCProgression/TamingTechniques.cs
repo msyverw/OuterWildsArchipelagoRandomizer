@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
     class TamingTechniques
     {
+        private static IEnumerator disableAnlerEyesCoroutine;
         public static bool _hasTamingTechniques = false;
         public static bool hasTamingTechniques
         {
@@ -34,6 +36,19 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             if (APRandomizer.NewHorizonsAPI == null) return;
             if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble") return;
 
+            if (!hasTamingTechniques)
+            {
+                disableAnlerEyesCoroutine = disableAnglerEyes();
+                APRandomizer.Instance.StartCoroutine(disableAnlerEyesCoroutine);
+            }
+        }
+
+        private static IEnumerator disableAnglerEyes()
+        {
+            // If we do this too quickly the triggers have issues when re-enabled
+            yield return new WaitForSeconds(1f);
+
+            // In case the player received the item within the past second, we check again
             if (!hasTamingTechniques)
             {
                 // Disable petting anglerfish eyes in Bright Hollow
