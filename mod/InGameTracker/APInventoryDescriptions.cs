@@ -299,7 +299,7 @@ public class APInventoryDescriptions
                     break;
                 // Forgotten Castaways item descriptions
                 case Item.DeepBrambleCoordinates:
-                    infos.Add("With these coordinates to the Deep Bramble, you can easily warp there using your ship's warp drive.");
+                    infos.Add("These coordinates tell you the warp path between the Deep Bramble and the Outer Wilds. With them, you can warp in and out using your ship's warp drive.");
                     break;
                 case Item.ExpandedDictionary:
                     infos.Add("Updates your translator with a dictionary of Dree vocabulary and writing samples, allowing you to read Dree text.");
