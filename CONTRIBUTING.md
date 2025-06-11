@@ -6,7 +6,7 @@ Contributions are welcome. But randomizers do involve a lot of interdependent pa
 
 If something is obviously incorrect and easy to fix, just go ahead and open a pull request for it. If you're not sure, it never hurts to ask me first whether a behavior is intentional.
 
-Some [open issues](https://github.com/Ixrec/OuterWildsArchipelagoRandomizer/issues) may be for known bugs that I haven't fixed, because they're for opt-in/off by default features I'm not personally passionate about.
+Some [open issues](https://github.com/Ixrec/OuterWildsArchipelagoRandomizer/issues) are for known bugs that I haven't fixed, usually either because I don't have a way to reproduce the issue, or because they're for opt-in/off by default features I'm not personally passionate about.
 
 ### General Features
 
@@ -52,7 +52,7 @@ The Outer Wilds-specific code that runs during multiworld generation is in the `
 
 The other part of an AP integration is the "AP client", which is what connects to the AP server hosting the multiworld when the player actually plays their randomized game. For Outer Wilds, the AP client is simply part of the randomizer mod, but for other AP games it may be a separate program for various technical reasons. The AP client is primarily responsible for updating the game state whenever an AP item is received, and for notifying the AP server whenever the player checks an AP location in the game.
 
-With all of that in mind, it should be no surprise that a story mod integration requires two pull requests: One for [the repository with the .apworld code](https://github.com/Ixrec/Archipelago) (which for unrelated reasons is a fork of the main AP repo), and another for [the repository with the Ixrec.ArchipelagoRandomizer mod code](https://github.com/Ixrec/OuterWildsArchipelagoRandomizer/pull/30).
+With all of that in mind, it should be no surprise that a story mod integration requires two pull requests: One for [the repository with the .apworld code](https://github.com/Ixrec/Archipelago) (which for unrelated reasons is a fork of the main AP repo), and another for [the repository with the Ixrec.ArchipelagoRandomizer mod code](https://github.com/Ixrec/OuterWildsArchipelagoRandomizer).
 
 If you're interested in Archipelago integrations in general, check out [the Archipelago documentation on adding new games](https://github.com/ArchipelagoMW/Archipelago/blob/main/docs/adding%20games.md) and the many other docs it links to. But you won't need any of that for just adding a new story mod to this OW randomizer.
 
@@ -78,7 +78,7 @@ Similarly, each frequency AP item needs:
 - an id number
 - a name
 - to be in the logic for scanning the corresponding signal locations
-- entries in the mod's frequency/signal lists/maps
+- entries in the mod's lists/maps for frequencies/signals
 
 These two pull requests show how all of that works in practice for the Fret's Quest story mod:
 - https://github.com/Ixrec/Archipelago/pull/4 for the .apworld part
@@ -123,3 +123,46 @@ In addition to the prerequisites from [Installation](README.md#installation):
 - Copy the `worlds/outer_wilds` folder from your local clone over to the `lib/worlds/` folder inside your Archipelago installation folder
   - Optionally: If you need to send this to someone else, such as the host of your player group, you may zip the folder and rename the extension from `.zip` to `.apworld`. That's all an "apworld file" is, after all.
 - Run ArchipelagoLauncher.exe in your Archipelago installation folder and select "Generate Template Settings" to create a sample Outer Wilds.yaml file
+
+## Release Process
+
+In the unlikely event that someone else has to take over OW AP rando releases for me, these are the steps I follow every time I release a new version. Obviously some of these steps could be automated, but many of them fundamentally can't be, and many are valuable ways of double-checking that I haven't forgotten something critical before committing to a release.
+
+- source/git updates:
+	- check/update the "apworld_version" string the .apworld puts in slot_data 
+	- check/update the mod repo's submodule (`git submodule update --remote`)
+	- check/update the mod repo's manifest.json version AND the `mod_version` variable used in APRandomizer.cs's version mismatch warning
+	- check that both repos are clean, on the latest commit on their default branches (both local and remote)
+	- open [our Github Releases page](https://github.com/Ixrec/OuterWildsArchipelagoRandomizer/releases) and click on "Draft a new release"
+	- write release notes
+
+- build the .apworld:
+	- in PyCharm, run the unittests one last time
+	- open C:\Users\<user>\git\Archipelago\worlds (or wherever your local clone of the AP fork with the OW apworld is)
+	- zip the `outer_wilds/` folder
+	- rename the `outer_wilds.zip` to `outer_wilds.apworld`
+	- attach `outer_wilds.apworld` to the github release
+
+- build the mod:
+	- open C:\Users\<user>\AppData\Roaming\OuterWildsModManager\OWML\Mods\Ixrec.ArchipelagoRandomizer (or wherever your local builds of the OW AP rando mod are)
+	- move your `SaveData/` folder and your `config.json` file somewhere else if they exist
+	- in Visual Studio, run "Clean Solution" and then "Build Solution"
+	- zip the Ixrec.ArchipelagoRandomizer/ mod folder
+	- attach `Ixrec.ArchipelagoRandomizer.zip` to the github release
+	- move your `SaveData/` and `config.json` back in
+
+- create the example .yaml:
+	- if nothing about the .yaml/generation options has changed since the last release, simply attach the example `Outer.Wilds.yaml` in the mod repo to the github release
+	- if something did change, then update `Outer.Wilds.yaml` in the mod repo accordingly
+		- depending on what changed, it may be helpful to run "Generate Template Options" in the AP Launcher to get a fresh template .yaml
+
+- point of no return / actually releasing:
+	- create and push a `releases/X.Y.Z` branch in the mod repo
+	- create and push an `ow_releases/X.Y.Z` branch in the AP fork
+	- double-check that the github release has all 3 files attached (.apworld, mod .zip, example .yaml)
+	- click "Publish release" on the github release
+		- the OW mod database will automatically update in a few minutes, which will automatically post a message in the "Outer Wilds Modding" Discord server's #mod-db-updates channel
+
+- Discord updates:
+	- in the "Archipelago" server's "Outer Wilds" thread (https://discord.com/channels/731205301247803413/1178700404637311086), update the pinned messages; typically means this pinning a message about the new release, and unpinning a message about the previous release
+	- forward a message about the new release to #apworld-news (you'll want to add a `# Outer Wilds vX.Y.Z` header at forwarding time, then delete it afterwards for the pin)
