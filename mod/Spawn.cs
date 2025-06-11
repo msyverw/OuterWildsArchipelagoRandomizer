@@ -30,7 +30,7 @@ internal class Spawn
             case /*"brittle_hollow"*/  3: spawnChoice = SpawnChoice.BrittleHollow; break;
             case /*"giants_deep"*/     4: spawnChoice = SpawnChoice.GiantsDeep; break;
             case /*"stranger"*/        5: spawnChoice = SpawnChoice.Stranger; break;
-            case /*"deep_bramble"*/    6: spawnChoice = SpawnChoice.DeepBramble; break;
+            case /*"deep_bramble"*/    7: spawnChoice = SpawnChoice.DeepBramble; APRandomizer.NewHorizonsAPI?.SetDefaultSystem("DeepBramble"); break;
         }
     }
 
