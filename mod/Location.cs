@@ -1976,7 +1976,7 @@ public static class LocationNames
         { Location.SLF__PILLAR_DISCOVERY_FACT_FC, "FC Ship Log: Pillar Town 1 - Visit" },
         { Location.SLF__GIFT_FACT_FC, "FC Ship Log: Pillar Town 2 - Gift" },
             // Alien Study
-        { Location.SLF__ALIEN_STUDY_DISCOVERY_FACT_FC, "FC Ship Log: Alien Study 1 - Visit" },
+        { Location.SLF__ALIEN_STUDY_DISCOVERY_FACT_FC, "FC Ship Log: Alien Study 1 - Identify" },
         { Location.SLF__ALIEN_SIGHT_FACT_FC, "FC Ship Log: Alien Study 2 - Eyes" },
         { Location.SLF__ALIEN_DRUIDCRAFT_FACT_FC, "FC Ship Log: Alien Study 3 - Influence" },
         { Location.SLF__STRANDED_DREE_TEXT_FACT_FC, "FC Ship Log: Alien Study 4 - Stagnant" },
