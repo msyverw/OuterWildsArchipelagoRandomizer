@@ -27,25 +27,13 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             }
         }
 
-        public static void OnDeepBrambleLoadEvent()
+        [HarmonyPostfix, HarmonyPatch(typeof(NomaiWallText), nameof(NomaiWallText.LateInitialize))]
+        public static void RenameText(NomaiWallText __instance)
         {
-            if (APRandomizer.NewHorizonsAPI == null) return;
-            if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble") return;
-
-            renameTextCoroutine = RenameText();
-            APRandomizer.Instance.StartCoroutine(renameTextCoroutine);
-        }
-
-        private static IEnumerator RenameText()
-        {
-            // If we do this too quickly the texture won't load properly
-            yield return new WaitForSeconds(1f);
             // We rename the material of Dree text to steal control of the translation from FC
-            GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/crystal_lab/Props_NOM_Whiteboard_Shared/combo_hint_text/Arc 2 - Child of 1")
-                .GetComponent<OWRenderer>().sharedMaterial.name = "dre_text";
-            
-            // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
-            GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
+            if (__instance.gameObject.GetComponent<OWRenderer>())
+                if (__instance.gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("dree"))
+                    __instance.gameObject.GetComponent<OWRenderer>().sharedMaterial.name = "dre_text";
         }
 
         [HarmonyPrefix]

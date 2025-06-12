@@ -36,17 +36,17 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             if (APRandomizer.NewHorizonsAPI == null) return;
             if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble") return;
 
-            if (!hasTamingTechniques)
-            {
-                disableAnlerEyesCoroutine = disableAnglerEyes();
-                APRandomizer.Instance.StartCoroutine(disableAnlerEyesCoroutine);
-            }
+            disableAnlerEyesCoroutine = disableAnglerEyes();
+            APRandomizer.Instance.StartCoroutine(disableAnlerEyesCoroutine);
         }
 
         private static IEnumerator disableAnglerEyes()
         {
             // If we do this too quickly the triggers have issues when re-enabled
             yield return new WaitForSeconds(1f);
+
+            // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
+            GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
 
             // In case the player received the item within the past second, we check again
             if (!hasTamingTechniques)
