@@ -943,6 +943,7 @@ public enum Location
     SLF__MAIN_BRIDGE_RECORDER_FACT,
     SLF__LOWER_BRIDGE_RECORDER_FACT,
     SLF__WARP_DEVICE_OBSERVE_FACT,
+    SLF__WARP_TO_DB_FACT,
 
     SLF__ENTRY_FACT_FC,
     SLF__NOMAI_WARP_FACT_FC,
@@ -1929,6 +1930,7 @@ public static class LocationNames
         { Location.SLF__MAIN_BRIDGE_RECORDER_FACT, "DB Ship Log: Stranded Nomai 2 - Plan" },
         { Location.SLF__LOWER_BRIDGE_RECORDER_FACT, "DB Ship Log: Stranded Nomai 3 - Escape" },
         { Location.SLF__WARP_DEVICE_OBSERVE_FACT, "DB Ship Log: Stranded Nomai 4 - Device" },
+        { Location.SLF__WARP_TO_DB_FACT, "DB Ship Log: Stranded Nomai 5 - Warp" },
         // START_DIMENSION
           // Bramble's Doorstep
         { Location.SLF__ENTRY_FACT_FC, "FC Ship Log: Bramble's Doorstep 1 - Visit" },

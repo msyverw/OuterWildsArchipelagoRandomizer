@@ -26,14 +26,15 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 if (_hasDeepBrambleCoordinates)
                 {
                     Locator.GetShipLogManager()?.RevealFact("WARP_TO_DB_FACT", true, false);
+                    Locator.GetShipLogManager()?.RevealFact("NOMAI_WARP_FACT_FC", true, false);
                 }
             }
         }
         [HarmonyPrefix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.RevealFact))]
         public static bool RevealFactPatch(ShipLogManager __instance, string id)
         {
-            // This log fact controls your ability to warp to the Deep Bramble. This fact is an item, rather than a logsanity location, as a result.
-            if (id == "WARP_TO_DB_FACT")
+            // These log facts control your ability to warp to and from the Deep Bramble. These facts are items as a result.
+            if (id == "WARP_TO_DB_FACT" || id == "NOMAI_WARP_FACT_FC")
             {
                 if (!hasDeepBrambleCoordinates)
                     return false;
@@ -41,9 +42,9 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             return true;
         }
 
-        public static void exitWarpFix()
+        public static void ExitWarpFix()
         {
-            APRandomizer.NewHorizonsAPI.DefineStarSystem("DeepBramble", "{ \"factRequiredToExitViaWarpDrive\": \"WARP_TO_DB_FACT\"}", APRandomizer.Instance);
+            APRandomizer.NewHorizonsAPI.DefineStarSystem("DeepBramble", "{ \"factRequiredToExitViaWarpDrive\": \"NOMAI_WARP_FACT_FC\"}", APRandomizer.Instance);
         }
     }
 }

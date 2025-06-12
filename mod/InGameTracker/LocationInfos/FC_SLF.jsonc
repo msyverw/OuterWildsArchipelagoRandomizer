@@ -20,13 +20,18 @@
     "thumbnail": "STRANDED_NOMAI_ENTRY"
   },
   {
+    "locationModID": "SLF__WARP_TO_DB_FACT",
+    "description": "Using your ship's warp drive, you can warp into the Deep Bramble.",
+    "thumbnail": "STRANDED_NOMAI_ENTRY"
+  },
+  {
     "locationModID": "SLF__ENTRY_FACT_FC",
     "description": "There is a part of the Bramble not directly connected to Dark Bramble.",
     "thumbnail": "START_DIMENSION_ENTRY_FC"
   },
   {
     "locationModID": "SLF__NOMAI_WARP_FACT_FC",
-    "description": "A recorder in Bramble's Doorstep indicates the lost Nomai also warped to the Deep Bramble.",
+    "description": "Using your ship's warp drive, you can warp out of the Deep Bramble.",
     "thumbnail": "START_DIMENSION_ENTRY_FC"
   },
   {
