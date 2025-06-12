@@ -426,6 +426,16 @@ internal class SignalsAndFrequencies
         return false; // skip vanilla implementation
     }
 
+    [HarmonyPrefix, HarmonyPatch(typeof(AudioSignal), nameof(AudioSignal.Start))]
+    public static void IdentifyAmplifiedAmbience(AudioSignal __instance)
+    {
+        // Immediately identify the Natural Phenomena frequency for better UX
+        if (__instance.GetFrequency().ToString() == "Natural Phenomena")
+        {
+            __instance.IdentifyFrequency();
+        }
+    }
+
     // If you get the Signalscope item, then talk to Tephra before getting the Hide & Seek Frequency item, the
     // game will automatically switch you to that frequency after the conversation ends, bypassing the item.
     // So we need yet another patch to block that automatic frequency switch.
