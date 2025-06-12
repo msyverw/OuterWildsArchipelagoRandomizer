@@ -53,10 +53,6 @@ internal class Spawn
             // PlayerData::SetPersistentCondition() specifically avoids saving LAUNCH_CODES_GIVEN.
             if (!PlayerData._currentGameSave.PersistentConditionExists("LAUNCH_CODES_GIVEN"))
                 PlayerData._currentGameSave.SetPersistentCondition("LAUNCH_CODES_GIVEN", true);
-
-            // Forgotten Castaways integration adds an additional starting frequency, which we grant here
-            if (!SignalsAndFrequencies.usableFrequencies.Contains("Natural Phenomena") && APRandomizer.SlotEnabledMod("enable_fc_mod"))
-                SignalsAndFrequencies.usableFrequencies.Add("Natural Phenomena");
         }
     }
 

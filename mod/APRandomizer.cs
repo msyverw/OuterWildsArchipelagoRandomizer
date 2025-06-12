@@ -515,7 +515,6 @@ public class APRandomizer : ModBehaviour
                 // Forgotten Castaways custom item impls
                 if (system == "DeepBramble")
                 {
-                    ExpandedDictionary.OnDeepBrambleLoadEvent();
                     ThermalInsulation.OnDeepBrambleLoadEvent();
                     TamingTechniques.OnDeepBrambleLoadEvent();
                 }
