@@ -81,6 +81,12 @@ internal class Spawn
             __instance.RevealFact("IP_RING_WORLD_X1");
         }
 
+        // The Village 1 logsanity check is automatically triggered on startup... unless you aren't in the vanilla system.
+        // Rather than changing the access logic, we can just forcibly trigger it here
+        if(spawnChoice == SpawnChoice.DeepBramble && !__instance.IsFactRevealed("TH_VILLAGE_X1"))
+        {
+            __instance.RevealFact("TH_VILLAGE_X1");
+        }
         if (DeepBrambleCoordinates.hasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
         {
             __instance.RevealFact("WARP_TO_DB_FACT");
@@ -121,7 +127,12 @@ internal class Spawn
             APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
             return true; // let vanilla impl run
         }
-        if (spawnChoice == SpawnChoice.Vanilla || spawnChoice == SpawnChoice.TimberHearth)
+        else if (spawnChoice == SpawnChoice.DeepBramble)
+        {
+            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're warping back from Deep Bramble");
+            return true; // let vanilla impl run
+        }
+        else if (spawnChoice == SpawnChoice.Vanilla || spawnChoice == SpawnChoice.TimberHearth)
         {
             APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're spawning in TH village");
             return true; // let vanilla impl run
