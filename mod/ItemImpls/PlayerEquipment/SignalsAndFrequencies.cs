@@ -188,12 +188,6 @@ internal class SignalsAndFrequencies
     [HarmonyPriority(Priority.Low)] // run this *after* the New Horizons patch for KnowsFrequency, so our __result overrides NH's
     public static bool PlayerData_KnowsFrequency_Prefix(SignalFrequency frequency, ref bool __result)
     {
-        if(frequency.ToString() == "Natural Phenomena") // Override vanilla behavior for Natural Phenomena, since it's now a starting frequency
-        {
-            __result = true;
-            return false;
-        }
-
         if (!ItemNames.frequencyToItem.ContainsKey(frequency.ToString()))
             return true; // not a frequency we've turned into an AP item & location, let the vanilla implementation handle it
 
