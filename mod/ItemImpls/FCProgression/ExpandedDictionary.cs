@@ -42,12 +42,12 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
         {
             if (APRandomizer.NewHorizonsAPI == null) return true;
 
-            //This flag checks if the targeted text is Dree text
-            bool flag = __instance._scanBeams[0]._nomaiTextLine != null && __instance._scanBeams[0]._nomaiTextLine.gameObject
-            .GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre");
+            bool isDreeText = __instance._scanBeams[0]._nomaiTextLine != null && (__instance._scanBeams[0]._nomaiTextLine.gameObject
+            .GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre") || __instance._scanBeams[0]._nomaiTextLine.gameObject
+            .GetComponent<OWRenderer>().sharedMaterial.name.Contains("IP"));
 
             //If the text is dree, and the player lacks the upgrade, hide the text
-            if (flag && APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && !hasExpandedDictionary)
+            if (isDreeText && APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && !hasExpandedDictionary)
             {
                 __instance._textField.text = UITextLibrary.GetString(UITextType.TranslatorUntranslatableWarning);
                 return false;
