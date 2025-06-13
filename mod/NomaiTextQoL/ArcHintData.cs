@@ -84,8 +84,6 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
             // Forgotten Castaways: Alien text needs to be handled slightly differently.
             if (rend.material.name.Contains("IP") || rend.material.name.Contains("dre"))
             {
-                // Making 100% sure it's handled properly
-                rend.material.name = "dre_text";
                 IsAlienText = true;
             }
 

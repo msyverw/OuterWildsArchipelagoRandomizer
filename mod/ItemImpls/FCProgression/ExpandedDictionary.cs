@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System.Collections;
 using UnityEngine;
+using static StencilPreviewImageEffect;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
@@ -27,8 +28,8 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             }
         }
 
-        [HarmonyPostfix, HarmonyPatch(typeof(NomaiWallText), nameof(NomaiWallText.LateInitialize))]
-        public static void RenameText(NomaiWallText __instance)
+        [HarmonyPostfix, HarmonyPatch(typeof(NomaiTextLine), nameof(NomaiWallText.Update))]
+        public static void RenameText(NomaiTextLine __instance)
         {
             // We rename the material of Dree text to steal control of the translation from FC
             if (__instance.gameObject.GetComponent<OWRenderer>())
@@ -47,10 +48,18 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             .GetComponent<OWRenderer>().sharedMaterial.name.Contains("IP"));
 
             //If the text is dree, and the player lacks the upgrade, hide the text
-            if (isDreeText && APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && !hasExpandedDictionary)
+            if (isDreeText && APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble")
             {
-                __instance._textField.text = UITextLibrary.GetString(UITextType.TranslatorUntranslatableWarning);
-                return false;
+                if (!hasExpandedDictionary)
+                {
+                    __instance._textField.text = UITextLibrary.GetString(UITextType.TranslatorUntranslatableWarning);
+                    return false;
+                }
+                else if (__instance._translationTimeElapsed == 0f && !__instance._nomaiTextComponent.IsTranslated(__instance._currentTextID))
+                {
+                    __instance._textField.text = "<!> Untranslated Dree writing <!>";
+                    return false;
+                }
             }
             //Otherwise, run normally
             return true;
