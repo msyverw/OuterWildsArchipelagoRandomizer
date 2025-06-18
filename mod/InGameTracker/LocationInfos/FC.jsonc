@@ -80,12 +80,22 @@
     "thumbnail": "START_DIMENSION_ENTRY_FC"
   },
   {
+    "locationModID": "FC_TITANS_TEARS",
+    "description": "Within Briar's Hollow, there is a cluster of planetoids named Titan's Tears.",
+    "thumbnail": "PLANETOID_CLUSTER_ENTRY_FC"
+  },
+  {
     "locationModID": "FC_TITANS_TEARS_SHELTER",
     "description": "The Nomai wrote about a campsite somewhere within Briar's Hollow on the wall of their shelter on Titan's Tears.",
     "thumbnail": "PLANETOID_CLUSTER_ENTRY_FC"
   },
   {
     "locationModID": "FC_HOLE_OVERLOOK",
+    "description": "There is a hole at the edge of Briar's Hollow. Check it out from the closest planetoid.",
+    "thumbnail": "HOLE_OVERLOOK_ENTRY_FC"
+  },
+  {
+    "locationModID": "FC_HOLE_OVERLOOK_TEXT",
     "description": "A text wall sits upon one of the smaller planetoids of Titan's Tears. It discusses a nearby hole at the edge of Briar's Hollow.",
     "thumbnail": "HOLE_OVERLOOK_ENTRY_FC"
   },
