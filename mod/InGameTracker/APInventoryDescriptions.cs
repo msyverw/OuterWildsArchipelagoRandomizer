@@ -319,6 +319,10 @@ public class APInventoryDescriptions
                     infos.Add("The Probability Rule allows quantum objects to travel great distances when they have no other locations to travel to.");
                     infos.Add("The tracking equipment on your suit prevents these large jumps, so you can turn it off to utilize this rule.");
                     break;
+                case Item.SignalHotShard:
+                    infos.Add("Allows your Signalscope to track the Hot Shard.");
+                    infos.Add("This can be used to orient yourself towards Shattered Hearth.");
+                    break;
                 default:
                     return GetErrorDescription(itemID);
             }
