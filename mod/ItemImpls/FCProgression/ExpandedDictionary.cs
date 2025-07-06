@@ -56,7 +56,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                     return false;
                 }
                 else if (__instance._translationTimeElapsed == 0f && !__instance._nomaiTextComponent.IsTranslated(__instance._currentTextID))
-                {
+                {   // Update the untranslated message when active
                     __instance._textField.text = "<!> Untranslated Dree writing <!>";
                     return false;
                 }
