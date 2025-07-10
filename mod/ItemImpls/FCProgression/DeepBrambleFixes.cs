@@ -2,14 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using UnityEngine;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
     class DeepBrambleFixes
     {
+        private static System.Random prng = new();
         private static IEnumerator deepBrambleFixesCoroutine;
         public static void OnDeepBrambleLoadEvent()
         {
@@ -25,22 +25,33 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             // If we do this too quickly the triggers have issues when re-enabled
             yield return new WaitForSeconds(1f);
 
+            APRandomizer.OWMLModConsole.WriteLine("Patching Deep Bramble dimension");
+
             // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
             GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
 
-            // TODO:
-            GameObject lever1Object = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever1");
-            GameObject lever2Object = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever2");
-            GameObject lever3Object = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever3");
-            GameObject lever4Object = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever4");
-            GameObject lever5Object = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever5");
-            GameObject lever6Object = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever6");
-            // Lever lever1 = lever1Object.GetComponent<DeepBramble.MiscBehaviours.Lever>();
-            // GameObject beam1 = lever1.beamObject;
+            // Randomize Graviton's Folly levers
+            FieldInfo beamField = Type.GetType("DeepBramble.MiscBehaviours.Lever, DeepBramble", true).GetField("beamObject", BindingFlags.NonPublic | BindingFlags.Instance);
+            List<object> levers = [
+                GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever1").GetComponent("Lever"),
+                GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever2").GetComponent("Lever"),
+                GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever3").GetComponent("Lever"),
+                GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever4").GetComponent("Lever"),
+                GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever5").GetComponent("Lever"),
+                GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever6").GetComponent("Lever"),
+            ];
+            var beams = levers.Select((l, i) => (beamField.GetValue(l), i + 1)).Cast<(object, int)>().OrderBy(_ => prng.Next()).ToList();
+
+            for (int i = 0; i < levers.Count; i++) {
+                beamField.SetValue(levers[i], beams[i].Item1);
+            }
+            APRandomizer.OWMLModConsole.WriteLine($"Randomized Folly levers: {string.Join(", ", beams.Select(b => $"Beam {b.Item2}"))}");
+
+            //beams.FindIndex()
 
             // Update the dree text
             NomaiWallText comboHintText = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/crystal_lab/Props_NOM_Whiteboard_Shared/combo_hint_text").GetComponent<NomaiWallText>();
-            string newText = comboHintText._dictNomaiTextData[2].TextNode.InnerText.Replace("OKALIS: Of course! If I remember correctly, all of the levers should be on, except for the second and the second-to-last.", "");
+            string newText = comboHintText._dictNomaiTextData[2].TextNode.InnerText.Replace("OKALIS: Of course! If I remember correctly, all of the levers should be on, except for the second and the second-to-last.", "OKALIS: TEST TEST.");
             comboHintText._dictNomaiTextData[2].TextNode.InnerText = newText;
         }
     }
