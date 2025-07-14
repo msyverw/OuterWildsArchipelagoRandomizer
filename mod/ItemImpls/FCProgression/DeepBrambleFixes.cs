@@ -30,6 +30,16 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
             GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
 
+            // Dree text fix
+            foreach (NomaiWallText wall in ExpandedDictionary.textWalls) {
+                if (!wall._initialized) continue;
+                foreach (NomaiTextLine txt in wall._textLines)
+                    if (txt._renderer.sharedMaterial.name.Contains("dree"))
+                        txt._renderer.sharedMaterial.name = txt._renderer.sharedMaterial.name.Replace("dree", "dre");
+            }
+            // Clear the list for the next loop
+            ExpandedDictionary.textWalls.Clear();
+
             // Randomize Graviton's Folly levers
             FieldInfo beamField = Type.GetType("DeepBramble.MiscBehaviours.Lever, DeepBramble", true).GetField("beamObject", BindingFlags.NonPublic | BindingFlags.Instance);
             List<object> levers = [
@@ -40,19 +50,38 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever5").GetComponent("Lever"),
                 GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever6").GetComponent("Lever"),
             ];
-            var beams = levers.Select((l, i) => (beamField.GetValue(l), i + 1)).Cast<(object, int)>().OrderBy(_ => prng.Next()).ToList();
+            List<(object, int)> beams = [.. levers.Select((l, i) => (beamField.GetValue(l), i + 1)).Cast<(object, int)>().OrderBy(_ => prng.Next())];
 
-            for (int i = 0; i < levers.Count; i++) {
+            for (int i = 0; i < levers.Count; i++)
                 beamField.SetValue(levers[i], beams[i].Item1);
-            }
-            APRandomizer.OWMLModConsole.WriteLine($"Randomized Folly levers: {string.Join(", ", beams.Select(b => $"Beam {b.Item2}"))}");
+            APRandomizer.OWMLModConsole.WriteLine($"Randomized Folly levers: {string.Join(", ", beams.Select(b => $"Beam {b.Item2}"))}", OWML.Common.MessageType.Info);
 
-            //beams.FindIndex()
+            // Figure out lever is which
+            int second = beams.FindIndex(t => t.Item2 == 2);
+            int secondToLast = beams.FindIndex(t => t.Item2 == 5);
 
-            // Update the dree text
+            static string IndexToString(int i) => i switch
+            {
+                0 => "first",
+                1 => "second",
+                2 => "third",
+                3 => "fourth",
+                4 => "second-to-last",
+                5 => "last",
+                _ => "ERROR"
+            };
+
+            var lever1 = IndexToString(second);
+            var lever2 = IndexToString(secondToLast);
+
+            // Put the text in a logical order
+            if (second > secondToLast)
+                (lever2, lever1) = (lever1, lever2);
+
+            // Update the hint text
             NomaiWallText comboHintText = GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/crystal_lab/Props_NOM_Whiteboard_Shared/combo_hint_text").GetComponent<NomaiWallText>();
-            string newText = comboHintText._dictNomaiTextData[2].TextNode.InnerText.Replace("OKALIS: Of course! If I remember correctly, all of the levers should be on, except for the second and the second-to-last.", "OKALIS: TEST TEST.");
-            comboHintText._dictNomaiTextData[2].TextNode.InnerText = newText;
+            comboHintText._dictNomaiTextData[2].TextNode.InnerText = comboHintText._dictNomaiTextData[2].TextNode.InnerText
+                .Replace("except for the second and the second-to-last", $"except for the {lever1} and the {lever2}");
         }
     }
 }
