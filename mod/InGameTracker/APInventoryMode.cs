@@ -342,6 +342,8 @@ public class APInventoryMode : ShipLogMode
             var sf = SignalsAndFrequencies.signalToFrequency[ItemNames.itemToSignal[item]];
             if (sf == "Traveler")
                 frequency = "FrequencyOWV";
+            else if (sf == "Natural Phenomena")
+                frequency = "NaturalPhenomenaFrequency";
             else if (ItemNames.frequencyToItem.TryGetValue(sf, out var frequencyItem))
                 if (ItemNames.IsStoryModFrequency(frequencyItem))
                     frequency = "StoryModFrequencies";
