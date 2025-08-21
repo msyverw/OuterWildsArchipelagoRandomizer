@@ -16,7 +16,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
-using static ArchipelagoRandomizer.StoryModMetadata;
 
 namespace ArchipelagoRandomizer;
 

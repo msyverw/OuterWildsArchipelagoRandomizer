@@ -133,7 +133,7 @@ public class APInventoryDescriptions
                     infos.Add("The translator tool that you and Hal have been working on since Feldspar brought that Nomai wall to the museum.");
                     if (APRandomizer.SlotEnabledSplitTranslator())
                     {
-                        infos.Add("Because this world was generated with split_translator: true, this tool is broken into six pieces:");
+                        infos.Add("Because this world was generated with split_translator: true, this tool is broken into multiple pieces:");
                         List<Item> translators = [Item.TranslatorHGT, Item.TranslatorTH, Item.TranslatorBH, Item.TranslatorGD, Item.TranslatorDB, Item.TranslatorOther];
                         if (APRandomizer.SlotEnabledMod("enable_fc_mod")) translators.Add(Item.TranslatorDeepB);
                         foreach (var tl in translators)
@@ -335,7 +335,7 @@ public class APInventoryDescriptions
                     break;
                 case Item.ProbabilityRule:
                     infos.Add("The Probability Rule allows quantum objects to travel great distances when they have no other locations to travel to.");
-                    infos.Add("The tracking equipment on your suit prevents these large jumps, so you can turn it off to utilize this rule.");
+                    infos.Add("The tracking equipment on your suit prevented these large jumps, so with it turned off you can now utilize this rule.");
                     break;
                 case Item.SignalHotShard:
                     infos.Add("Allows your Signalscope to track the Hot Shard.");

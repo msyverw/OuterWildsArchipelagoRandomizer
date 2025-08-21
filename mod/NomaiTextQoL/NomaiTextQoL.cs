@@ -144,7 +144,7 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
             if (APRandomizer.NewHorizonsAPI != null)
                 if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && __instance._active && __instance.gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre"))
                 {
-                    //Determine the color
+                    // Determine the color
                     switch (state)
                     {
                         case NomaiTextLine.VisualState.UNREAD:

@@ -82,18 +82,12 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
             rend = GetComponent<Renderer>();
 
             // Forgotten Castaways: Alien text needs to be handled slightly differently.
-            if (rend.material.name.Contains("IP") || rend.material.name.Contains("dre"))
-            {
-                IsAlienText = true;
-            }
+            if (rend.material.name.Contains("IP") || rend.material.name.Contains("dre")) IsAlienText = true;
 
             Locations.Add(loc);
             if (APRandomizer.APSession.Locations.AllLocationsChecked.Contains(LocationNames.locationToArchipelagoId[loc])) HasBeenFound = true;
 
-            if (Importance == CheckImportance.Trap)
-            {
-                if (rend.material.name.Contains("TextChild")) IsChildText = true;
-            }
+            if (Importance == CheckImportance.Trap && rend.material.name.Contains("TextChild")) IsChildText = true;
             ItemFlags itemFlags = LocationScouter.ScoutedLocations[loc].Flags;
 
             if (itemFlags.HasFlag(ItemFlags.Advancement))

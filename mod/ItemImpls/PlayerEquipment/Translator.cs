@@ -45,6 +45,10 @@ internal class Translator
 
     private static TranslatorSector GetTranslatorSector(List<Sector> sectorList)
     {
+        // The Deep Bramble is its own system, so we can check it easily here.
+        if (APRandomizer.NewHorizonsAPI?.GetCurrentStarSystem() == "DeepBramble")
+            return TranslatorSector.DeepBramble;
+
         // For the most part, the translator sector is whichever of the 5 major planet sectors we're in, or Other otherwise.
         // The exceptions are all Unnamed mini-sectors that can change which if any planet they're on, so
         // we need to check for these explicitly and make sure they take precedence over major planet.
@@ -62,12 +66,6 @@ internal class Translator
             // and for logic simplicity we want the same translator to work on them if recalled to the ET/BH cannons.
             if (sector.GetName() == Sector.Name.Unnamed && sector.gameObject.name == "Sector_NomaiShuttleInterior")
                 return TranslatorSector.Other;
-
-
-            // The Deep Bramble is considered part of Dark Bramble, so we have to check for it before checking for DB.
-            if (APRandomizer.NewHorizonsAPI != null)
-                if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble")
-                    return TranslatorSector.DeepBramble;
         }
 
         // Now that the exceptions are handled, and the major planets never overlap, we only need one more loop

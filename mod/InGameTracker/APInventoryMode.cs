@@ -233,7 +233,7 @@ public class APInventoryMode : ShipLogMode
                 continue;
             if (item.StoryModOption != null && !(APRandomizer.SlotData.ContainsKey(item.StoryModOption) && (long)APRandomizer.SlotData[item.StoryModOption] > 0))
                 continue;
-            if (item.ID is "StoryModFrequencies")
+            if (item.ID == "StoryModFrequencies")
             {
                 var anyStoryModEnabled = StoryModMetadata.AllStoryMods.Any(sm => APRandomizer.SlotData.ContainsKey(sm.slotDataOption) && (long)APRandomizer.SlotData[sm.slotDataOption] > 0);
                 if (!anyStoryModEnabled)
@@ -252,7 +252,7 @@ public class APInventoryMode : ShipLogMode
                     uint quantity = 0;
                     var allTLs = new List<Item> { Item.TranslatorHGT, Item.TranslatorTH, Item.TranslatorBH, Item.TranslatorGD, Item.TranslatorDB, Item.TranslatorOther };
                     if (APRandomizer.SlotEnabledMod("enable_fc_mod")) allTLs.Add(Item.TranslatorDeepB);
-                    foreach(var tl in allTLs)
+                    foreach (var tl in allTLs)
                         if (items.ContainsKey(tl) && items[tl] > 0)
                             quantity += 1;
 
