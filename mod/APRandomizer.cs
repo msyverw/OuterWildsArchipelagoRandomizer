@@ -482,6 +482,8 @@ public class APRandomizer : ModBehaviour
             Hints.OnCompleteSceneLoad();
             // Hearth's Neighbor 2: Magistarium custom item impls
             MemoryCubeInterface.OnCompleteSceneLoad();
+            // Forgotten Castaways custom item impls
+            ExpandedDictionary.OnCompleteSceneLoad();
         };
 
         // update the Nomai text setting before any can be created
@@ -501,10 +503,9 @@ public class APRandomizer : ModBehaviour
 
         StartCoroutine(DisableNHSpawn());
 
-        var newHorizonsAPI = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
-        if (newHorizonsAPI != null)
+        if (NewHorizonsAPI != null)
         {
-            newHorizonsAPI.GetStarSystemLoadedEvent().AddListener(system =>
+            NewHorizonsAPI.GetStarSystemLoadedEvent().AddListener(system =>
             {
                 // Hearth's Neighbor 2: Magistarium custom item impls
                 if (system == "Jam3")
