@@ -7,7 +7,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
     [HarmonyPatch]
     class ExpandedDictionary
     {
-        public static List<NomaiWallText> textWalls = [];
+        public static List<NomaiWallText> deepBrambleTextWalls = [];
 
         private static bool _hasExpandedDictionary = false;
 
@@ -26,12 +26,14 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             }
         }
 
+        public static void OnCompleteSceneLoad() => deepBrambleTextWalls.Clear(); // Clear the list before NH loads in the Deep Bramble dimension
+
         [HarmonyPostfix, HarmonyPatch(typeof(NomaiWallText), nameof(NomaiWallText.Awake))]
         public static void AwakeRenameText(NomaiWallText __instance)
         {
             // We need to rename the material of Dree text to steal control of the translation from FC,
             // but the material isn't set at this point. So we make a list now and process them later.
-            textWalls.Add(__instance);
+            deepBrambleTextWalls.Add(__instance);
         }
 
         [HarmonyPrefix]

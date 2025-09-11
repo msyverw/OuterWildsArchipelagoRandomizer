@@ -9,12 +9,12 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
     class DeepBrambleFixes
     {
-        private static System.Random prng = new();
+        private static readonly System.Random prng = new();
         private static IEnumerator deepBrambleFixesCoroutine;
         public static void OnDeepBrambleLoadEvent()
         {
-            if (APRandomizer.NewHorizonsAPI == null) return;
-            if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble") return;
+            if (APRandomizer.NewHorizonsAPI == null || APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble")
+                return;
 
             deepBrambleFixesCoroutine = FixDeepBramble();
             APRandomizer.Instance.StartCoroutine(deepBrambleFixesCoroutine);
@@ -31,14 +31,12 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
 
             // Dree text fix
-            foreach (NomaiWallText wall in ExpandedDictionary.textWalls) {
+            foreach (NomaiWallText wall in ExpandedDictionary.deepBrambleTextWalls) {
                 if (!wall._initialized) continue;
                 foreach (NomaiTextLine txt in wall._textLines)
                     if (txt._renderer.sharedMaterial.name.Contains("dree"))
                         txt._renderer.sharedMaterial.name = txt._renderer.sharedMaterial.name.Replace("dree", "dre");
             }
-            // Clear the list for the next loop
-            ExpandedDictionary.textWalls.Clear();
 
             // Randomize Graviton's Folly levers
             FieldInfo beamField = Type.GetType("DeepBramble.MiscBehaviours.Lever, DeepBramble", true).GetField("beamObject", BindingFlags.NonPublic | BindingFlags.Instance);
