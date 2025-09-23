@@ -55,9 +55,9 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 return;
 
             if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
-                APRandomizer.NewHorizonsAPI?.SetDefaultSystem("DeepBramble");
+                APRandomizer.NewHorizonsAPI.SetDefaultSystem("DeepBramble");
             else
-                APRandomizer.NewHorizonsAPI?.SetDefaultSystem("SolarSystem");
+                APRandomizer.NewHorizonsAPI.SetDefaultSystem("SolarSystem");
         }
     }
 }
