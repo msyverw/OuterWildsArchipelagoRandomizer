@@ -84,7 +84,7 @@ internal class Spawn
         {
             __instance.RevealFact("TH_VILLAGE_X1");
         }
-        if (DeepBrambleCoordinates.hasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
+        if (DeepBrambleCoordinates.HasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
         {
             __instance.RevealFact("WARP_TO_DB_FACT");
         }

@@ -16,28 +16,34 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
     {
         private static bool _hasDeepBrambleCoordinates = false;
 
-        public static bool hasDeepBrambleCoordinates
+        public static bool HasDeepBrambleCoordinates
         {
             get => _hasDeepBrambleCoordinates;
             set
             {
-                if (_hasDeepBrambleCoordinates != value)
-                    _hasDeepBrambleCoordinates = value;
-
-                if (_hasDeepBrambleCoordinates)
-                {
-                    Locator.GetShipLogManager()?.RevealFact("WARP_TO_DB_FACT", true, false);
-                    Locator.GetShipLogManager()?.RevealFact("NOMAI_WARP_FACT_FC", true, false);
-                }
+                _hasDeepBrambleCoordinates = value;
+                CheckEnableWarp();
             }
         }
+
+        public static void CheckEnableWarp()
+        {
+            if (_hasDeepBrambleCoordinates) {
+                string system = APRandomizer.NewHorizonsAPI.GetCurrentStarSystem();
+                if (system == "SolarSystem")
+                    Locator.GetShipLogManager()?.RevealFact("NOMAI_WARP_FACT_FC", true, false);
+                else if (system == "DeepBramble")
+                    Locator.GetShipLogManager()?.RevealFact("WARP_TO_DB_FACT", true, false);
+            }
+        }
+
         [HarmonyPrefix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.RevealFact))]
         public static bool RevealFactPatch(ShipLogManager __instance, string id)
         {
             // These log facts control your ability to warp to and from the Deep Bramble. These facts are items as a result.
             if (id == "WARP_TO_DB_FACT" || id == "NOMAI_WARP_FACT_FC")
             {
-                if (!hasDeepBrambleCoordinates)
+                if (!HasDeepBrambleCoordinates)
                     return false;
             }
             return true;

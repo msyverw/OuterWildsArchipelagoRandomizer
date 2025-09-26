@@ -433,7 +433,7 @@ internal class LocationTriggers
             case Item.TamingTechniques: TamingTechniques.hasTamingTechniques = (count > 0); break;
             case Item.CrystalRepairManual: CrystalManual.hasCrystalManual = (count > 0); break;
             case Item.ProbabilityRule: QuantumProbability.hasProbabilityKnowledge = (count > 0); break;
-            case Item.DeepBrambleCoordinates: DeepBrambleCoordinates.hasDeepBrambleCoordinates = (count > 0); break;
+            case Item.DeepBrambleCoordinates: DeepBrambleCoordinates.HasDeepBrambleCoordinates = (count > 0); break;
 
             // for backwards-compatibility
             case Item.Spaceship: break; case Item.Nothing: break;
