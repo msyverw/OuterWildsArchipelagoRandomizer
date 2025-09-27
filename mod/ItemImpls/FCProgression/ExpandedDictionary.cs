@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
 
     [HarmonyPatch]
-    class ExpandedDictionary
+    static class ExpandedDictionary
     {
         private static List<NomaiWallText> _deepBrambleTextWalls = [];
 
@@ -28,11 +30,14 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 
         public static void OnCompleteSceneLoad() => _deepBrambleTextWalls.Clear(); // Clear the list before NH loads in the Deep Bramble dimension
 
-        public static void OnDeepBrambleLoadEvent()
+        public static void OnDeepBrambleLoadEvent() => APRandomizer.Instance.StartCoroutine(RenameText());
+
+        private static IEnumerator RenameText()
         {
-            foreach (NomaiWallText wall in _deepBrambleTextWalls) {
-                if (!wall._initialized)
-                    continue;
+            yield return new WaitForSeconds(1);
+            foreach (NomaiWallText wall in _deepBrambleTextWalls)
+            {
+                if (!wall._initialized) continue;
                 foreach (NomaiTextLine txt in wall._textLines)
                     if (txt._renderer.sharedMaterial.name.Contains("dree"))
                         txt._renderer.sharedMaterial.name = txt._renderer.sharedMaterial.name.Replace("dree", "dre");
@@ -40,7 +45,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(NomaiWallText), nameof(NomaiWallText.Awake))]
-        public static void AwakeRenameText(NomaiWallText __instance)
+        public static void NomaiWallText_Awake(NomaiWallText __instance)
         {
             // We need to rename the material of Dree text to steal control of the translation from FC,
             // but the material isn't set at this point. So we make a list now and process them later.
