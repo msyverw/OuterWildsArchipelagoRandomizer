@@ -68,13 +68,13 @@ internal class Spawn
         // Since this file has to fiddle with LAUNCH_CODES_GIVEN anyway, this seems like the least bad place to put it.
         if (PlayerData._currentGameSave.PersistentConditionExists("LAUNCH_CODES_GIVEN") && !__instance.IsFactRevealed("TH_VILLAGE_X2"))
         {
-            APRandomizer.OWMLModConsole.WriteLine($"auto-revealing Village 2 ship log because the time loop has already started");
+            APRandomizer.OWMLModConsole.WriteLine("auto-revealing Village 2 ship log because the time loop has already started");
             __instance.RevealFact("TH_VILLAGE_X2");
         }
 
         if (APRandomizer.SlotEnabledEotEDLC() && !__instance.IsFactRevealed("IP_RING_WORLD_X1"))
         {
-            APRandomizer.OWMLModConsole.WriteLine($"auto-revealing The Stranger ship log because EotE DLC is enabled");
+            APRandomizer.OWMLModConsole.WriteLine("auto-revealing The Stranger ship log because EotE DLC is enabled");
             __instance.RevealFact("IP_RING_WORLD_X1");
         }
 
@@ -82,11 +82,8 @@ internal class Spawn
         // Rather than changing the access logic, we can just forcibly trigger it here
         if(spawnChoice == SpawnChoice.DeepBramble && !__instance.IsFactRevealed("TH_VILLAGE_X1"))
         {
+            APRandomizer.OWMLModConsole.WriteLine("auto-revealing Village 1 ship log because we didn't spawn in the Outer Wilds system");
             __instance.RevealFact("TH_VILLAGE_X1");
-        }
-        if (DeepBrambleCoordinates.HasDeepBrambleCoordinates && !__instance.IsFactRevealed("WARP_TO_DB_FACT"))
-        {
-            __instance.RevealFact("WARP_TO_DB_FACT");
         }
     }
 

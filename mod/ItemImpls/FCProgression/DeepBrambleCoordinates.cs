@@ -1,18 +1,11 @@
 ﻿using HarmonyLib;
-using OWML.ModHelper;
-using OWML.ModHelper.Events;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
     [HarmonyPatch]
-    class DeepBrambleCoordinates
+    static class DeepBrambleCoordinates
     {
         private static bool _hasDeepBrambleCoordinates = false;
 
@@ -26,15 +19,33 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             }
         }
 
-        public static void CheckEnableWarp()
-        {
-            if (_hasDeepBrambleCoordinates) {
-                string system = APRandomizer.NewHorizonsAPI.GetCurrentStarSystem();
-                if (system == "SolarSystem")
-                    Locator.GetShipLogManager()?.RevealFact("NOMAI_WARP_FACT_FC", true, false);
-                else if (system == "DeepBramble")
-                    Locator.GetShipLogManager()?.RevealFact("WARP_TO_DB_FACT", true, false);
+        private static void CheckEnableWarp() {
+            if (!_hasDeepBrambleCoordinates) return;
+
+            ShipLogManager slm = Locator.GetShipLogManager();
+            if (slm is null) return;
+
+            string system = APRandomizer.NewHorizonsAPI?.GetCurrentStarSystem();
+            if (system == "SolarSystem")
+            {
+                if (!slm.IsFactRevealed("WARP_TO_DB_FACT"))
+                    slm.RevealFact("WARP_TO_DB_FACT");
             }
+            else if (system == "DeepBramble")
+            {
+                if (!slm.IsFactRevealed("NOMAI_WARP_FACT_FC"))
+                    slm.RevealFact("NOMAI_WARP_FACT_FC");
+            }
+        }
+
+        [HarmonyPostfix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.Start))]
+        public static void ShipLogManager_Start_Postfix() => APRandomizer.Instance.StartCoroutine(EnableWarpDelayed());
+
+        static IEnumerator EnableWarpDelayed() {
+            // Need to delay the check so NH has time to do some setup
+            // otherwise we get a NullReferenceException in ShipLogStarChartMode.AddSystemCard
+            yield return new WaitForSeconds(1);
+            CheckEnableWarp();
         }
 
         [HarmonyPrefix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.RevealFact))]
@@ -43,7 +54,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             // These log facts control your ability to warp to and from the Deep Bramble. These facts are items as a result.
             if (id == "WARP_TO_DB_FACT" || id == "NOMAI_WARP_FACT_FC")
             {
-                if (!HasDeepBrambleCoordinates)
+                if (!_hasDeepBrambleCoordinates)
                     return false;
             }
             return true;

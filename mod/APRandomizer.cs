@@ -528,7 +528,6 @@ public class APRandomizer : ModBehaviour
                     DeepBrambleFixes.OnDeepBrambleLoadEvent();
                     ExpandedDictionary.OnDeepBrambleLoadEvent();
                 }
-                DeepBrambleCoordinates.CheckEnableWarp();
             });
             // Adds a prerequisite to warping out of the Deep Bramble, for the Deep Bramble Spawn.
             DeepBrambleCoordinates.ExitWarpFix();
