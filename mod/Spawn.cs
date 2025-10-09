@@ -267,9 +267,8 @@ internal class Spawn
 
     private static IEnumerator MovePlayerDelayed()
     {
-        // It takes 32 frames for NH to warp the player to the ship's cockpit
-        for (int i = 0; i < 32; i++)
-            yield return new WaitForEndOfFrame();
+        // It takes time for NH to warp the player to the ship's cockpit
+        yield return new WaitForSeconds(0.01f);
 
         // If the player isn't in their ship at this point, NH won't be mad if we move them
         if (!PlayerState.IsInsideShip())
