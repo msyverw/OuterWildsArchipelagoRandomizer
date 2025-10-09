@@ -86,10 +86,9 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
 
             Locations.Add(loc);
             if (APRandomizer.APSession.Locations.AllLocationsChecked.Contains(LocationNames.locationToArchipelagoId[loc])) HasBeenFound = true;
+            if (rend.material.name.Contains("TextChild")) IsChildText = true;
 
-            if (Importance == CheckImportance.Trap && rend.material.name.Contains("TextChild")) IsChildText = true;
             ItemFlags itemFlags = LocationScouter.ScoutedLocations[loc].Flags;
-
             if (itemFlags.HasFlag(ItemFlags.Advancement))
             {
                 DisplayImportance = CheckImportance.Progression;
