@@ -3,6 +3,7 @@ using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using ArchipelagoRandomizer.InGameTracker;
+using ArchipelagoRandomizer.ItemImpls.FCProgression;
 using HarmonyLib;
 using Newtonsoft.Json;
 using OWML.Common;
@@ -53,6 +54,8 @@ public class APRandomizer : ModBehaviour
         SlotData.ContainsKey("dlc_only") && (long)SlotData["dlc_only"] > 0;
     public static bool SlotEnabledSplitTranslator() =>
         SlotData.ContainsKey("split_translator") && (long)SlotData["split_translator"] == 1;
+    public static bool SlotEnabledMod(string modOption) =>
+        SlotData.ContainsKey(modOption) && (long)SlotData[modOption] > 0;
 
     public static IModConsole OWMLModConsole { get => Instance.ModHelper.Console; }
     public static ArchConsoleManager InGameAPConsole;
@@ -175,7 +178,7 @@ public class APRandomizer : ModBehaviour
         {
             APSession.Items.ItemReceived -= APSession_ItemReceived;
             APSession.MessageLog.OnMessageReceived -= APSession_OnMessageReceived;
-            OnSessionClosed(APSession, true);
+            OnSessionClosed?.Invoke(APSession, true);
         }
         APSession = ArchipelagoSessionFactory.CreateSession(cdata.hostname, (int)cdata.port);
         LoginResult result = APSession.TryConnectAndLogin("Outer Wilds", cdata.slotName, ItemsHandlingFlags.AllItems, password: cdata.password, requestSlotData: true);
@@ -311,7 +314,7 @@ public class APRandomizer : ModBehaviour
             APSession.Locations.CompleteLocationChecks(locationIdsMissedByServer.ToArray());
         }
 
-        OnSessionOpened(APSession);
+        OnSessionOpened?.Invoke(APSession);
 
         successCallback();
     }
@@ -486,6 +489,8 @@ public class APRandomizer : ModBehaviour
             Hints.OnCompleteSceneLoad();
             // Hearth's Neighbor 2: Magistarium custom item impls
             MemoryCubeInterface.OnCompleteSceneLoad();
+            // Forgotten Castaways custom item impls
+            ExpandedDictionary.OnCompleteSceneLoad();
         };
 
         // update the Nomai text setting before any can be created
@@ -505,16 +510,26 @@ public class APRandomizer : ModBehaviour
 
         StartCoroutine(DisableNHSpawn());
 
-        var newHorizonsAPI = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
-        if (newHorizonsAPI != null)
-            newHorizonsAPI.GetStarSystemLoadedEvent().AddListener(system =>
+        if (NewHorizonsAPI != null)
+        {
+            NewHorizonsAPI.GetStarSystemLoadedEvent().AddListener(system =>
             {
                 // Hearth's Neighbor 2: Magistarium custom item impls
                 if (system == "Jam3")
                 {
                     MagistariumAccessCodes.OnJam3StarSystemLoadedEvent();
                 }
+                // Forgotten Castaways custom item impls
+                if (system == "DeepBramble")
+                {
+                    ThermalInsulation.OnDeepBrambleLoadEvent();
+                    TamingTechniques.OnDeepBrambleLoadEvent();
+                    DeepBrambleFixes.OnDeepBrambleLoadEvent();
+                }
             });
+            // Adds a prerequisite to warping out of the Deep Bramble, for the Deep Bramble Spawn.
+            DeepBrambleCoordinates.ExitWarpFix();
+        }
     }
     System.Collections.IEnumerator DisableNHSpawn()
     {
@@ -527,7 +542,10 @@ public class APRandomizer : ModBehaviour
         // There's no way to ask what the default system currently is, so if NH is running at all
         // then we have to assume it needs overriding.
         OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"SolarSystem\")");
-        newHorizonsAPI?.SetDefaultSystem("SolarSystem");
+        if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
+            newHorizonsAPI?.SetDefaultSystem("DeepBramble");
+        else
+            newHorizonsAPI?.SetDefaultSystem("SolarSystem");
     }
 
     public override void SetupTitleMenu(ITitleMenuManager titleManager) => MainMenu.SetupTitleMenu(titleManager);
