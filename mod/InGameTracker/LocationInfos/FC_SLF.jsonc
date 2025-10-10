@@ -65,16 +65,6 @@
     "thumbnail": "HOLE_OVERLOOK_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__DITYLUM_EJECTION_FACT_FC",
-    "description": "Ditylum is ejected from the Dangerous Node when it is killed.",
-    "thumbnail": "DILATION_NODE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__DITYLUM_FOUND_FACT_FC",
-    "description": "After killing the Dangerous Node, sit with Ditylum in Bramble's Heart.",
-    "thumbnail": "DILATION_NODE_ENTRY_FC"
-  },
-  {
     "locationModID": "SLF__ENCLOSED_SPACE_FOUND_FACT_FC",
     "description": "Along the wall of Briar's Hollow is an enclosed space with a Bramble node inside.",
     "thumbnail": "ENCLOSED_SPACE_ENTRY_FC"
@@ -220,6 +210,41 @@
     "thumbnail": "POD_MEMORIAL_ENTRY_FC"
   },
   {
+    "locationModID": "SLF__QUARRY_DISCOVERY_FACT_FC",
+    "description": "The Nomai made a quarry on the inner surface of Graviton's Folly.",
+    "thumbnail": "QUARRY_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__QUARRY_TRANSLATION_FACT_FC",
+    "description": "Text in the building by the quarry explain what the material was being used for.",
+    "thumbnail": "QUARRY_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__CORE_LAB_FOUND_FACT_FC",
+    "description": "A lab lies within Graviton's Folly.",
+    "thumbnail": "CORE_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__CORE_LAB_PURPOSE_FACT",
+    "description": "Text inside the Core Lab explains its purpose.",
+    "thumbnail": "CORE_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__CORE_DITYLUM_STRANDED_FACT_FC",
+    "description": "Text within the Core Lab discusses how Ditylum became stranded.",
+    "thumbnail": "CORE_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__BAD_PLANS_FACT_FC",
+    "description": "The Nomai discussed some poor plans to rescue Ditylum in the Core Lab.",
+    "thumbnail": "CORE_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__BROKEN_STAIRS_FACT_FC",
+    "description": "A staircase in the Core Lab is broken and unusable.",
+    "thumbnail": "CORE_LAB_ENTRY_FC"
+  },
+  {
     "locationModID": "SLF__GRAV_CORE_SEEN_FACT_FC",
     "description": "You can see a large crystal floating in the center of Graviton's Folly.",
     "thumbnail": "GRAV_CORE_ENTRY_FC"
@@ -255,39 +280,49 @@
     "thumbnail": "GRAV_CORE_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__CORE_LAB_FOUND_FACT_FC",
-    "description": "A lab lies within Graviton's Folly.",
-    "thumbnail": "CORE_LAB_ENTRY_FC"
+    "locationModID": "SLF__DITYLUM_EJECTION_FACT_FC",
+    "description": "Ditylum is ejected from the Dangerous Node when it is killed.",
+    "thumbnail": "DILATION_NODE_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__CORE_LAB_PURPOSE_FACT",
-    "description": "Text inside the Core Lab explains its purpose.",
-    "thumbnail": "CORE_LAB_ENTRY_FC"
+    "locationModID": "SLF__DITYLUM_FOUND_FACT_FC",
+    "description": "After killing the Dangerous Node, sit with Ditylum in Bramble's Heart.",
+    "thumbnail": "DILATION_NODE_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__CORE_DITYLUM_STRANDED_FACT_FC",
-    "description": "Text within the Core Lab discusses how Ditylum became stranded.",
-    "thumbnail": "CORE_LAB_ENTRY_FC"
+    "locationModID": "SLF__REINVIGORATION_RECORDING_FACT_FC",
+    "description": "You can find a Nomai recorder in a Dree house marked by an orange light.",
+    "thumbnail": "AMYLAX_HOUSE_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__BAD_PLANS_FACT_FC",
-    "description": "The Nomai discussed some poor plans to rescue Ditylum in the Core Lab.",
-    "thumbnail": "CORE_LAB_ENTRY_FC"
+    "locationModID": "SLF__DATING_START_FACT_FC",
+    "description": "Dree writing inside Amylax's house, marked by an orange light, explains the start of a relationship.",
+    "thumbnail": "AMYLAX_HOUSE_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__BROKEN_STAIRS_FACT_FC",
-    "description": "A staircase in the Core Lab is broken and unusable.",
-    "thumbnail": "CORE_LAB_ENTRY_FC"
+    "locationModID": "SLF__COMMUNION_RECORDING_FACT_FC",
+    "description": "You can find a recording in a Dree house marked by a green light.",
+    "thumbnail": "KARENIA_HOUSE_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__QUARRY_DISCOVERY_FACT_FC",
-    "description": "The Nomai made a quarry on the inner surface of Graviton's Folly.",
-    "thumbnail": "QUARRY_ENTRY_FC"
+    "locationModID": "SLF__DREE_HOME_FACT_FC",
+    "description": "A nomai recording at the park on Shattered Hearth mentions the Dree's home.",
+    "thumbnail": "DREE_PARK_ENTRY_FC"
   },
   {
-    "locationModID": "SLF__QUARRY_TRANSLATION_FACT_FC",
-    "description": "Text in the building by the quarry explain what the material was being used for.",
-    "thumbnail": "QUARRY_ENTRY_FC"
+    "locationModID": "SLF__STORY_AREA_DISCOVERY_FACT_FC",
+    "description": "A stump on Shattered Hearth seems like a good place to tell some stories.",
+    "thumbnail": "STORY_AREA_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__STORY_AREA_PURPOSE_FACT_FC",
+    "description": "A recording in the Storytelling Area on Shattered Hearth explains what the area was used for.",
+    "thumbnail": "STORY_AREA_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__HELMET_REMOVED_FACT_FC",
+    "description": "A recording in the Storytelling Area on Shattered Hearth relays a Dree's momentary fright.",
+    "thumbnail": "STORY_AREA_ENTRY_FC"
   },
   {
     "locationModID": "SLF__DREE_SINGING_FACT_FC",
@@ -318,136 +353,6 @@
     "locationModID": "SLF__CONCERT_SUCCESS_FACT_FC",
     "description": "You can repair a gravity crystal from the Soil Lab at the Concert Hall.",
     "thumbnail": "CONCERT_HALL_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__DREE_HOME_FACT_FC",
-    "description": "A nomai recording at the park on Shattered Hearth mentions the Dree's home.",
-    "thumbnail": "DREE_PARK_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__STORY_AREA_DISCOVERY_FACT_FC",
-    "description": "A stump on Shattered Hearth seems like a good place to tell some stories.",
-    "thumbnail": "STORY_AREA_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__STORY_AREA_PURPOSE_FACT_FC",
-    "description": "A recording in the Storytelling Area on Shattered Hearth explains what the area was used for.",
-    "thumbnail": "STORY_AREA_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__HELMET_REMOVED_FACT_FC",
-    "description": "A recording in the Storytelling Area on Shattered Hearth relays a Dree's momentary fright.",
-    "thumbnail": "STORY_AREA_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__HEARTH_CORE_DISCOVERY_FACT_FC",
-    "description": "At the core of Shattered Hearth is a Bramble node leading somewhere very hot.",
-    "thumbnail": "HEARTH_CORE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__HOT_NODE_RECORDING_FACT_FC",
-    "description": "A recording by the core of Shattered Hearth warns of danger ahead.",
-    "thumbnail": "HEARTH_CORE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__COMMUNION_RECORDING_FACT_FC",
-    "description": "You can find a recording in a Dree house marked by a green light.",
-    "thumbnail": "KARENIA_HOUSE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__REINVIGORATION_RECORDING_FACT_FC",
-    "description": "You can find a Nomai recorder in a Dree house marked by an orange light.",
-    "thumbnail": "AMYLAX_HOUSE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__DATING_START_FACT_FC",
-    "description": "Dree writing inside Amylax's house, marked by an orange light, explains the start of a relationship.",
-    "thumbnail": "AMYLAX_HOUSE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__EYE_SIGNAL_DISCOVERY_FACT_FC",
-    "description": "You can hear a signal as you enter Magma's Recursion.",
-    "thumbnail": "LANDING_ZONE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__DREE_RESCUE_FACT_FC",
-    "description": "Text in the Landing Zone of Magma's Recursion explains how the Nomai were saved by the Dree.",
-    "thumbnail": "LANDING_ZONE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__EGG_STORY_FACT_FC",
-    "description": "Text in the Landing Zone of Magma's Recursion relates a story about anglerfish eggs.",
-    "thumbnail": "LANDING_ZONE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__ABANDONED_SETTLEMENT_FOUND_FACT_FC",
-    "description": "On the surface of Magma's Recursion lies a long-abandoned settlement.",
-    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__HOT_PLANET_NO_CITY_FACT_FC",
-    "description": "Some text in one of the buildings of the Abandoned Settlement in Magma's Recursion explains why the location was abandoned.",
-    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__HOT_ROAD_FACT_FC",
-    "description": "Some text within the Abandoned Settlement explains how to navigate Magma's Recursion.",
-    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__SIGNAL_FEEDBACK_FACT_FC",
-    "description": "Text at the Abandoned Settlement of Magma's Recursion explains why the region is so hot.",
-    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__FLIRTING_REVELATION_FACT_FC",
-    "description": "At the Abandoned Settlement within Magma's Recursion, you can find Nomai dating advice written on a wall.",
-    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__GAS_CAVE_DISCOVERY_FACT_FC",
-    "description": "On Magma's Recursion you can find a cave filled with combustible gas. Using your jetpack inside would probably be a bad idea.",
-    "thumbnail": "GAS_CAVE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__GAS_CRYSTALS_FACT_FC",
-    "description": "Text in the Gas Cave at Magma's Recursion explains how the Nomai used gravity crystals.",
-    "thumbnail": "GAS_CAVE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__RELATIONSHIP_ADVICE_FACT_FC",
-    "description": "A recording in the Signal Lab contains romantic advice.",
-    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__SIGNAL_LAB_USE_FACT_FC",
-    "description": "Text on the wall in the Signal Lab record the results of the Nomai's studies.",
-    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__DREE_ECHOLOCATION_STUDY_FACT_FC",
-    "description": "Some text on the wall of the Signal Lab explains the purpose of the modified recorder beside it.",
-    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__DREE_SIGNAL_TUNE_FACT_FC",
-    "description": "You can use your signalscope to record the signal being emitted by the recorder in the Signal Lab.",
-    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__QUANTUM_CAVE_DISCOVERY_FACT_FC",
-    "description": "A cave on Magma's Recursion contains a quantum shard.",
-    "thumbnail": "QUANTUM_CAVE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__OBSTRUCTED_TEXT_FACT_FC",
-    "description": "Because of damage to the text wall at the Quantum Cave on Magma's Recursion, you can't read the entirety of the scroll there.",
-    "thumbnail": "QUANTUM_CAVE_ENTRY_FC"
-  },
-  {
-    "locationModID": "SLF__ROCK_USED_FACT_FC",
-    "description": "Using the quantum rules of entanglement and probability, you can ride the Hot Shard to Bramble's Heart.",
-    "thumbnail": "QUANTUM_CAVE_ENTRY_FC"
   },
   {
     "locationModID": "SLF__PLATFORM_DISCOVERY_FACT_FC",
@@ -553,6 +458,101 @@
     "locationModID": "SLF__SYRING_FOUND_FACT_FC",
     "description": "You can find a dangerous-looking syringe within the Venomous Reject.",
     "thumbnail": "REJECT_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__HEARTH_CORE_DISCOVERY_FACT_FC",
+    "description": "At the core of Shattered Hearth is a Bramble node leading somewhere very hot.",
+    "thumbnail": "HEARTH_CORE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__HOT_NODE_RECORDING_FACT_FC",
+    "description": "A recording by the core of Shattered Hearth warns of danger ahead.",
+    "thumbnail": "HEARTH_CORE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__EYE_SIGNAL_DISCOVERY_FACT_FC",
+    "description": "You can hear a signal as you enter Magma's Recursion.",
+    "thumbnail": "LANDING_ZONE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__DREE_RESCUE_FACT_FC",
+    "description": "Text in the Landing Zone of Magma's Recursion explains how the Nomai were saved by the Dree.",
+    "thumbnail": "LANDING_ZONE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__EGG_STORY_FACT_FC",
+    "description": "Text in the Landing Zone of Magma's Recursion relates a story about anglerfish eggs.",
+    "thumbnail": "LANDING_ZONE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__ABANDONED_SETTLEMENT_FOUND_FACT_FC",
+    "description": "On the surface of Magma's Recursion lies a long-abandoned settlement.",
+    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__HOT_PLANET_NO_CITY_FACT_FC",
+    "description": "Some text in one of the buildings of the Abandoned Settlement in Magma's Recursion explains why the location was abandoned.",
+    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__HOT_ROAD_FACT_FC",
+    "description": "Some text within the Abandoned Settlement explains how to navigate Magma's Recursion.",
+    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__SIGNAL_FEEDBACK_FACT_FC",
+    "description": "Text at the Abandoned Settlement of Magma's Recursion explains why the region is so hot.",
+    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__FLIRTING_REVELATION_FACT_FC",
+    "description": "At the Abandoned Settlement within Magma's Recursion, you can find Nomai dating advice written on a wall.",
+    "thumbnail": "ABANDONED_SETTLEMENT_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__GAS_CAVE_DISCOVERY_FACT_FC",
+    "description": "On Magma's Recursion you can find a cave filled with combustible gas. Using your jetpack inside would probably be a bad idea.",
+    "thumbnail": "GAS_CAVE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__GAS_CRYSTALS_FACT_FC",
+    "description": "Text in the Gas Cave at Magma's Recursion explains how the Nomai used gravity crystals.",
+    "thumbnail": "GAS_CAVE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__RELATIONSHIP_ADVICE_FACT_FC",
+    "description": "A recording in the Signal Lab contains romantic advice.",
+    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__SIGNAL_LAB_USE_FACT_FC",
+    "description": "Text on the wall in the Signal Lab record the results of the Nomai's studies.",
+    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__DREE_ECHOLOCATION_STUDY_FACT_FC",
+    "description": "Some text on the wall of the Signal Lab explains the purpose of the modified recorder beside it.",
+    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__DREE_SIGNAL_TUNE_FACT_FC",
+    "description": "You can use your signalscope to record the signal being emitted by the recorder in the Signal Lab.",
+    "thumbnail": "SIGNAL_LAB_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__QUANTUM_CAVE_DISCOVERY_FACT_FC",
+    "description": "A cave on Magma's Recursion contains a quantum shard.",
+    "thumbnail": "QUANTUM_CAVE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__OBSTRUCTED_TEXT_FACT_FC",
+    "description": "Because of damage to the text wall at the Quantum Cave on Magma's Recursion, you can't read the entirety of the scroll there.",
+    "thumbnail": "QUANTUM_CAVE_ENTRY_FC"
+  },
+  {
+    "locationModID": "SLF__ROCK_USED_FACT_FC",
+    "description": "Using the quantum rules of entanglement and probability, you can ride the Hot Shard to Bramble's Heart.",
+    "thumbnail": "QUANTUM_CAVE_ENTRY_FC"
   },
   {
     "locationModID": "SLF__HEART_LAB_DISCOVERY_FACT_FC",

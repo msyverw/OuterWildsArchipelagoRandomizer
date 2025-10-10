@@ -29,14 +29,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 
             // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
             GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
-
-            // Dree text fix
-            foreach (NomaiWallText wall in ExpandedDictionary.deepBrambleTextWalls) {
-                if (!wall._initialized) continue;
-                foreach (NomaiTextLine txt in wall._textLines)
-                    if (txt._renderer.sharedMaterial.name.Contains("dree"))
-                        txt._renderer.sharedMaterial.name = txt._renderer.sharedMaterial.name.Replace("dree", "dre");
-            }
+            // TODO - test this again, I'm curious
 
             // Randomize Graviton's Folly levers
             FieldInfo beamField = Type.GetType("DeepBramble.MiscBehaviours.Lever, DeepBramble", true).GetField("beamObject", BindingFlags.NonPublic | BindingFlags.Instance);

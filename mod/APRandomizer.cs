@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using OWML.Common;
 using OWML.ModHelper;
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -525,13 +526,14 @@ public class APRandomizer : ModBehaviour
                     ThermalInsulation.OnDeepBrambleLoadEvent();
                     TamingTechniques.OnDeepBrambleLoadEvent();
                     DeepBrambleFixes.OnDeepBrambleLoadEvent();
+                    ExpandedDictionary.OnDeepBrambleLoadEvent();
                 }
             });
             // Adds a prerequisite to warping out of the Deep Bramble, for the Deep Bramble Spawn.
             DeepBrambleCoordinates.ExitWarpFix();
         }
     }
-    System.Collections.IEnumerator DisableNHSpawn()
+    IEnumerator DisableNHSpawn()
     {
         yield return new WaitForEndOfFrame();
 
@@ -541,11 +543,17 @@ public class APRandomizer : ModBehaviour
 
         // There's no way to ask what the default system currently is, so if NH is running at all
         // then we have to assume it needs overriding.
-        OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"SolarSystem\")");
+        // TODO - this doesn't work
         if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
-            newHorizonsAPI?.SetDefaultSystem("DeepBramble");
+        {
+            OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"DeepBramble\")");
+            newHorizonsAPI.SetDefaultSystem("DeepBramble");
+        }
         else
-            newHorizonsAPI?.SetDefaultSystem("SolarSystem");
+        {
+            OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"SolarSystem\")");
+            newHorizonsAPI.SetDefaultSystem("SolarSystem");
+        }
     }
 
     public override void SetupTitleMenu(ITitleMenuManager titleManager) => MainMenu.SetupTitleMenu(titleManager);
