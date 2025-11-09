@@ -120,22 +120,34 @@ internal class Spawn
     }
 
     [HarmonyPostfix, HarmonyPatch(typeof(PlayerSpawner), nameof(PlayerSpawner.SpawnPlayer))]
-    public static void PlayerSpawner_SpawnPlayer(PlayerSpawner __instance)
+    public static void PlayerSpawner_SpawnPlayer()
     {
+        if (APRandomizer.NewHorizonsAPI is null || NewHorizonsPatches.IsWarping)
+            SpawnPlayer();
+        else
+            APRandomizer.Instance.StartCoroutine(DelayedSpawn());
+    }
+    static IEnumerator DelayedSpawn() {
+        for (int i = 1; i <= 16; i++) {
+            yield return new WaitForEndOfFrame();
+            APRandomizer.OWMLModConsole.WriteLine($"Frame #{i}");
+        }
+        SpawnPlayer();
+    }
+    public static void SpawnPlayer()
+    {
+        APRandomizer.OWMLModConsole.WriteLine($"Spawner_SpawnPlayer called; player is warping: {NewHorizonsPatches.IsWarping}", OWML.Common.MessageType.Success);
         if (!APRandomizer.IsVanillaSystemLoaded())
         {
             APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
-            return; // let New Horizons do whatever
         }
         else if (spawnChoice == SpawnChoice.DeepBramble)
         {
             APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we've warped back from Deep Bramble");
-            return; // let New Horizons do whatever
         }
         else if (spawnChoice == SpawnChoice.Vanilla || spawnChoice == SpawnChoice.TimberHearth)
         {
             APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're spawning in TH village");
-            return; // let New Horizons do whatever
         }
         else if (spawnChoice == SpawnChoice.HourglassTwins)
         {
@@ -147,7 +159,22 @@ internal class Spawn
             shipRigidBody.WarpToPositionRotation(shipPos, emberTwinOWRB.transform.rotation);
 
             shipRigidBody.SetVelocity(emberTwinOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(emberTwinOWRB);
+            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(emberTwinOWRB);
+
+            // Don't move the player if New Horizons is trying to, or it'll break
+            if (!NewHorizonsPatches.IsWarping)
+            {
+                var chertCampfireGO = GameObject.Find("CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Lakebed_VisibleFrom_Far/Prefab_HEA_Campfire");
+                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
+
+                var offsetFromCampfire = new Vector3(3, 0, -3);
+                var playerPos = chertCampfireGO.transform.TransformPoint(offsetFromCampfire);
+                playerRigidBody.WarpToPositionRotation(playerPos, chertCampfireGO.transform.rotation);
+                Locator.GetPlayerCameraController().SetDegreesY(80f);
+
+                playerRigidBody.SetVelocity(emberTwinOWRB.GetVelocity());
+                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(emberTwinOWRB);
+            }
         }
         else if (spawnChoice == SpawnChoice.BrittleHollow)
         {
@@ -159,10 +186,24 @@ internal class Spawn
             var offsetFromPlanet = new Vector3(-6, 15, 285);
             var offsetAngle = new Quaternion(0f, -0.7933533f, 0f, 0.6087614f); // equivalent to Rotate(0, -105, 0)
             var shipPos = brittleHollowOWRB.transform.TransformPoint(offsetFromPlanet);
-            shipRigidBody.WarpToPositionRotation(shipPos, riebeckOldCampfireGO.transform.rotation * offsetAngle); 
+            shipRigidBody.WarpToPositionRotation(shipPos, riebeckOldCampfireGO.transform.rotation * offsetAngle);
 
             shipRigidBody.SetVelocity(brittleHollowOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(brittleHollowOWRB);
+            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(brittleHollowOWRB);
+
+            // Don't move the player if New Horizons is trying to, or it'll break
+            if (!NewHorizonsPatches.IsWarping)
+            {
+                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
+
+                var offsetFromCampfire = new Vector3(0, 0, -3);
+                var playerPos = riebeckOldCampfireGO.transform.TransformPoint(offsetFromCampfire);
+                playerRigidBody.WarpToPositionRotation(playerPos, riebeckOldCampfireGO.transform.rotation);
+                Locator.GetPlayerCameraController().SetDegreesY(80f);
+
+                playerRigidBody.SetVelocity(brittleHollowOWRB.GetVelocity());
+                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(brittleHollowOWRB);
+            }
         }
         else if (spawnChoice == SpawnChoice.GiantsDeep)
         {
@@ -174,7 +215,20 @@ internal class Spawn
             shipRigidBody.WarpToPositionRotation(shipPos, statueIslandGO.transform.rotation);
 
             shipRigidBody.SetVelocity(statueIslandOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(statueIslandOWRB);
+            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(statueIslandOWRB);
+
+            // Don't move the player if New Horizons is trying to, or it'll break
+            if (!NewHorizonsPatches.IsWarping)
+            {
+                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
+
+                var playerPos = statueIslandGO.transform.TransformPoint(new Vector3(0, 40, 30));
+                playerRigidBody.WarpToPositionRotation(playerPos, statueIslandGO.transform.rotation);
+                Locator.GetPlayerCameraController().SetDegreesY(80f);
+
+                playerRigidBody.SetVelocity(statueIslandOWRB.GetVelocity());
+                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(statueIslandOWRB);
+            }
         }
         else if (spawnChoice == SpawnChoice.Stranger)
         {
@@ -186,71 +240,11 @@ internal class Spawn
             shipRigidBody.WarpToPositionRotation(shipPos, sunsideHangarGO.transform.rotation);
 
             shipRigidBody.SetVelocity(ringWorldOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(ringWorldOWRB);
-        }
-        else throw new System.ArgumentException($"spawnChoice had an invalid value of {spawnChoice}");
+            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(ringWorldOWRB);
 
-        // New Horizons likes to break if we move the player while they're warping back,
-        // so we need to be careful
-        if (APRandomizer.NewHorizonsAPI is null)
-            MovePlayer();
-        else
-            APRandomizer.Instance.StartCoroutine(MovePlayerDelayed());
-    }
-
-    private static void MovePlayer()
-    {
-        APRandomizer.OWMLModConsole.WriteLine("Moving the player to their spawnpoint");
-        switch (spawnChoice) {
-            case SpawnChoice.HourglassTwins:
+            // Don't move the player if New Horizons is trying to, or it'll break
+            if (!NewHorizonsPatches.IsWarping)
             {
-                var chertCampfireGO = GameObject.Find("CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Lakebed_VisibleFrom_Far/Prefab_HEA_Campfire");
-                var emberTwinOWRB = Locator.GetAstroObject(AstroObject.Name.CaveTwin).GetOWRigidbody();
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var offsetFromCampfire = new Vector3(3, 0, -3);
-                var playerPos = chertCampfireGO.transform.TransformPoint(offsetFromCampfire);
-                playerRigidBody.WarpToPositionRotation(playerPos, chertCampfireGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(emberTwinOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(emberTwinOWRB);
-                break;
-            }
-            case SpawnChoice.BrittleHollow:
-            {
-                // unfortunately VisibleFrom_BH contains two children named Prefab_HEA_Campfire, so we have to use GetChild() to pick the correct one
-                var riebeckOldCampfireGO = GameObject.Find("BrittleHollow_Body/Sector_BH/Sector_Crossroads/Interactables_Crossroads/VisibleFrom_BH").transform.GetChild(3);
-                var brittleHollowOWRB = Locator.GetAstroObject(AstroObject.Name.BrittleHollow).GetOWRigidbody();
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var offsetFromCampfire = new Vector3(0, 0, -3);
-                var playerPos = riebeckOldCampfireGO.transform.TransformPoint(offsetFromCampfire);
-                playerRigidBody.WarpToPositionRotation(playerPos, riebeckOldCampfireGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(brittleHollowOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(brittleHollowOWRB);
-                break;
-            }
-            case SpawnChoice.GiantsDeep:
-            {
-                var statueIslandGO = GameObject.Find("StatueIsland_Body");
-                var statueIslandOWRB = statueIslandGO.GetComponent<OWRigidbody>();
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var playerPos = statueIslandGO.transform.TransformPoint(new Vector3(0, 40, 30));
-                playerRigidBody.WarpToPositionRotation(playerPos, statueIslandGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(statueIslandOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(statueIslandOWRB);
-                break;
-            }
-            case SpawnChoice.Stranger:
-            {
-                var sunsideHangarGO = GameObject.Find("RingWorld_Body/Sector_RingWorld/Sector_LightSideDockingBay/Geo_LightSideDockingBay/Structure_IP_Docking_Bay/DockingBay_Col");
-                var ringWorldOWRB = Locator.GetAstroObject(AstroObject.Name.RingWorld).GetComponent<OWRigidbody>();
                 OWRigidbody playerRigidBody = Locator.GetPlayerBody();
 
                 var playerPos = sunsideHangarGO.transform.TransformPoint(new Vector3(4, -11.75f, 25));
@@ -258,23 +252,10 @@ internal class Spawn
                 Locator.GetPlayerCameraController().SetDegreesY(80f);
 
                 playerRigidBody.SetVelocity(ringWorldOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(ringWorldOWRB);
-                break;
+                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(ringWorldOWRB);
             }
-            default: throw new System.ArgumentException($"spawnChoice had an invalid value of {spawnChoice}");
         }
-    }
-
-    private static IEnumerator MovePlayerDelayed()
-    {
-        // It takes time for NH to warp the player to the ship's cockpit
-        yield return new WaitForSeconds(0.01f);
-
-        // If the player isn't in their ship at this point, NH won't be mad if we move them
-        if (!PlayerState.IsInsideShip())
-            MovePlayer();
-        else
-            APRandomizer.OWMLModConsole.WriteLine("Not moving the player because they are warping in their ship");
+        else throw new System.ArgumentException($"spawnChoice had an invalid value of {spawnChoice}");
     }
 
     // Hearing the TH Village music outside of TH is no big deal, but in many cases

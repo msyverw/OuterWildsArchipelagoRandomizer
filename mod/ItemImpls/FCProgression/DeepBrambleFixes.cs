@@ -45,7 +45,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 
             for (int i = 0; i < levers.Count; i++)
                 beamField.SetValue(levers[i], beams[i].Item1);
-            APRandomizer.OWMLModConsole.WriteLine($"Randomized Folly levers: {string.Join(", ", beams.Select(b => $"Beam {b.Item2}"))}", OWML.Common.MessageType.Info);
+            APRandomizer.OWMLModConsole.WriteLine($"Randomized Folly levers: {string.Join(", ", beams.Select(b => $"Beam {b.Item2}"))}");
 
             // Figure out lever is which
             int second = beams.FindIndex(t => t.Item2 == 2);
