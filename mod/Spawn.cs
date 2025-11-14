@@ -122,32 +122,32 @@ internal class Spawn
     [HarmonyPostfix, HarmonyPatch(typeof(PlayerSpawner), nameof(PlayerSpawner.SpawnPlayer))]
     public static void PlayerSpawner_SpawnPlayer()
     {
-        if (APRandomizer.NewHorizonsAPI is null || NewHorizonsPatches.IsWarping)
-            SpawnPlayer();
-        else
+        if (APRandomizer.NewHorizonsAPI is not null && NewHorizonsPatches.DiedInOtherSystem && !NewHorizonsPatches.IsWarping)
+        {
+            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer delaying spawning the player because they died in a different system");
             APRandomizer.Instance.StartCoroutine(DelayedSpawn());
-    }
-    static IEnumerator DelayedSpawn() {
-        for (int i = 1; i <= 16; i++) {
-            yield return new WaitForEndOfFrame();
-            APRandomizer.OWMLModConsole.WriteLine($"Frame #{i}");
         }
+        else SpawnPlayer();
+    }
+    static IEnumerator DelayedSpawn()
+    {
+        // 15 (frozen/die) - 16-18 (OK) - 19 (look down)
+        for (int i = 0; i < 17; i++) yield return new WaitForEndOfFrame();
         SpawnPlayer();
     }
     public static void SpawnPlayer()
     {
-        APRandomizer.OWMLModConsole.WriteLine($"Spawner_SpawnPlayer called; player is warping: {NewHorizonsPatches.IsWarping}", OWML.Common.MessageType.Success);
         if (!APRandomizer.IsVanillaSystemLoaded())
         {
-            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
+            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
         }
         else if (spawnChoice == SpawnChoice.DeepBramble)
         {
-            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we've warped back from Deep Bramble");
+            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we've warped back from Deep Bramble");
         }
-        else if (spawnChoice == SpawnChoice.Vanilla || spawnChoice == SpawnChoice.TimberHearth)
+        else if (spawnChoice is SpawnChoice.Vanilla or SpawnChoice.TimberHearth)
         {
-            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're spawning in TH village");
+            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we're spawning in TH village");
         }
         else if (spawnChoice == SpawnChoice.HourglassTwins)
         {
