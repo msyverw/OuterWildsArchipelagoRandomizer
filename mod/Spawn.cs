@@ -2,6 +2,7 @@
 using HarmonyLib;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.PostProcessing.AntialiasingModel;
 
 namespace ArchipelagoRandomizer;
 
@@ -43,7 +44,7 @@ internal class Spawn
 
         if (spawnChoice != SpawnChoice.Vanilla)
         {
-            //APRandomizer.OWMLModConsole.WriteLine($"Spawn::OnCompleteSceneLoad() ensuring that the time loop has started and the player will spawn in their suit");
+            APRandomizer.OWMLModConsole.WriteLine($"Spawn::OnCompleteSceneLoad() ensuring that the time loop has started and the player will spawn in their suit");
 
             spawnInSuitNextUpdate = true;
 
@@ -125,18 +126,23 @@ internal class Spawn
         if (APRandomizer.NewHorizonsAPI is not null && NewHorizonsPatches.DiedInOtherSystem && !NewHorizonsPatches.IsWarping)
         {
             APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer delaying spawning the player because they died in a different system");
-            APRandomizer.Instance.StartCoroutine(DelayedSpawn());
+            //APRandomizer.Instance.StartCoroutine(DelayedSpawn());
+            NewHorizonsPatches.DelaySpawn = true;
         }
         else SpawnPlayer();
     }
     static IEnumerator DelayedSpawn()
     {
         // 15 (frozen/die) - 16-18 (OK) - 19 (look down)
-        for (int i = 0; i < 17; i++) yield return new WaitForEndOfFrame();
+        for (int i = 0; i < 18; i++) {
+            APRandomizer.OWMLModConsole.WriteLine($"Frame {i}");
+            yield return new WaitForEndOfFrame();
+        }
         SpawnPlayer();
     }
     public static void SpawnPlayer()
     {
+        APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer running");
         if (!APRandomizer.IsVanillaSystemLoaded())
         {
             APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
