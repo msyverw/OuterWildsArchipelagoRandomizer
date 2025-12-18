@@ -123,26 +123,15 @@ internal class Spawn
     [HarmonyPostfix, HarmonyPatch(typeof(PlayerSpawner), nameof(PlayerSpawner.SpawnPlayer))]
     public static void PlayerSpawner_SpawnPlayer()
     {
-        if (APRandomizer.NewHorizonsAPI is not null && NewHorizonsPatches.DiedInOtherSystem && !NewHorizonsPatches.IsWarping)
+        if (NewHorizonsPatches.IsSpawningBroken)
         {
-            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer delaying spawning the player because they died in a different system");
-            //APRandomizer.Instance.StartCoroutine(DelayedSpawn());
-            NewHorizonsPatches.DelaySpawn = true;
+            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer reloading the scene to avoid a softlock", OWML.Common.MessageType.Info);
+            LoadManager.ReloadScene();
+            return;
         }
-        else SpawnPlayer();
-    }
-    static IEnumerator DelayedSpawn()
-    {
-        // 15 (frozen/die) - 16-18 (OK) - 19 (look down)
-        for (int i = 0; i < 18; i++) {
-            APRandomizer.OWMLModConsole.WriteLine($"Frame {i}");
-            yield return new WaitForEndOfFrame();
-        }
-        SpawnPlayer();
-    }
-    public static void SpawnPlayer()
-    {
+
         APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer running");
+
         if (!APRandomizer.IsVanillaSystemLoaded())
         {
             APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");

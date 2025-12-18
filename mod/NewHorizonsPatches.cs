@@ -8,17 +8,15 @@ namespace ArchipelagoRandomizer;
 internal class NewHorizonsPatches {
     public static bool IsWarping { get; protected set; } = false;
 
-    private static bool diedInOtherSystem = false;
-    public static bool DiedInOtherSystem {
-        get {
-            bool temp = diedInOtherSystem;
-            diedInOtherSystem = false; // Reset back to false when checked
-            return temp;
-        }
-        protected set => diedInOtherSystem |= value; // Don't change true to false here in case multiple deaths happen back-to-back
-    }
+    protected static bool DiedInOtherSystem { get; set; }
 
-    public static bool DelaySpawn { get; set; } = false;
+    public static bool IsSpawningBroken {
+        get {
+            bool value = DiedInOtherSystem;
+            DiedInOtherSystem = false; // Reset back to false when checked
+            return value;
+        }
+    }
 
     protected static bool CheckIfLoaded() => AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name == "NewHorizons");
     protected static MethodBase GetMethod(string prefix, string typeName, string methodName) => GetMethod($"{prefix}.{typeName}", methodName);
@@ -39,7 +37,7 @@ internal class WarpOutPatch : NewHorizonsPatches {
     private static MethodBase Target() => GetMethod(Namespace, Classname, Method);
 
     [HarmonyPostfix]
-    private static void ShipWarpController_WarpOut() {
+    private static void Patch() {
         APRandomizer.OWMLModConsole.WriteLine($"{Classname}_{Method} called", OWML.Common.MessageType.Success);
         IsWarping = true;
     }
@@ -58,7 +56,7 @@ internal class FinishWarpInPatch : NewHorizonsPatches {
     private static MethodBase Target() => GetMethod(Namespace, Classname, Method);
 
     [HarmonyPostfix]
-    private static void ShipWarpController_FinishWarpIn() {
+    private static void Patch() {
         APRandomizer.OWMLModConsole.WriteLine($"{Classname}_{Method} called", OWML.Common.MessageType.Success);
         IsWarping = false;
     }
@@ -70,31 +68,9 @@ internal class KillPlayerPatch : NewHorizonsPatches {
     private static bool Prepare() => CheckIfLoaded();
 
     [HarmonyPrefix, HarmonyPriority(Priority.High)]
-    private static void DeathManager_KillPlayer() {
+    private static void Patch() {
         APRandomizer.OWMLModConsole.WriteLine($"DeathManager_KillPlayer called; in other system: {!APRandomizer.IsVanillaSystemLoaded()} (current system: {APRandomizer.NewHorizonsAPI.GetCurrentStarSystem()})", OWML.Common.MessageType.Success);
-        DiedInOtherSystem = !APRandomizer.IsVanillaSystemLoaded();
-    }
-}
-
-[HarmonyPatch]
-internal class OnSystemReadyPatch : NewHorizonsPatches {
-    private const string Namespace = "NewHorizons";
-    private const string Classname = "Main";
-    private const string Method = "OnSystemReady";
-
-    [HarmonyPrepare]
-    private static bool Prepare() => CheckIfLoaded();
-
-    [HarmonyTargetMethod]
-    private static MethodBase Target() => GetMethod($"{Namespace}.{Classname}", Method, BindingFlags.NonPublic | BindingFlags.Instance);
-
-    [HarmonyPostfix]
-    private static void Main_OnSystemReady() {
-        APRandomizer.OWMLModConsole.WriteLine($"{Classname}_{Method} called", OWML.Common.MessageType.Success);
-        if (DelaySpawn) {
-            DelaySpawn = false;
-            APRandomizer.OWMLModConsole.WriteLine($"{Classname}_{Method} spawning the player because they died elsewhere", OWML.Common.MessageType.Success);
-            Spawn.SpawnPlayer();
-        }
+        // Don't set a "true" to a "false" in case multiple deaths happen back-to-back
+        DiedInOtherSystem |= !APRandomizer.IsVanillaSystemLoaded();
     }
 }
