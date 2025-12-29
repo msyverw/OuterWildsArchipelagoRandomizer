@@ -537,22 +537,21 @@ public class APRandomizer : ModBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        var newHorizonsAPI = ModHelper.Interaction.TryGetModApi<INewHorizons>("xen.NewHorizons");
-        if (newHorizonsAPI is null)
+        if (NewHorizonsAPI is null)
             yield break;
 
         // There's no way to ask what the default system currently is, so if NH is running at all
         // then we have to assume it needs overriding.
-        // TODO - this doesn't work
+        // TODO - this doesn't actually work? At least for Jam 3 system
         if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
         {
             OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"DeepBramble\")");
-            newHorizonsAPI.SetDefaultSystem("DeepBramble");
+            NewHorizonsAPI.SetDefaultSystem("DeepBramble");
         }
         else
         {
             OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"SolarSystem\")");
-            newHorizonsAPI.SetDefaultSystem("SolarSystem");
+            NewHorizonsAPI.SetDefaultSystem("SolarSystem");
         }
     }
 

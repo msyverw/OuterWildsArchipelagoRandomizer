@@ -44,7 +44,7 @@ internal class Spawn
 
         if (spawnChoice != SpawnChoice.Vanilla)
         {
-            APRandomizer.OWMLModConsole.WriteLine($"Spawn::OnCompleteSceneLoad() ensuring that the time loop has started and the player will spawn in their suit");
+            //APRandomizer.OWMLModConsole.WriteLine($"Spawn::OnCompleteSceneLoad() ensuring that the time loop has started and the player will spawn in their suit");
 
             spawnInSuitNextUpdate = true;
 
@@ -129,8 +129,6 @@ internal class Spawn
             LoadManager.ReloadScene();
             return;
         }
-
-        APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer running");
 
         if (!APRandomizer.IsVanillaSystemLoaded())
         {

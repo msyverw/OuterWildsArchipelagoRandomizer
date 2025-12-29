@@ -52,8 +52,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             _deepBrambleTextWalls.Add(__instance);
         }
 
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(NomaiTranslatorProp), nameof(NomaiTranslatorProp.DisplayTextNode))]
+        [HarmonyPrefix, HarmonyPatch(typeof(NomaiTranslatorProp), nameof(NomaiTranslatorProp.DisplayTextNode))]
         public static bool HideDreeText(NomaiTranslatorProp __instance)
         {
             if (APRandomizer.NewHorizonsAPI == null || APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble")
@@ -72,8 +71,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             return true;
         }
 
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(NomaiTranslatorProp), nameof(NomaiTranslatorProp.DisplayTextNode))]
+        [HarmonyPostfix, HarmonyPatch(typeof(NomaiTranslatorProp), nameof(NomaiTranslatorProp.DisplayTextNode))]
         public static void ChangeDreeUnreadMessage(NomaiTranslatorProp __instance)
         {
             bool isDreeText = __instance._scanBeams[0]._nomaiTextLine != null
