@@ -68,6 +68,8 @@ public class APRandomizer : ModBehaviour
         LoadManager.GetCurrentScene() == OWScene.SolarSystem &&
         (NewHorizonsAPI == null || NewHorizonsAPI.GetCurrentStarSystem() == "SolarSystem");
 
+    public static bool NewHorizonsWarpingToVanillaSystem = false;
+
     /// <summary>
     /// Runs whenever a new session is created
     /// </summary>
@@ -82,21 +84,13 @@ public class APRandomizer : ModBehaviour
     public static bool AutoNomaiText = false;
     public static bool ColorNomaiText = true;
     public static bool InstantTranslator = false;
-
     public static bool HasSeenSettingsText = false;
-    public static bool DisableConsole = false;
-    public static bool DisableInGameLocationSending = false;
-    private static bool DisableInGameItemReceiving = false;
-    public static bool DisableInGameItemApplying = false;
-    private static bool DisableInGameSaveFileWrites = false;
 
     // Throttle save file writes to once per second to avoid IOExceptions for conflicting write attempts
     private static Task pendingSaveFileWrite = null;
     private static DateTimeOffset lastWriteTime = DateTimeOffset.UtcNow;
     public static void WriteToSaveFile()
     {
-        if (DisableInGameSaveFileWrites && LoadManager.GetCurrentScene() == OWScene.SolarSystem) return;
-
         if (pendingSaveFileWrite != null) return;
 
         if (lastWriteTime < DateTimeOffset.UtcNow.AddSeconds(-1))
@@ -134,12 +128,6 @@ public class APRandomizer : ModBehaviour
             OWMLModConsole.WriteLine($"Profile {profileName} read by the game. Checking for a corresponding AP APRandomizer save file.");
 
             var fileName = $"SaveData/{profileName}.json";
-            if (SaveFileName == fileName && DisableInGameSaveFileWrites)
-            {
-                OWMLModConsole.WriteLine($"skipping reload of {profileName} save file because the '[DEBUG] Don't Write To Save File In-Game' is in effect, and we don't want to throw away the pending writes");
-                return;
-            }
-
             SaveFileName = fileName;
             // OWML's dubious "fixBackslashes" behavior can break our save data by turning e.g. "\"" into "/"" before actual parsing happens,
             // turning correct JSON into incorrect JSON. This broke an actual AP save with quotes in an item name.
@@ -250,7 +238,7 @@ public class APRandomizer : ModBehaviour
         {
             var apworld_version = (string)SlotData["apworld_version"];
             // We don't take this from manifest.json because here we don't want the "-rc" suffix for Relase Candidate versions.
-            var mod_version = "0.3.19";
+            var mod_version = "0.3.20";
             if (apworld_version != mod_version)
                 ArchConsoleManager.WakeupConsoleMessages.Add($"<color=red>Warning</color>: This Archipelago multiworld was generated with .apworld version <color=red>{apworld_version}</color>, " +
                     $"but you're playing version <color=red>{mod_version}</color> of the mod. This may lead to game-breaking bugs.");
@@ -368,8 +356,6 @@ public class APRandomizer : ModBehaviour
     {
         try
         {
-            if (DisableInGameItemReceiving && LoadManager.GetCurrentScene() == OWScene.SolarSystem) return;
-
             while (receivedItemsHelper.PeekItem() != null)
             {
                 var itemId = receivedItemsHelper.PeekItem().ItemId;
@@ -511,13 +497,17 @@ public class APRandomizer : ModBehaviour
 
         StartCoroutine(DisableNHSpawn());
 
-        if (NewHorizonsAPI != null)
-        {
+        if (NewHorizonsAPI != null) {
+            NewHorizonsAPI.GetChangeStarSystemEvent().AddListener(system => {
+                APRandomizer.OWMLModConsole.WriteLine($"NewHorizons API ChangeStarSystemEvent system = {system}");
+                Spawn.OnChangeStarSystemEvent(system);
+            });
             NewHorizonsAPI.GetStarSystemLoadedEvent().AddListener(system =>
             {
-                // Hearth's Neighbor 2: Magistarium custom item impls
+                APRandomizer.OWMLModConsole.WriteLine($"NewHorizons API StarSystemLoadedEvent system = {system}");
                 if (system == "Jam3")
                 {
+                    // Hearth's Neighbor 2: Magistarium custom item impls
                     MagistariumAccessCodes.OnJam3StarSystemLoadedEvent();
                 }
                 // Forgotten Castaways custom item impls
@@ -595,14 +585,9 @@ public class APRandomizer : ModBehaviour
         InstantTranslator = config.GetSettingsValue<bool>("Instant Translator");
         NomaiTextQoL.NomaiTextQoL.TranslateTime = InstantTranslator ? 0f : 0.2f;
 
-        DisableConsole = config.GetSettingsValue<bool>("[DEBUG] Disable In-Game Console");
-        DisableInGameLocationSending = config.GetSettingsValue<bool>("[DEBUG] Don't Send Locations In-Game");
-        DisableInGameItemReceiving = config.GetSettingsValue<bool>("[DEBUG] Don't Receive Items In-Game");
-        DisableInGameItemApplying = config.GetSettingsValue<bool>("[DEBUG] Don't Apply Received Items In-Game");
-        DisableInGameSaveFileWrites = config.GetSettingsValue<bool>("[DEBUG] Don't Write To Save File In-Game");
-
         InGameAPConsole?.ModSettingsChanged(config);
         DeathLinkManager.ApplyOverrideSetting();
+        DeathLinkManager.SetupRouletteValues(config);
         SuitResources.ModSettingsChanged(config);
         GhostMatterPlacement.ModSettingsChanged(config);
         TotemCodes.ModSettingsChanged(config);

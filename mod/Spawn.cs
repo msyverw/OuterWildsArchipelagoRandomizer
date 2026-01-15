@@ -69,13 +69,13 @@ internal class Spawn
         // Since this file has to fiddle with LAUNCH_CODES_GIVEN anyway, this seems like the least bad place to put it.
         if (PlayerData._currentGameSave.PersistentConditionExists("LAUNCH_CODES_GIVEN") && !__instance.IsFactRevealed("TH_VILLAGE_X2"))
         {
-            APRandomizer.OWMLModConsole.WriteLine("auto-revealing Village 2 ship log because the time loop has already started");
+            APRandomizer.OWMLModConsole.WriteLine($"auto-revealing Village 2 ship log because the time loop has already started");
             __instance.RevealFact("TH_VILLAGE_X2");
         }
 
         if (APRandomizer.SlotEnabledEotEDLC() && !__instance.IsFactRevealed("IP_RING_WORLD_X1"))
         {
-            APRandomizer.OWMLModConsole.WriteLine("auto-revealing The Stranger ship log because EotE DLC is enabled");
+            APRandomizer.OWMLModConsole.WriteLine($"auto-revealing The Stranger ship log because EotE DLC is enabled");
             __instance.RevealFact("IP_RING_WORLD_X1");
         }
 
@@ -120,135 +120,90 @@ internal class Spawn
         return true;
     }
 
+    private static bool NewHorizonsWarpingToVanillaSystem = false;
+    public static void OnChangeStarSystemEvent(string system) => NewHorizonsWarpingToVanillaSystem = true;
+    // NH doesn't appear to have an event for "done spawning player". I tested StarSystemLoadedEvent, and that one fires *before* SpawnPlayer().
+    // So in practice we're relying on the assumption that there will always be exactly one SpawnPlayer() call per ChangeStarSystemEvent.
+
+    // In general, when other mods might be patching the same method we are, postfix patches that overwrite the result are more robust than
+    // prefix patches that skip the vanilla method (and all other mods' patches, which is the really dangerous part).
+    // We know NewHorizons also patches SpawnPlayer, so it's definitely worth favoring postfix here.
     [HarmonyPostfix, HarmonyPatch(typeof(PlayerSpawner), nameof(PlayerSpawner.SpawnPlayer))]
-    public static void PlayerSpawner_SpawnPlayer()
+    public static void PlayerSpawner_SpawnPlayer(PlayerSpawner __instance)
     {
-        if (NewHorizonsPatches.IsSpawningBroken)
+        if (!APRandomizer.IsVanillaSystemLoaded())
         {
-            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer reloading the scene to avoid a softlock", OWML.Common.MessageType.Info);
-            LoadManager.ReloadScene();
+            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
+            return;
+        }
+        if (NewHorizonsWarpingToVanillaSystem)
+        {
+            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since NewHorizons is warping is back to the vanilla system");
+            NewHorizonsWarpingToVanillaSystem = false;
             return;
         }
 
-        if (!APRandomizer.IsVanillaSystemLoaded())
+        OWRigidbody anchorBody = null;
+        GameObject playerTargetGO = null;
+        Vector3 playerOffset = Vector3.zero;
+        Vector3 shipPosition = Vector3.zero;
+        Quaternion shipRotation = Quaternion.identity;
+
+        if (spawnChoice == SpawnChoice.Vanilla || spawnChoice == SpawnChoice.TimberHearth)
         {
-            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we're not in the vanilla solar system");
-        }
-        else if (spawnChoice == SpawnChoice.DeepBramble)
-        {
-            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we've warped back from Deep Bramble");
-        }
-        else if (spawnChoice is SpawnChoice.Vanilla or SpawnChoice.TimberHearth)
-        {
-            APRandomizer.OWMLModConsole.WriteLine("PlayerSpawner_SpawnPlayer doing nothing, since we're spawning in TH village");
+            APRandomizer.OWMLModConsole.WriteLine($"PlayerSpawner_SpawnPlayer doing nothing, since we're spawning in TH village");
         }
         else if (spawnChoice == SpawnChoice.HourglassTwins)
         {
-            var emberTwinOWRB = Locator.GetAstroObject(AstroObject.Name.CaveTwin).GetOWRigidbody();
-            OWRigidbody shipRigidBody = Locator.GetShipBody();
-
-            var offsetFromPlanet = new Vector3(9, 152.45f, 16);
-            var shipPos = emberTwinOWRB.transform.TransformPoint(offsetFromPlanet);
-            shipRigidBody.WarpToPositionRotation(shipPos, emberTwinOWRB.transform.rotation);
-
-            shipRigidBody.SetVelocity(emberTwinOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(emberTwinOWRB);
-
-            // Don't move the player if New Horizons is trying to, or it'll break
-            if (!NewHorizonsPatches.IsWarping)
-            {
-                var chertCampfireGO = GameObject.Find("CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Lakebed_VisibleFrom_Far/Prefab_HEA_Campfire");
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var offsetFromCampfire = new Vector3(3, 0, -3);
-                var playerPos = chertCampfireGO.transform.TransformPoint(offsetFromCampfire);
-                playerRigidBody.WarpToPositionRotation(playerPos, chertCampfireGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(emberTwinOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(emberTwinOWRB);
-            }
+            playerTargetGO = GameObject.Find("CaveTwin_Body/Sector_CaveTwin/Sector_NorthHemisphere/Sector_NorthSurface/Sector_Lakebed/Interactables_Lakebed/Lakebed_VisibleFrom_Far/Prefab_HEA_Campfire");
+            anchorBody = Locator.GetAstroObject(AstroObject.Name.CaveTwin).GetOWRigidbody();
+            playerOffset = new Vector3(3, 0, -3);
+            shipRotation = anchorBody.transform.rotation;
+            shipPosition = anchorBody.transform.TransformPoint(new Vector3(9, 152.45f, 16));
         }
         else if (spawnChoice == SpawnChoice.BrittleHollow)
         {
             // unfortunately VisibleFrom_BH contains two children named Prefab_HEA_Campfire, so we have to use GetChild() to pick the correct one
-            var riebeckOldCampfireGO = GameObject.Find("BrittleHollow_Body/Sector_BH/Sector_Crossroads/Interactables_Crossroads/VisibleFrom_BH").transform.GetChild(3);
-            var brittleHollowOWRB = Locator.GetAstroObject(AstroObject.Name.BrittleHollow).GetOWRigidbody();
-            OWRigidbody shipRigidBody = Locator.GetShipBody();
-
-            var offsetFromPlanet = new Vector3(-6, 15, 285);
-            var offsetAngle = new Quaternion(0f, -0.7933533f, 0f, 0.6087614f); // equivalent to Rotate(0, -105, 0)
-            var shipPos = brittleHollowOWRB.transform.TransformPoint(offsetFromPlanet);
-            shipRigidBody.WarpToPositionRotation(shipPos, riebeckOldCampfireGO.transform.rotation * offsetAngle);
-
-            shipRigidBody.SetVelocity(brittleHollowOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(brittleHollowOWRB);
-
-            // Don't move the player if New Horizons is trying to, or it'll break
-            if (!NewHorizonsPatches.IsWarping)
-            {
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var offsetFromCampfire = new Vector3(0, 0, -3);
-                var playerPos = riebeckOldCampfireGO.transform.TransformPoint(offsetFromCampfire);
-                playerRigidBody.WarpToPositionRotation(playerPos, riebeckOldCampfireGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(brittleHollowOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(brittleHollowOWRB);
-            }
+            playerTargetGO = GameObject.Find("BrittleHollow_Body/Sector_BH/Sector_Crossroads/Interactables_Crossroads/VisibleFrom_BH").transform.GetChild(3).gameObject;
+            anchorBody = Locator.GetAstroObject(AstroObject.Name.BrittleHollow).GetOWRigidbody();
+            playerOffset = new Vector3(0, 0, -3);
+            Quaternion shipOffsetAngle = new Quaternion(0f, -0.7933533f, 0f, 0.6087614f); // equivalent to Rotate(0, -105, 0)
+            shipRotation = playerTargetGO.transform.rotation * shipOffsetAngle;
+            shipPosition = anchorBody.transform.TransformPoint(new Vector3(-6, 15, 285));
         }
         else if (spawnChoice == SpawnChoice.GiantsDeep)
         {
-            var statueIslandGO = GameObject.Find("StatueIsland_Body");
-            var statueIslandOWRB = statueIslandGO.GetComponent<OWRigidbody>();
-            OWRigidbody shipRigidBody = Locator.GetShipBody();
-
-            var shipPos = statueIslandGO.transform.TransformPoint(new Vector3(-30, 4f, -85));
-            shipRigidBody.WarpToPositionRotation(shipPos, statueIslandGO.transform.rotation);
-
-            shipRigidBody.SetVelocity(statueIslandOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(statueIslandOWRB);
-
-            // Don't move the player if New Horizons is trying to, or it'll break
-            if (!NewHorizonsPatches.IsWarping)
-            {
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var playerPos = statueIslandGO.transform.TransformPoint(new Vector3(0, 40, 30));
-                playerRigidBody.WarpToPositionRotation(playerPos, statueIslandGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(statueIslandOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(statueIslandOWRB);
-            }
+            playerTargetGO = GameObject.Find("StatueIsland_Body");
+            anchorBody = playerTargetGO.GetComponent<OWRigidbody>();
+            playerOffset = new Vector3(0, 40, 30);
+            shipRotation = playerTargetGO.transform.rotation;
+            shipPosition = playerTargetGO.transform.TransformPoint(new Vector3(-30, 4f, -85));
         }
         else if (spawnChoice == SpawnChoice.Stranger)
         {
-            var sunsideHangarGO = GameObject.Find("RingWorld_Body/Sector_RingWorld/Sector_LightSideDockingBay/Geo_LightSideDockingBay/Structure_IP_Docking_Bay/DockingBay_Col");
-            var ringWorldOWRB = Locator.GetAstroObject(AstroObject.Name.RingWorld).GetComponent<OWRigidbody>();
-            OWRigidbody shipRigidBody = Locator.GetShipBody();
-
-            var shipPos = sunsideHangarGO.transform.TransformPoint(new Vector3(4, -12.25f, -5));
-            shipRigidBody.WarpToPositionRotation(shipPos, sunsideHangarGO.transform.rotation);
-
-            shipRigidBody.SetVelocity(ringWorldOWRB.GetVelocity());
-            shipRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(ringWorldOWRB);
-
-            // Don't move the player if New Horizons is trying to, or it'll break
-            if (!NewHorizonsPatches.IsWarping)
-            {
-                OWRigidbody playerRigidBody = Locator.GetPlayerBody();
-
-                var playerPos = sunsideHangarGO.transform.TransformPoint(new Vector3(4, -11.75f, 25));
-                playerRigidBody.WarpToPositionRotation(playerPos, sunsideHangarGO.transform.rotation);
-                Locator.GetPlayerCameraController().SetDegreesY(80f);
-
-                playerRigidBody.SetVelocity(ringWorldOWRB.GetVelocity());
-                playerRigidBody.GetRequiredComponent<MatchInitialMotion>()?.SetBodyToMatch(ringWorldOWRB);
-            }
+            playerTargetGO = GameObject.Find("RingWorld_Body/Sector_RingWorld/Sector_LightSideDockingBay/Geo_LightSideDockingBay/Structure_IP_Docking_Bay/DockingBay_Col");
+            anchorBody = Locator.GetAstroObject(AstroObject.Name.RingWorld).GetComponent<OWRigidbody>();
+            playerOffset = new Vector3(4, -11.75f, 25);
+            shipRotation = playerTargetGO.transform.rotation;
+            shipPosition = playerTargetGO.transform.TransformPoint(new Vector3(4, -12.25f, -5));
         }
         else throw new System.ArgumentException($"spawnChoice had an invalid value of {spawnChoice}");
+
+        if (anchorBody != null && playerTargetGO != null)
+        {
+            Locator.GetPlayerCameraController().SetDegreesY(80f);
+            var playerPos = playerTargetGO.transform.TransformPoint(playerOffset);
+
+            OWRigidbody playerRigidBody = Locator.GetPlayerBody();
+            playerRigidBody.WarpToPositionRotation(playerPos, playerTargetGO.transform.rotation);
+            playerRigidBody.SetVelocity(anchorBody.GetVelocity());
+            playerRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(anchorBody);
+
+            OWRigidbody shipRigidBody = Locator.GetShipBody();
+            shipRigidBody.WarpToPositionRotation(shipPosition, shipRotation);
+            shipRigidBody.SetVelocity(anchorBody.GetVelocity());
+            shipRigidBody.GetRequiredComponent<MatchInitialMotion>().SetBodyToMatch(anchorBody);
+        }
     }
 
     // Hearing the TH Village music outside of TH is no big deal, but in many cases
@@ -268,14 +223,15 @@ internal class Spawn
     /*[HarmonyPrefix, HarmonyPatch(typeof(ToolModeUI), nameof(ToolModeUI.Update))]
     public static void ToolModeUI_Update_Prefix()
     {
+        var totalChoices = System.Enum.GetNames(typeof(SpawnChoice)).Length;
         if (OWInput.SharedInputManager.IsNewlyPressed(InputLibrary.up2))
         {
-            spawnChoice = (SpawnChoice)(((int)spawnChoice + 1) % 5);
+            spawnChoice = (SpawnChoice)(((int)spawnChoice + 1) % totalChoices);
             APRandomizer.OWMLModConsole.WriteLine($"spawnChoice changed to {spawnChoice}");
         }
         if (OWInput.SharedInputManager.IsNewlyPressed(InputLibrary.down2))
         {
-            spawnChoice = (SpawnChoice)(((int)spawnChoice - 1) % 5);
+            spawnChoice = (SpawnChoice)(((int)spawnChoice - 1) % totalChoices);
             APRandomizer.OWMLModConsole.WriteLine($"spawnChoice changed to {spawnChoice}");
         }
     }*/

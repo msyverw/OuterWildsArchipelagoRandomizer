@@ -1,4 +1,7 @@
 ﻿using HarmonyLib;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace ArchipelagoRandomizer;
 
@@ -24,12 +27,20 @@ internal class Spacesuit
     {
         if (!PlayerState.IsWearingSuit())
             SetSpacesuitVisible(hasSpacesuit);
+
+        var ship = Locator.GetShipBody()?.gameObject?.transform;
+        if (ship != null)
+        {
+            var spv = ship.Find("Module_Supplies/Systems_Supplies/ExpeditionGear").GetComponent<SuitPickupVolume>();
+            // Only enable/disable the Suit Up / Return Suit prompt. We want Preflight Checklist to work regardless.
+            spv._interactVolume.EnableSingleInteraction(hasSpacesuit, spv._pickupSuitCommandIndex);
+        }
     }
 
     // This is public so that it can also be called from Spawn.cs when we spawn already in our spacesuit
     public static void SetSpacesuitVisible(bool spacesuitVisible)
     {
-        APRandomizer.OWMLModConsole.WriteLine($"SetSpacesuitVisible({spacesuitVisible}) called");
+        //APRandomizer.OWMLModConsole.WriteLine($"SetSpacesuitVisible({spacesuitVisible}) called");
         var ship = Locator.GetShipBody()?.gameObject?.transform;
         if (ship != null)
         {
@@ -38,7 +49,7 @@ internal class Spacesuit
             var spv = gear.GetComponent<SuitPickupVolume>();
             if (spv._containsSuit != spacesuitVisible)
             {
-                APRandomizer.OWMLModConsole.WriteLine($"SetSpacesuitVisible({spacesuitVisible}) found spv needs changing to {spacesuitVisible}");
+                //APRandomizer.OWMLModConsole.WriteLine($"SetSpacesuitVisible({spacesuitVisible}) found spv needs changing to {spacesuitVisible}");
                 // a highly simplified version of the parts of SuitPickupVolume::OnPressInteract() we care about, e.g. without the SuitUp() call
                 spv._containsSuit = !spv._containsSuit;
                 spv._interactVolume.ChangePrompt(spv._containsSuit ? UITextType.SuitUpPrompt : UITextType.ReturnSuitPrompt, spv._pickupSuitCommandIndex);
@@ -64,5 +75,26 @@ internal class Spacesuit
     public static void ShipPromptController_LateInitialize_Postfix(ShipPromptController __instance)
     {
         ApplyHasSpacesuitFlag(_hasSpacesuit);
+    }
+
+    // only allow NH to fiddle with the spacesuit if you already have the Spacesuit AP item
+    [HarmonyPatch]
+    internal class NewHorizonsSuitUpPatch
+    {
+        [HarmonyPrepare]
+        private static bool Prepare() => AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name == "NewHorizons");
+        [HarmonyTargetMethod]
+        private static MethodBase Target() => Type.GetType($"NewHorizons.Builder.General.SpawnPointBuilder, NewHorizons").GetMethod("SuitUp");
+        [HarmonyPrefix]
+        private static bool Patch()
+        {
+            if (_hasSpacesuit)
+                return true; // no need to change anything
+            else
+            {
+                APRandomizer.OWMLModConsole.WriteLine($"blocking a NewHorizons SuitUp() call because you don't have the Spacesuit AP item yet");
+                return false;
+            }
+        }
     }
 }
