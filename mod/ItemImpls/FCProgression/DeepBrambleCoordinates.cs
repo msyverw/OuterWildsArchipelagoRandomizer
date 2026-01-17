@@ -39,14 +39,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.Start))]
-        public static void ShipLogManager_Start_Postfix() => APRandomizer.Instance.StartCoroutine(EnableWarpDelayed());
-
-        static IEnumerator EnableWarpDelayed() {
-            // Need to delay the check so NH has time to do some setup
-            // otherwise we get a NullReferenceException in ShipLogStarChartMode.AddSystemCard
-            yield return new WaitForSeconds(1);
-            CheckEnableWarp();
-        }
+        public static void ShipLogManager_Start_Postfix() => CheckEnableWarp();
 
         [HarmonyPrefix, HarmonyPatch(typeof(ShipLogManager), nameof(ShipLogManager.RevealFact))]
         public static bool RevealFactPatch(ShipLogManager __instance, string id)
@@ -60,21 +53,9 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
             return true;
         }
 
-        public static void ExitWarpFix()
+        public static void ChangeExitWarp()
         {
             APRandomizer.NewHorizonsAPI.DefineStarSystem("DeepBramble", "{ \"factRequiredToExitViaWarpDrive\": \"NOMAI_WARP_FACT_FC\"}", APRandomizer.Instance);
-        }
-
-        [HarmonyPrefix, HarmonyPatch(typeof(PlayerData), nameof(PlayerData.SetLastDeathType))]
-        public static void PlayerData_SetLastDeathType() // FC sometimes changes the default system, so we reset the default system every time the player dies (for real).
-        {
-            if (APRandomizer.NewHorizonsAPI is null || !APRandomizer.SlotEnabledMod("enable_fc_mod"))
-                return;
-
-            if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
-                APRandomizer.NewHorizonsAPI.SetDefaultSystem("DeepBramble");
-            else
-                APRandomizer.NewHorizonsAPI.SetDefaultSystem("SolarSystem");
         }
     }
 }

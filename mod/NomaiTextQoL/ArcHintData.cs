@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Archipelago.MultiClient.Net.Enums;
+using ArchipelagoRandomizer.ItemImpls.FCProgression;
 
 namespace ArchipelagoRandomizer.NomaiTextQoL
 {
@@ -82,7 +83,7 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
             rend = GetComponent<Renderer>();
 
             // Forgotten Castaways: Alien text needs to be handled slightly differently.
-            if (rend.material.name.Contains("IP") || rend.material.name.Contains("dre")) IsAlienText = true;
+            if (rend.material.name.Contains("IP") || rend.material.name.Contains(ExpandedDictionary.RenamedDreeTextName)) IsAlienText = true;
 
             Locations.Add(loc);
             if (APRandomizer.APSession.Locations.AllLocationsChecked.Contains(LocationNames.locationToArchipelagoId[loc])) HasBeenFound = true;

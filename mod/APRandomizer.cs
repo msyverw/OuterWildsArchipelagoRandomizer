@@ -517,12 +517,12 @@ public class APRandomizer : ModBehaviour
                 {
                     ThermalInsulation.OnDeepBrambleLoadEvent();
                     TamingTechniques.OnDeepBrambleLoadEvent();
-                    DeepBrambleFixes.OnDeepBrambleLoadEvent();
+                    RandomizeFollyLevers.OnDeepBrambleLoadEvent();
                     ExpandedDictionary.OnDeepBrambleLoadEvent();
                 }
             });
             // Adds a prerequisite to warping out of the Deep Bramble, for the Deep Bramble Spawn.
-            DeepBrambleCoordinates.ExitWarpFix();
+            DeepBrambleCoordinates.ChangeExitWarp();
         }
     }
 

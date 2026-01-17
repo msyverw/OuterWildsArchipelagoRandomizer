@@ -7,31 +7,24 @@ using UnityEngine;
 
 namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 {
-    class DeepBrambleFixes
+    class RandomizeFollyLevers
     {
         private static readonly System.Random prng = new();
-        private static IEnumerator deepBrambleFixesCoroutine;
         public static void OnDeepBrambleLoadEvent()
         {
             if (APRandomizer.NewHorizonsAPI == null || APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() != "DeepBramble")
                 return;
 
-            deepBrambleFixesCoroutine = FixDeepBramble();
-            APRandomizer.Instance.StartCoroutine(deepBrambleFixesCoroutine);
+            APRandomizer.Instance.StartCoroutine(RandomizeLevers());
         }
 
-        private static IEnumerator FixDeepBramble()
+        private static IEnumerator RandomizeLevers()
         {
             // If we do this too quickly the triggers have issues when re-enabled
             yield return new WaitForSeconds(1f);
 
-            APRandomizer.OWMLModConsole.WriteLine("Patching Deep Bramble dimension");
+            APRandomizer.OWMLModConsole.WriteLine("Randomizing Folly levers");
 
-            // For an unknown reason, the Recursive Node is getting disabled, so we just re-enable it here.
-            GameObject.Find("BriarsHollow_Body/Sector/Loop Node").SetActive(true);
-            // TODO - test this again, I'm curious
-
-            // Randomize Graviton's Folly levers
             FieldInfo beamField = Type.GetType("DeepBramble.MiscBehaviours.Lever, DeepBramble", true).GetField("beamObject", BindingFlags.NonPublic | BindingFlags.Instance);
             List<object> levers = [
                 GameObject.Find("GravitonsFolly_Body/Sector/hollowplanet/planet/crystal_core/beams/levers/lever1").GetComponent("Lever"),
@@ -45,7 +38,6 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
 
             for (int i = 0; i < levers.Count; i++)
                 beamField.SetValue(levers[i], beams[i].Item1);
-            APRandomizer.OWMLModConsole.WriteLine($"Randomized Folly levers: {string.Join(", ", beams.Select(b => $"Beam {b.Item2}"))}");
 
             // Figure out lever is which
             int second = beams.FindIndex(t => t.Item2 == 2);

@@ -1,8 +1,9 @@
+using ArchipelagoRandomizer.ItemImpls.FCProgression;
 using HarmonyLib;
-using System.Linq;
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace ArchipelagoRandomizer.NomaiTextQoL
 {
@@ -142,7 +143,7 @@ namespace ArchipelagoRandomizer.NomaiTextQoL
             }
             // Only recolor if it's active, in the Deep Bramble, and is alien text
             if (APRandomizer.NewHorizonsAPI != null)
-                if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && __instance._active && __instance.gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains("dre"))
+                if (APRandomizer.NewHorizonsAPI.GetCurrentStarSystem() == "DeepBramble" && __instance._active && __instance.gameObject.GetComponent<OWRenderer>().sharedMaterial.name.Contains(ExpandedDictionary.RenamedDreeTextName))
                 {
                     // Determine the color
                     switch (state)

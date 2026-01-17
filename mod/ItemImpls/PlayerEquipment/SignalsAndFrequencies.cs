@@ -431,7 +431,7 @@ internal class SignalsAndFrequencies
         // Immediately identify the Natural Phenomena frequency for better UX
         if (__instance.GetFrequency().ToString() == "Natural Phenomena")
         {
-            __instance.IdentifyFrequency();
+            PlayerData.LearnFrequency(__instance.GetFrequency());
         }
     }
 

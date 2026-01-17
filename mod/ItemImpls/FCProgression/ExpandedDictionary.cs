@@ -9,7 +9,9 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
     [HarmonyPatch]
     static class ExpandedDictionary
     {
-        private static List<NomaiWallText> _deepBrambleTextWalls = [];
+        internal const string RenamedDreeTextName = "dre";
+
+        private static readonly List<NomaiWallText> _deepBrambleTextWalls = [];
 
         private static bool _hasExpandedDictionary = false;
 
@@ -40,7 +42,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 if (!wall._initialized) continue;
                 foreach (NomaiTextLine txt in wall._textLines)
                     if (txt._renderer.sharedMaterial.name.Contains("dree"))
-                        txt._renderer.sharedMaterial.name = txt._renderer.sharedMaterial.name.Replace("dree", "dre");
+                        txt._renderer.sharedMaterial.name = txt._renderer.sharedMaterial.name.Replace("dree", RenamedDreeTextName);
             }
         }
 
@@ -59,7 +61,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
                 return true;
 
             bool isDreeText = __instance._scanBeams[0]._nomaiTextLine != null
-                && __instance._scanBeams[0]._nomaiTextLine._renderer.sharedMaterial.name.Contains("dre");
+                && __instance._scanBeams[0]._nomaiTextLine._renderer.sharedMaterial.name.Contains(RenamedDreeTextName);
 
             // If the text is dree, and the player lacks the upgrade, hide the text
             if (isDreeText && !hasExpandedDictionary)
@@ -75,7 +77,7 @@ namespace ArchipelagoRandomizer.ItemImpls.FCProgression
         public static void ChangeDreeUnreadMessage(NomaiTranslatorProp __instance)
         {
             bool isDreeText = __instance._scanBeams[0]._nomaiTextLine != null
-                && __instance._scanBeams[0]._nomaiTextLine._renderer.sharedMaterial.name.Contains("dre");
+                && __instance._scanBeams[0]._nomaiTextLine._renderer.sharedMaterial.name.Contains(RenamedDreeTextName);
 
             if (isDreeText && hasExpandedDictionary && __instance._translationTimeElapsed == 0f && !__instance._nomaiTextComponent.IsTranslated(__instance._currentTextID))
                 __instance._textField.text = "<!> Untranslated Dree writing <!>";
