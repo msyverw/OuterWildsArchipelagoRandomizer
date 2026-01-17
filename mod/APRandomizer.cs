@@ -497,8 +497,10 @@ public class APRandomizer : ModBehaviour
 
         StartCoroutine(OverwriteNHInitialSpawn());
 
-        if (NewHorizonsAPI != null) {
-            NewHorizonsAPI.GetChangeStarSystemEvent().AddListener(system => {
+        if (NewHorizonsAPI != null)
+        {
+            NewHorizonsAPI.GetChangeStarSystemEvent().AddListener(system =>
+            {
                 APRandomizer.OWMLModConsole.WriteLine($"NewHorizons API ChangeStarSystemEvent system = {system}");
                 Spawn.OnChangeStarSystemEvent(system);
             });
