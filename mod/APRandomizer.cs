@@ -495,7 +495,7 @@ public class APRandomizer : ModBehaviour
 
         Application.quitting += () => OnSessionClosed(APSession, false);
 
-        StartCoroutine(DisableNHSpawn());
+        StartCoroutine(OverwriteNHInitialSpawn());
 
         if (NewHorizonsAPI != null) {
             NewHorizonsAPI.GetChangeStarSystemEvent().AddListener(system => {
@@ -523,7 +523,13 @@ public class APRandomizer : ModBehaviour
             DeepBrambleCoordinates.ExitWarpFix();
         }
     }
-    IEnumerator DisableNHSpawn()
+
+    // There's an important distinction here between your *initial* spawn at the start of a New/Resume (Random) Expedition,
+    // and the *current* spawn point for any given loop which NewHorizons typically changes when you warp between systems.
+    // Randomizers obviously need total control over the initial spawn, so NH story mods which change it need to be overwritten.
+    // But changing the current spawn on warp is a desirable time-saving feature with no impact on logic.
+    // So that's why we're doing this overwrite only once on mod Start().
+    IEnumerator OverwriteNHInitialSpawn()
     {
         yield return new WaitForEndOfFrame();
 
@@ -532,15 +538,14 @@ public class APRandomizer : ModBehaviour
 
         // There's no way to ask what the default system currently is, so if NH is running at all
         // then we have to assume it needs overriding.
-        // TODO - this doesn't actually work? At least for Jam 3 system
         if (Spawn.spawnChoice == Spawn.SpawnChoice.DeepBramble)
         {
-            OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"DeepBramble\")");
+            OWMLModConsole.WriteLine($"OverwriteNHInitialSpawn() calling SetDefaultSystem(\"DeepBramble\")");
             NewHorizonsAPI.SetDefaultSystem("DeepBramble");
         }
         else
-        {
-            OWMLModConsole.WriteLine($"DisableNHSpawn() calling SetDefaultSystem(\"SolarSystem\")");
+        { 
+            OWMLModConsole.WriteLine($"OverwriteNHInitialSpawn() calling SetDefaultSystem(\"SolarSystem\")");
             NewHorizonsAPI.SetDefaultSystem("SolarSystem");
         }
     }
