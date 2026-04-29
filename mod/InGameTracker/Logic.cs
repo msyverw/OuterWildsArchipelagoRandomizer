@@ -319,6 +319,10 @@ public class Logic
                 to = "Deep Bramble via Warp Drive",
                 requires = [new() { item = "Launch Codes" }]
             });
+
+            // The AC vision only triggers in the normal system, so we need to be able to get there
+            if (APRandomizer.Instance.ModHelper.Interaction.ModExists("Walker.AstralCodex") && APRandomizer.SlotEnabledLogsanity())
+                TrackerLocations["AC Ship Log: Flashback Vision"].region = "Space";
         }
 
         // just hardcode the vanilla warps again, it's easier than deriving these strings from the maps in WarpPlatforms.cs
